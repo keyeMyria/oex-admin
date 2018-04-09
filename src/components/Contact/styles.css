@@ -1,0 +1,39 @@
+.contactImage {
+  width: 100vw;
+  margin-bottom: 20px;
+}
+.contactText{
+  font-family: PingFangSC;
+  font-size: 16px;
+  text-align: justify;
+  margin: 4px 30px;
+}
+.bluespan {
+  color: #307ede;
+}
+.splitline {
+  height: 1px;
+  border-bottom: 1px solid #dadada;
+  margin: 10px 30px;
+}
+.qrcode {
+  width: 45vw;
+  height: 45vw;
+  margin: 0 auto;
+  display: block;
+  border-radius: 5px;
+  border: solid 1px #307ede;
+  margin-top: 38px;
+}
+.trangleImage {
+  margin: 2px auto;
+  display: block;
+  width: 10px;
+}
+.descText {
+  font-family: PingFangSC;
+  font-size: 14px;
+  text-align: center;
+  color: #808080;
+  margin: 10px 30px;
+}

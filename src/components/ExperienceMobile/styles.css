@@ -1,0 +1,100 @@
+.headImg {
+  max-width: 100vw;
+  display: block;
+  margin: 0 auto;
+}
+.title {
+  font-family: PingFangSC;
+  font-size: 18px;
+  text-align: justify;
+  color: #333333;
+  margin: 2.6vw;
+}
+.updateTime {
+  font-family: PingFangSC;
+  font-size: 12px;
+  color: #999999;
+  margin: 0 2vw;
+}
+.splitline {
+  height: 1px;
+  border: solid 0.5px #dadada;
+  width: 100vw;
+  color: #dadada;
+  margin: 1.5vw 0;
+}
+.articleContent {
+  height:100%;
+  overflow: scroll;
+  margin: 0 auto;
+  max-width: 100vw;
+}
+.articleContent blockquote,
+.articleContent .quote,
+.articleContent .quoteLine,
+.articleContent h2,
+.articleContent h3,
+.articleContent .contentImg,
+.articleContent p {
+  margin: 25px 0 0;
+}
+
+.contentImg {
+  max-width: 100%;
+  width:auto;
+  height:auto;
+}
+.articleContent {
+  height:100%;
+  overflow-y: scroll;
+  margin: 0 auto;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+.articleContent p {
+  line-height: 1.73;
+  font-size: 15px;
+  text-align: justify;
+  margin: 0 2.6vw;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+.articleContent h3 {
+  position: relative;
+  padding-left: 10px;
+  line-height: 1.3em;
+  font-size: 1.125em;
+  color: #262626;
+  font-weight: 600;
+}
+.articleContent h3:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 3px;
+  height: auto;
+  background: #262626;
+  border-radius: 3px;
+}
+.articleContent .contentImg {
+  display: block;
+  max-width: 100%;
+  margin: 25px auto;
+  border-radius: 4px;
+}
+
+.articleContent .quote {
+  color: #888;
+  font-size: 0.875em;
+  text-align: justify;
+}
+
+.articleContent .quoteLine {
+  width: 100px;
+  height: 2px;
+  background-color: #ddd;
+}

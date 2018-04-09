@@ -1,0 +1,180 @@
+.articlePageWrapper .content .textblock blockquote,
+.articlePageWrapper .content .textblock dl,
+.articlePageWrapper .content .textblock form,
+.articlePageWrapper .content .textblock h2,
+.articlePageWrapper .content .textblock h3,
+.articlePageWrapper .content .textblock h4,
+.articlePageWrapper .content .textblock h5,
+.articlePageWrapper .content .textblock h6,
+.articlePageWrapper .content .textblock iframe,
+.articlePageWrapper .content .textblock img,
+.articlePageWrapper .content .textblock ol,
+.articlePageWrapper .content .textblock p,
+.articlePageWrapper .content .textblock pre,
+.articlePageWrapper .content .textblock table,
+.articlePageWrapper .content .textblock ul {
+  margin: 25px 0 0;
+}
+
+.topDownloadWrapper {
+  z-index: 1000;
+  position: fixed;
+  height: 40px;
+  padding: 5px 2rem;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: #fafafa;
+  color: #bbb;
+  width: 100%;
+}
+
+.topDownloadWrapper img{
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+img {
+  box-sizing: border-box;
+  vertical-align: middle;
+  border: 0;
+}
+.topDownloadWrapper a {
+  float: right;
+  margin-top: 2px;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 15px;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 13px;
+}
+
+.articlePageWrapper {
+  -webkit-font-smoothing: antialiased;
+  font-family: PingFang SC,Lantinghei SC,Helvetica Neue,Helvetica,Arial,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,STHeitiSC-Light,simsun,\\5B8B\4F53,WenQuanYi Zen Hei,WenQuanYi Micro Hei,"sans-serif";
+  position: relative;
+  top: 40px;
+  text-size-adjust: 100%!important;
+  -ms-text-size-adjust: 100%!important;
+  -webkit-text-size-adjust: 100%!important;
+}
+.articleTitleWrapper {
+  padding: 25px 30px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.articleTitle {
+  margin: 0;
+  font-size: 22px;
+  color: #000;
+  line-height: 30px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.authorInfo {
+  display: flex;
+  box-align: center;
+  align-items: center;
+}
+.articleAuthorCardComponent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 25px;
+}
+
+.articleAuthorCardComponent .authorAvatar{
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: no-repeat 50%;
+  background-size: cover;
+}
+
+.articleAuthorCardComponent .authorNickname {
+  color: #262626;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 2px;
+}
+
+.articleAuthorCardComponent .authorUpdateTime {
+  color: #999ca0;
+  font-size: 12px;
+  line-height: 14px;
+}
+.articlePageWrapper .summary {
+  position: relative;
+  margin: 25px 15px 0;
+  padding: 10px 10px 10px 45px;
+  color: #262626;
+  font-size: 16px;
+  line-height: 29px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+}
+
+.articlePageWrapper .summary:after {
+  content: " ";
+  position: absolute;
+  top: 16px;
+  left: 10px;
+  display: block;
+  width: 20px;
+  height: 18px;
+  background: url('../../assets/images/yinhao.png') no-repeat 50%;
+  background-size: contain;
+}
+.articlePageWrapper .content {
+    padding: 0 15px;
+}
+
+.articlePageWrapper .content .textblock {
+  width: 100%;
+  text-align: justify;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  padding: 0 0 20px;
+  background-color: #fff;
+  overflow: hidden;
+  font-family: PingFang SC,Lantinghei SC,Helvetica Neue,Helvetica,Arial,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,STHeitiSC-Light,simsun,\\5B8B\4F53,WenQuanYi Zen Hei,WenQuanYi Micro Hei,"sans-serif";
+  font-size: 18px;
+  color: #262626;
+  line-height: 32px;
+}
+.articlePageWrapper .content .textblock p {
+  line-height: 32px;
+}
+
+.articlePageWrapper .content .textblock h3 {
+  position: relative;
+  padding-left: 10px;
+  line-height: 24px;
+  font-size: 18px;
+  color: #262626;
+  font-weight: 600;
+}
+.articlePageWrapper .content .textblock h3:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 3px;
+  height: auto;
+  background: #2e79f4;
+  border-radius: 3px;
+}
+.articlePageWrapper .content .textblock img {
+  display: block;
+  max-width: 100%;
+  margin: 25px auto;
+  border-radius: 4px;
+}
