@@ -16,17 +16,18 @@ class Menus extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
   };
   state = {
-    current: '题目列表',
+    current: '用户管理',
   };
   _handleClick(e) {
-    // this.setState({
-    //   current: e.key,
-    // });
-    // if (e.key === '账号管理') {
-    //   this.props.dispatch(push(RoutingURL.UserList()));
-    // } else if(e.key === '题目管理') {
-    //   this.props.dispatch(push(RoutingURL.ArticleList()));
-    // } else if(e.key === '用户管理') {
+    this.setState({
+      current: e.key,
+    });
+    if (e.key === '用户管理') {
+      this.props.dispatch(push(RoutingURL.UserList()));
+    } else if(e.key === '后台用户管理') {
+      this.props.dispatch(push(RoutingURL.AdminList()));
+    }
+    // else if(e.key === '用户管理') {
     //   this.props.dispatch(push(RoutingURL.PeopleList()));
     // } else if (e.key === '西医综合') {
     //   this.props.dispatch(push(RoutingURL.ExperienceList()));
@@ -41,7 +42,7 @@ class Menus extends React.PureComponent {
     // }
   }
   render() {
-    const role = this.props.role || userInfoStorage.getItem('role');
+    // const role = this.props.role || userInfoStorage.getItem('role');
     return (
       <View>
         <MenusHeader />
@@ -108,13 +109,18 @@ class Menus extends React.PureComponent {
                   • 统计
                 </Item>
               </SubMenu>
-              {Number(role) === 1 ?
+              <Item
+                key="后台用户管理"
+              >
+                后台用户管理
+              </Item>
+              {/* {Number(role) === 1 ?
                 <Item
                   key="配置管理"
                 >
                   配置管理
                 </Item> : ''
-              }
+              } */}
 
               {/* <Item
                 key="用户反馈"
@@ -165,13 +171,13 @@ class Menus extends React.PureComponent {
                   • 配置管理
                 </Item>
               </SubMenu> */}
-              {Number(role) === 1 ?
+              {/* {Number(role) === 1 ?
                 <Item
                   key="账号管理"
                 >
                   账号管理
                 </Item> : ''
-              }
+              } */}
             </Menu>
         </View>
       </View>

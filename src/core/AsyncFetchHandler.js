@@ -20,10 +20,10 @@ const AsyncFetchHandler = (
   });
   fetchResultPromise
     .then(data => {
-      if (data.code === '0') {
+      if (data.status === 200) {
         dispatch({
           type: FetchState.SUCCESS(actionName),
-          data: sideEffect(data.data),
+          data: sideEffect(data.datas),
         });
       } else if (data.code === 5000) {
         dispatch(push(RoutingURL.Login()));

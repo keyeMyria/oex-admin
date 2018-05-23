@@ -1,7 +1,7 @@
 /* @flow */
 let rootURL: string = '/api/';
 if(process.env.NODE_ENV === 'production') {
-  rootURL = 'https://api.cyixue.com/api/';
+  rootURL = 'http://54.255.206.178:8080/api/';
 }
 
 
@@ -12,12 +12,12 @@ export const GetOSSSignature: string = `${rootURL}oss/web/sign`;
  * 登录地址
  * @type {string}
  */
-export const LoginPath: string = `${rootURL}admin/login`;
+export const LoginPath: string = `${rootURL}user/admin/user/login`;
 /**
  * 登出地址
  * @type {string}
  */
-export const LogoutPath: string = `${rootURL}admin/exit`;
+export const LogoutPath: string = `${rootURL}user/admin/user/exit`;
 /**
  * 获取题目列表
  * @type {string}

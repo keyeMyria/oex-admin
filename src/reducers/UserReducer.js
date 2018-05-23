@@ -36,8 +36,9 @@ const defaultState = Immutable.Map({
     passWord: '',
   }),
   searchData: Immutable.Map({
-    // id: '',
-    // phone: '',
+    id: '',
+    phone: '',
+    email: '',
     pageNum: 1,
     pageSize: 10,
   })

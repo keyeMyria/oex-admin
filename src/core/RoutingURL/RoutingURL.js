@@ -81,6 +81,15 @@ export const UserInfo = (id : string = '', editing : boolean = false): string =>
   }
   return prefix(`user/${id}`);
 };
+/* **************************  后台用户管理模块  ******************************************** */
+export const AdminList = (): string => prefix('admin-list');
+
+export const AdminInfo = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`admin/${id}?editing=true`);
+  }
+  return prefix(`admin/${id}`);
+};
 
 export const Share = (): string => prefix('share');
 

@@ -16,7 +16,7 @@ import * as LoginAction from '../../actions/LoginAction';
 class TopBar extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    userName: PropTypes.string.isRequired,
+    // userName: PropTypes.string.isRequired,
   }
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
@@ -40,7 +40,7 @@ class TopBar extends React.Component {
         <Dropdown overlay={menu}>
           <div className={styles.user}>
             <Icon type="user" className={styles.icon} />
-            <View className={styles.userName}>{this.props.userName ? this.props.userName : userInfoStorage.getItem('userName')}</View>
+            {/* <View className={styles.userName}>{this.props.userName ? this.props.userName : userInfoStorage.getItem('userName')}</View> */}
             <Icon type="down" style={styleJS.icon} />
           </div>
         </Dropdown>

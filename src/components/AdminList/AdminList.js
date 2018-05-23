@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import UserListHeader from './UserListHeader';
-import UserListSearch from './UserListSearch';
-import UserListTable from './UserListTable';
+import AdminListHeader from './AdminListHeader';
+import AdminListSearch from './AdminListSearch';
+import AdminListTable from './AdminListTable';
 import PageNav from '../../common/PageNav';
 import { View } from 'isomorphic';
 import Immutable from 'immutable';
@@ -13,7 +13,7 @@ import amumu from 'amumu';
 
 @amumu.redux.ConnectStore
 @amumu.decorators.Loading('pc')
-class UserList extends React.Component {
+class AdminList extends React.Component {
   static propTypes = {
     isFetching: PropTypes.bool.isRequired,
     errMsg: PropTypes.string.isRequired,
@@ -22,17 +22,17 @@ class UserList extends React.Component {
     dispatch: PropTypes.func,
   };
   componentWillMount() {
-    // this.props.dispatch(UserAction.getUserList(
-    //   { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
-    // ));
+    this.props.dispatch(UserAction.getUserList(
+      { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
+    ));
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.UserInfo()));
   }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
-    const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(UserAction.getUserList(localParams));
-    this.props.changeAction('UserReducer/searchData/pageNum', current);
+    // const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
+    // dispatch(UserAction.getUserList(localParams));
+    // this.props.changeAction('UserReducer/searchData/pageNum', current);
   };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
@@ -43,19 +43,19 @@ class UserList extends React.Component {
     return (
       <View className={ styles.contentList } style={{ top: '90px' }}>
         <View className={ styles.contentListHeader }>
-          <UserListHeader
+          <AdminListHeader
             goCreateAction={this._goCreateAction(this.props.dispatch)}
           />
         </View>
         <View className={ styles.contentListContent } >
           <View className={ styles.contentListSearch } >
-            <UserListSearch
+            <AdminListSearch
               searchAction={this._searchAction(this.props.dispatch)}
               searchData={this.props.searchData}
             />
           </View>
           <View className={ styles.contentListTable } >
-             <UserListTable
+             <AdminListTable
                dataSource={this.props.userList.get('list')}
                total={this.props.userList.get('total')}
                dispatch={this.props.dispatch}
@@ -77,4 +77,4 @@ class UserList extends React.Component {
   }
 }
 
-export default UserList;
+export default AdminList;

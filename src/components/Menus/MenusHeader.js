@@ -13,7 +13,7 @@ const MenuHeader = () => {
     <View className={styles.MenusHeaderContainer}>
       <View><img src={LOGO} width="50" height="50" /></View>
       <View className={styles.sloganContainer}>
-        <View className={styles.sloganTitle}>荟医</View>
+        <View className={styles.sloganTitle}>oex</View>
         <View className={styles.sloganSubtitle}>后台管理系统</View>
       </View>
     </View>

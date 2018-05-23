@@ -224,7 +224,7 @@ module.exports = {
     proxy: { // proxy URLs to backend development server
       '/api/*': {
         changeOrigin: true,
-        target:  'http://47.104.17.213:8081/',
+        target:  'http://54.255.206.178:8080/',
         secure: false
       },
       '/oss/*': {

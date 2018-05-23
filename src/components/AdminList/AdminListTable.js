@@ -14,7 +14,7 @@ const propTypes = {
   changeAction: PropTypes.func,
 };
 @amumu.redux.ConnectStore
-class UserListTable extends React.Component {
+class AdminListTable extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.columns = [{
@@ -23,43 +23,19 @@ class UserListTable extends React.Component {
       key: 'operation',
       width: 100,
     }, {
-      title: 'uid',
+      title: '账号ID',
       dataIndex: 'id',
       key: 'id',
     }, {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email',
+      title: '账号',
+      dataIndex: 'username',
+      key: 'username',
     }, {
-      title: '是否禁止登陆',
+      title: '真实姓名',
       dataIndex: 'var1',
       key: 'var1',
     }, {
-      title: '是否禁止提币',
-      dataIndex: 'role',
-      key: 'role',
-    }, {
-      title: '是否禁止交易',
-      dataIndex: 'role',
-      key: 'role',
-    }, {
-      title: '真实姓名',
-      dataIndex: 'role',
-      key: 'role',
-    }, {
-      title: '证件号码',
-      dataIndex: 'role',
-      key: 'role',
-    }, {
-      title: '推荐人uid',
-      dataIndex: 'role',
-      key: 'role',
-    }, {
-      title: '注册时间',
-      dataIndex: 'role',
-      key: 'role',
-    }, {
-      title: '登陆时间',
+      title: '账户类型',
       dataIndex: 'role',
       key: 'role',
     }];
@@ -114,6 +90,6 @@ class UserListTable extends React.Component {
     );
   }
 }
-UserListTable.propTypes = propTypes;
+AdminListTable.propTypes = propTypes;
 
-export default UserListTable;
+export default AdminListTable;

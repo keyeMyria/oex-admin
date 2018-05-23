@@ -9,7 +9,7 @@ const FormItem = Form.Item;
 
 @amumu.decorators.PureComponent
 @amumu.redux.ConnectStore
-class UserListSearch extends React.Component {
+class AdminListSearch extends React.Component {
   static propTypes = {
     searchAction: PropTypes.func.isRequired,
     form: PropTypes.any,
@@ -116,4 +116,4 @@ class UserListSearch extends React.Component {
   }
 }
 
-export default Form.create()(UserListSearch);
+export default Form.create()(AdminListSearch);
