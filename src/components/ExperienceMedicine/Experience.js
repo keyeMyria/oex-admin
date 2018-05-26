@@ -89,7 +89,7 @@ class Experience extends React.Component {
     result.then(fileInfo => {
       if (fileInfo.fileURL) {
         this.props.changeAction('ExperienceReducer/experienceInfo/contentOss', fileInfo.fileURL);
-        this.props.form.setFieldsValue({contentOss: fileInfo.fileURL});
+        this.props.form.setFields({contentOss: fileInfo.fileURL});
         const params = this.props.experienceInfo.toJS();
         delete params['content'];
         params.style = 3;
@@ -142,12 +142,12 @@ class Experience extends React.Component {
           // console.log('上传成功');
           // getBase64(file, (imgURL) => {
           //   content[index].content = imgURL;
-          //   this.props.form.setFieldsValue({
+          //   this.props.form.setFields({
           //     content,
           //   });
           // })
           content[index].content = fileInfo.fileURL;
-           this.props.form.setFieldsValue({
+           this.props.form.setFields({
              content,
            });
         } else {
@@ -188,7 +188,7 @@ class Experience extends React.Component {
    }
 
    // can use data-binding to set
-   form.setFieldsValue({
+   form.setFields({
      content: content.filter(key => key !== k),
    });
   };
@@ -203,7 +203,7 @@ class Experience extends React.Component {
     // can use data-binding to set
     // important! notify form to detect changes
     console.log(content);
-    form.setFieldsValue({
+    form.setFields({
       content,
     });
   };
@@ -284,7 +284,7 @@ class Experience extends React.Component {
                   if(item.type == 1 || item.type == 2) {
                     try {
                       content[index].content = e.target.value;
-                      this.props.form.setFieldsValue({
+                      this.props.form.setFields({
                         content,
                       });
                     } catch(e) {

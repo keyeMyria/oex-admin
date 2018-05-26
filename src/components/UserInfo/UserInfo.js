@@ -108,7 +108,7 @@ class UserInfo extends React.Component {
         </View>
         <View className={ Contentstyles.contentContainer }>
           <Form
-            horizontal
+            
             className={ Contentstyles.contentBox }
           >
             {this.props.params.id ?

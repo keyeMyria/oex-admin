@@ -23,7 +23,7 @@ class UserListSearch extends React.Component {
   searchData() {
     if (this.props.searchData.count() > 1) {
       const dataSource1 = this.props.searchData;
-      return this.props.form.setFieldsValue({
+      return this.props.form.setFields({
         id: dataSource1.get('id'),
         phone: dataSource1.get('phone'),
       });
@@ -38,7 +38,6 @@ class UserListSearch extends React.Component {
     };
     return (
       <Form
-        horizontal
         className="advanced-search-form"
       >
         <Row>

@@ -1,4 +1,4 @@
-import * as PeopleAction from '../actions/PeopleAction';
+import * as BonusAction from '../actions/BonusAction';
 import * as ExperienceAction from '../actions/ExperienceAction';
 import * as Authentication from '../core/Authentication';
 import Immutable from 'immutable';
@@ -10,13 +10,13 @@ import { datas } from './course';
 const defaultState = Immutable.Map({
   isFetching: false,
   errMsg: '',
-  peopleList: Immutable.Map({
+  bonusList: Immutable.Map({
     list: Immutable.List([
       ]),
       total: 0,
       currentPage: 1,
   }),
-  peopleInfo: Immutable.Map({
+  bonusInfo: Immutable.Map({
   }),
   searchData: Immutable.Map({
     id: '',
@@ -27,10 +27,10 @@ const defaultState = Immutable.Map({
   }),
 });
 
-const getPeopleListHandler = new ActionHandler.handleAction(PeopleAction.GET_PEOPLE_LIST)
+const getBonusListHandler = new ActionHandler.handleAction(BonusAction.GET_BONUS_LIST)
   .success((state, action) => {
-    return state.setIn(['peopleList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['peopleList', 'total'], Immutable.fromJS(action.data.totalRow))
+    return state.setIn(['bonusList', 'list'], Immutable.fromJS(action.data.list))
+      .setIn(['bonusList', 'total'], Immutable.fromJS(action.data.totalRow))
       .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
       .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
       .set('isFetching', false).set('errMsg', '');
@@ -38,9 +38,9 @@ const getPeopleListHandler = new ActionHandler.handleAction(PeopleAction.GET_PEO
 
 
 
-const getPeopleInfoHandler = new ActionHandler.handleAction(PeopleAction.GET_PEOPLE_INFO)
+const getBonusInfoHandler = new ActionHandler.handleAction(BonusAction.GET_BONUS_INFO)
     .success((state, action) => {
-      return state.set('peopleInfo', Immutable.fromJS(action.data))
+      return state.set('bonusInfo', Immutable.fromJS(action.data))
         .set('isFetching', false).set('errMsg', '');
     });
 
@@ -54,9 +54,9 @@ const getExperienceContentHandler = new ActionHandler.handleAction(ExperienceAct
 
 export default ActionHandler.handleActions(
   [
-    getPeopleListHandler,
-    getPeopleInfoHandler,
+    getBonusListHandler,
+    getBonusInfoHandler,
   ],
   defaultState,
-  /^PeopleReducer\//
+  /^BonusReducer\//
 );

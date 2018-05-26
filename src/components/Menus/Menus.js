@@ -26,20 +26,25 @@ class Menus extends React.PureComponent {
       this.props.dispatch(push(RoutingURL.UserList()));
     } else if(e.key === '后台用户管理') {
       this.props.dispatch(push(RoutingURL.AdminList()));
+    } else if(e.key === '权限管理') {
+      this.props.dispatch(push(RoutingURL.AuthList()));
+    } else if (e.key === '币种信息') {
+      this.props.dispatch(push(RoutingURL.CurrencyInfoList()));
+    } else if (e.key === '币种配置') {
+      this.props.dispatch(push(RoutingURL.CurrencyConfigList()));
+    } else if (e.key === '币种资料') {
+      this.props.dispatch(push(RoutingURL.MSCurrencyList()));
+    } else if (e.key === '交易区列表') {
+      this.props.dispatch(push(RoutingURL.AreaList()));
+    } else if (e.key === '交易对列表') {
+      this.props.dispatch(push(RoutingURL.PairList()));
+    } else if (e.key === '地址池列表') {
+      this.props.dispatch(push(RoutingURL.AddressList()));
+    } else if (e.key === '持币分红') {
+      this.props.dispatch(push(RoutingURL.BonusList()));
+    } else if (e.key === '客服') {
+      this.props.dispatch(push(RoutingURL.WorkOrders()));
     }
-    // else if(e.key === '用户管理') {
-    //   this.props.dispatch(push(RoutingURL.PeopleList()));
-    // } else if (e.key === '西医综合') {
-    //   this.props.dispatch(push(RoutingURL.ExperienceList()));
-    // } else if (e.key === '执业医师') {
-    //   this.props.dispatch(push(RoutingURL.ExperienceListDoctor()));
-    // } else if (e.key === '执业药师') {
-    //   this.props.dispatch(push(RoutingURL.ExperienceListMedicine()));
-    // } else if (e.key === '配置管理') {
-    //   this.props.dispatch(push('/config'));
-    // } else if (e.key === '用户反馈') {
-    //   this.props.dispatch(push(RoutingURL.AdviceList()));
-    // }
   }
   render() {
     // const role = this.props.role || userInfoStorage.getItem('role');
@@ -57,16 +62,48 @@ class Menus extends React.PureComponent {
               >
                 用户管理
               </Item>
-              <Item
+              <SubMenu
                 key="币种管理"
+                title={<div className={styles.subTitle}>
+                币种管理</div>}
               >
-                币种管理
-              </Item>
-              <Item
+                <Item
+                  key="币种信息"
+                >
+                  • 币种信息
+                </Item>
+                <Item
+                  key="币种配置"
+                >
+                  • 币种配置
+                </Item>
+                <Item
+                  key="币种资料"
+                >
+                  • 币种资料
+                </Item>
+                <Item
+                  key="地址池列表"
+                >
+                  • 地址池列表
+                </Item>
+              </SubMenu>
+              <SubMenu
                 key="交易管理"
+                title={<div className={styles.subTitle}>
+                交易管理</div>}
               >
-                交易管理
-              </Item>
+                <Item
+                  key="交易区列表"
+                >
+                  • 交易区列表
+                </Item>
+                <Item
+                  key="交易对列表"
+                >
+                  • 交易对列表
+                </Item>
+              </SubMenu>
               <SubMenu
                 key="财务"
                 title={<div className={styles.subTitle}>
@@ -109,11 +146,22 @@ class Menus extends React.PureComponent {
                   • 统计
                 </Item>
               </SubMenu>
-              <Item
-                key="后台用户管理"
+              <SubMenu
+                key="账号管理"
+                title={<div className={styles.subTitle}>
+                账号管理</div>}
               >
-                后台用户管理
-              </Item>
+                <Item
+                  key="后台用户管理"
+                >
+                  • 后台用户管理
+                </Item>
+                <Item
+                  key="权限管理"
+                >
+                  • 权限管理
+                </Item>
+              </SubMenu>
               {/* {Number(role) === 1 ?
                 <Item
                   key="配置管理"

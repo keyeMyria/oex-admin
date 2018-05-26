@@ -133,7 +133,7 @@ class Article extends React.Component {
     result.then(fileInfo => {
       if (fileInfo.fileURL) {
         this.props.changeAction('ArticleReducer/articleInfo/ossUrl', fileInfo.fileURL);
-        this.props.form.setFieldsValue({ossUrl: fileInfo.fileURL});
+        this.props.form.setFields({ossUrl: fileInfo.fileURL});
         // const params = this.props.articleInfo.toJS();
         param.ossUrl = fileInfo.fileURL;
         param.rightOption = param.rightOption.join(',');

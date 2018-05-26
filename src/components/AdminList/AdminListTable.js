@@ -23,19 +23,15 @@ class AdminListTable extends React.Component {
       key: 'operation',
       width: 100,
     }, {
-      title: '账号ID',
+      title: '用户ID',
       dataIndex: 'id',
       key: 'id',
     }, {
-      title: '账号',
+      title: '用户名',
       dataIndex: 'username',
       key: 'username',
     }, {
-      title: '真实姓名',
-      dataIndex: 'var1',
-      key: 'var1',
-    }, {
-      title: '账户类型',
+      title: '角色',
       dataIndex: 'role',
       key: 'role',
     }];
@@ -49,7 +45,6 @@ class AdminListTable extends React.Component {
         key: index,
         id: data.get('id'),
         username: data.get('userName'),
-        var1: data.get('var1'),
         role: roleType[data.get('role')],
         operation: (
           <View>

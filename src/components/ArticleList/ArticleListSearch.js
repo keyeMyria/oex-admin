@@ -30,7 +30,7 @@ class ArticleListSearch extends React.Component {
   searchData() {
     if (this.props.searchData.count() > 1) {
       const dataSource1 = this.props.searchData;
-      return this.props.form.setFieldsValue({
+      return this.props.form.setFields({
         id: dataSource1.get('id'),
         subjectId: dataSource1.get('subjectId'),
         type: dataSource1.get('type'),

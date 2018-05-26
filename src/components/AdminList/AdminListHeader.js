@@ -12,16 +12,16 @@ const AdminListHeader = (props) => {
   return (
     <View className={ styles.contentHeader }>
       <View className={ styles.contentText }>
-        用户列表
+        后台用户列表
       </View>
       <View className={ styles.contentButton }>
-        {/* <Button
+        <Button
           type="primary"
           className={ mainStyles.blueButton }
           onClick={ () => props.goCreateAction() }
         >
-          新建账号
-        </Button> */}
+          新建用户
+        </Button>
       </View>
     </View>
   );

@@ -1,5 +1,5 @@
 
-import * as AdviceListAction from '../actions/AdviceListAction';
+import * as AddressListAction from '../actions/AddressListAction';
 import Immutable from 'immutable';
 import { redux } from 'amumu';
 const ActionHandler = redux.ActionHandler;
@@ -22,7 +22,7 @@ const defaultState = Immutable.Map({
   }),
 });
 
-const getAdviceListHandler = new ActionHandler.handleAction(AdviceListAction.GET_ADVICE_LIST)
+const getAdviceListHandler = new ActionHandler.handleAction(AddressListAction.GET_ADVICE_LIST)
   .success((state, action) => {
     return state.setIn(['adviceList', 'list'], Immutable.fromJS(action.data.list))
       .setIn(['adviceList', 'total'], Immutable.fromJS(action.data.totalRow))

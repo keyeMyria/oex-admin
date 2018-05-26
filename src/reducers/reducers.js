@@ -10,6 +10,9 @@ import ExperienceReducer from './ExperienceReducer';
 import PeopleReducer from './PeopleReducer';
 import ConfigReducer from './ConfigReducer';
 import AdviceListReducer from './AdviceListReducer';
+import BonusReducer from './BonusReducer';
+import ServiceReducer from './ServiceReducer';
+import TradeReducer from './TradeReducer';
 
 
 // 状态入口
@@ -23,6 +26,9 @@ const appReducers = combineReducers({
   PeopleReducer,
   ConfigReducer,
   AdviceListReducer,
+  BonusReducer,
+  ServiceReducer,
+  TradeReducer,
 });
 
 export default appReducers;

@@ -20,36 +20,44 @@ export const Article = (id : string = '', editing : boolean = false): string => 
 };
 
 /* **************************  经验管理模块  ******************************************** */
-export const ExperienceList = (): string => prefix('experience-list');
-export const ExperienceListDoctor = () => prefix('experience-list-doctor');
-export const ExperienceListMedicine = () => prefix('experience-list-medicine');
+export const CurrencyInfoList = (): string => prefix('currency-info-list');
+export const MSCurrencyList = () => prefix('ms-currency-list');
+export const CurrencyConfigList = () => prefix('currency-config-list');
 
 export const Experience = (id : string = '', editing : boolean = false): string => {
   if (editing) {
-    return prefix(`experience/${id}?editing=true`);
+    return prefix(`currency-info/${id}?editing=true`);
   }
-  return prefix(`experience/${id}`);
+  return prefix(`currency-info/${id}`);
 };
 export const ExperienceDoctor = (id : string = '', editing : boolean = false): string => {
   if (editing) {
-    return prefix(`experience-doctor/${id}?editing=true`);
+    return prefix(`ms-currency/${id}?editing=true`);
   }
-  return prefix(`experience-doctor/${id}`);
+  return prefix(`ms-currency/${id}`);
 };
 export const ExperienceMedicine = (id : string = '', editing : boolean = false): string => {
   if (editing) {
-    return prefix(`experience-medicine/${id}?editing=true`);
+    return prefix(`currency-config/${id}?editing=true`);
   }
-  return prefix(`experience-medicine/${id}`);
+  return prefix(`currency-config/${id}`);
 };
 
-/* **************************  用户管理模块  ******************************************** */
-export const PeopleList = () => prefix('people-list');
-export const People = (id : string = '', editing : boolean = false): string => {
+/* **************************  交易管理模块  ******************************************** */
+export const AreaList = () => prefix('area-list');
+export const AreaInfo = (id : string = '', editing : boolean = false): string => {
   if (editing) {
-    return prefix(`people/${id}?editing=true`);
+    return prefix(`area/${id}?editing=true`);
   }
-  return prefix(`people/${id}`);
+  return prefix(`area/${id}`);
+};
+
+export const PairList = () => prefix('pair-list');
+export const PairInfo = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`pair/${id}?editing=true`);
+  }
+  return prefix(`pair/${id}`);
 };
 
 /* **************************  banner管理模块  ******************************************** */
@@ -90,11 +98,38 @@ export const AdminInfo = (id : string = '', editing : boolean = false): string =
   }
   return prefix(`admin/${id}`);
 };
+/* **************************  权限管理模块  ******************************************** */
+export const AuthList = (): string => prefix('auth-list');
+
+export const AuthInfo = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`auth/${id}?editing=true`);
+  }
+  return prefix(`auth/${id}`);
+};
+/* **************************  持股分红模块  ******************************************** */
+export const BonusList = (): string => prefix('bonus-list');
+
+export const Bonus = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`bonus/${id}?editing=true`);
+  }
+  return prefix(`bonus/${id}`);
+};
+/* ************************** 工单管理  ******************************************** */
+export const WorkOrders = (): string => prefix('work-orders');
+
+export const WorkOrder = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`work-order/${id}?editing=true`);
+  }
+  return prefix(`work-order/${id}`);
+};
 
 export const Share = (): string => prefix('share');
 
 /**
- * 用户反馈
+ * 地址池
  * @type {[type]}
  */
-export const AdviceList = (): string => prefix('advice');
+export const AddressList = (): string => prefix('address-list');

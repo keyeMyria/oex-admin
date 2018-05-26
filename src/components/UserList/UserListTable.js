@@ -28,40 +28,40 @@ class UserListTable extends React.Component {
       key: 'id',
     }, {
       title: '邮箱',
-      dataIndex: 'email',
-      key: 'email',
+      dataIndex: 'userEmail',
+      key: 'userEmail',
     }, {
       title: '是否禁止登陆',
-      dataIndex: 'var1',
-      key: 'var1',
+      dataIndex: 'lockingLogin',
+      key: 'lockingLogin',
     }, {
       title: '是否禁止提币',
-      dataIndex: 'role',
-      key: 'role',
+      dataIndex: 'withdrawCoin',
+      key: 'withdrawCoin',
     }, {
       title: '是否禁止交易',
-      dataIndex: 'role',
-      key: 'role',
+      dataIndex: 'lockingTrade',
+      key: 'lockingTrade',
     }, {
       title: '真实姓名',
-      dataIndex: 'role',
-      key: 'role',
+      dataIndex: 'userRealName',
+      key: 'userRealName',
     }, {
       title: '证件号码',
-      dataIndex: 'role',
-      key: 'role',
+      dataIndex: 'documentId',
+      key: 'documentId',
     }, {
       title: '推荐人uid',
       dataIndex: 'role',
       key: 'role',
     }, {
       title: '注册时间',
-      dataIndex: 'role',
-      key: 'role',
+      dataIndex: 'signupLogin',
+      key: 'signupLogin',
     }, {
       title: '登陆时间',
-      dataIndex: 'role',
-      key: 'role',
+      dataIndex: 'lastLogin',
+      key: 'lastLogin',
     }];
   }
   _renderDataSource(datas) {
@@ -72,8 +72,14 @@ class UserListTable extends React.Component {
       dataSource.push({
         key: index,
         id: data.get('id'),
-        username: data.get('userName'),
-        var1: data.get('var1'),
+        withdrawCoin: data.get('withdraw_coin'),
+        lockingTrade: data.get('locking_trade'),
+        lockingLogin: data.get('locking_login'),
+        userEmail: data.get('user_email'),
+        lastLogin: data.get('last_login'),
+        signupLogin: data.get('signup_login'),
+        documentId: data.get('document_id'),
+        userRealName: data.get('user_real_name'),
         role: roleType[data.get('role')],
         operation: (
           <View>
