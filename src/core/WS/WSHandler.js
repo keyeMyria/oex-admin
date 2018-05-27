@@ -22,7 +22,7 @@ import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
  */
 const _param = (params: {}): string => {
   return Object.keys(params).map((key) => {
-    if(params[key] === 0 || params[key]) {
+    if(params[key] === 0 || params[key] || params[key] === false) {
       return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
     }
   }).join('&');
@@ -30,7 +30,7 @@ const _param = (params: {}): string => {
 
 export const GET = async (path: string, params = {}) => {
   const paramsWithToken = Object.assign(
-    {},
+    { key: 1 },
     params,
   );
   const RequestURL = _param(paramsWithToken) ? `${path}?${_param(paramsWithToken)}` : path;
@@ -54,7 +54,7 @@ export const GET = async (path: string, params = {}) => {
     }
     const result = await response.json();
     // 未登录
-    if (result.code === '004') {
+    if (result.status === 400 && result.message === 'no login') {
       dispatch(push(RoutingURL.Login()))
     }
     return result;
@@ -67,7 +67,7 @@ export const GET = async (path: string, params = {}) => {
 
 export const POSTJSON = async (path: string, json = {}) => {
   const RequestURL = path;
-  const paramsWithToken = Object.assign({}, json);
+  const paramsWithToken = Object.assign({ key: 1 }, json);
   const body = _param(paramsWithToken);
   try {
     const response = await fetch(RequestURL, {
@@ -89,7 +89,7 @@ export const POSTJSON = async (path: string, json = {}) => {
     }
     const result = await response.json();
     // 未登录
-    if (result.code === '004') {
+    if (result.status === 400 && result.message === 'no login') {
       dispatch(push(RoutingURL.Login()))
     }
     // console.log('postjson webservice result: ', result);

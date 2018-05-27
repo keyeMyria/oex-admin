@@ -16,13 +16,7 @@ import amumu from 'amumu';
 @amumu.decorators.Loading('pc')
 class WorkOrders extends React.Component {
   componentWillMount() {
-    // this.props.dispatch(ServiceAction.getWorkOrders(
-    //   {
-    //     pageNum: this.props.searchData.get('pageNum'),
-    //     pageSize: this.props.searchData.get('pageSize'),
-    //     style: this.props.searchData.get('style'),
-    //   }
-    // ));
+    this.props.dispatch(ServiceAction.getWorkOrders(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.UserInfo()));

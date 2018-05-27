@@ -16,6 +16,9 @@ import AdminList from './components/AdminList';
 import AdminInfo from './components/AdminInfo';
 import AuthList from './components/AuthList';
 import AuthInfo from './components/AuthInfo';
+import CoinFlow from './components/CoinFlow';
+import UserFlow from './components/UserFlow';
+import UserAssets from './components/UserAssets';
 import BonusList from './components/BonusList';
 import Bonus from './components/Bonus';
 import AreaList from './components/AreaList';
@@ -32,6 +35,10 @@ import ExperienceDoctor from './components/ExperienceDoctor';
 import ExperienceMedicine from './components/ExperienceMedicine';
 import WorkOrder from './components/WorkOrder';
 import WorkOrders from './components/WorkOrders';
+import NoticeInfo from './components/NoticeInfo';
+import NoticeList from './components/NoticeList';
+import RewardList from './components/RewardList';
+import Statistics from './components/Statistics';
 import Config from './components/Config';
 import UserAgreement from './components/UserAgreement';
 import AddressList from './components/AddressList';
@@ -48,7 +55,10 @@ const routes = (
       <Route path={RoutingURL.AdminInfo('(:id)')} component={AdminInfo} />
       <Route path={RoutingURL.AuthList()} component={AuthList} />
       <Route path={RoutingURL.AuthInfo('(:id)')} component={AuthInfo} />
+      <Route path={RoutingURL.CoinFlow()} component={CoinFlow} />
       <Route path={RoutingURL.BonusList()} component={BonusList} />
+      <Route path={RoutingURL.UserFlow()} component={UserFlow} />
+      <Route path={RoutingURL.UserAssets()} component={UserAssets} />
       <Route path={RoutingURL.Bonus('(:id)')} component={Bonus} />
       <Route path={RoutingURL.AreaList()} component={AreaList} />
       <Route path={RoutingURL.AreaInfo('(:id)')} component={AreaInfo} />
@@ -62,9 +72,13 @@ const routes = (
       <Route path={RoutingURL.Experience('(:id)')} component={Experience} />
       <Route path={RoutingURL.ExperienceDoctor('(:id)')} component={ExperienceDoctor} />
       <Route path={RoutingURL.ExperienceMedicine('(:id)')} component={ExperienceMedicine} />
+      <Route path={RoutingURL.AddressList()} component={AddressList} />
       <Route path={RoutingURL.WorkOrders()} component={WorkOrders} />
       <Route path={RoutingURL.WorkOrder('(:id)')} component={WorkOrder} />
-      <Route path={RoutingURL.AddressList()} component={AddressList} />
+      <Route path={RoutingURL.NoticeList()} component={NoticeList} />
+      <Route path={RoutingURL.NoticeInfo('(:id)')} component={NoticeInfo} />
+      <Route path={RoutingURL.RewardList()} component={RewardList} />
+      <Route path={RoutingURL.Statistics()} component={Statistics} />
       <Route path="/config" component={Config} />
     </Route>
     <Route path={RoutingURL.Login()} component={LoginContainer} />

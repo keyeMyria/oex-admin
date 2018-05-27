@@ -47,9 +47,9 @@ const defaultState = Immutable.Map({
 const getUserListHandler = new ActionHandler.handleAction(UserAction.GET_USERLIST)
   .success((state, action) => {
     return state.setIn(['userList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['userList', 'total'], Immutable.fromJS(action.data.totalRow))
+      .setIn(['userList', 'total'], Immutable.fromJS(action.data.total))
       // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+      // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
 

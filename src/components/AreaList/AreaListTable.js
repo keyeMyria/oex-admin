@@ -19,34 +19,34 @@ class AreaListTable extends React.Component {
       key: 'operation',
       width: 100,
     }, {
-      title: 'uid',
+      title: 'ID',
       dataIndex: 'id',
       key: 'id',
     }, {
-      title: '可用',
-      dataIndex: 'realName',
-      key: 'realName',
+      title: '交易区名称',
+      dataIndex: 'zoneName',
+      key: 'zoneName',
     }, {
-      title: '冻结',
-      dataIndex: 'phone',
-      key: 'phone',
+      title: '交易区顺序',
+      dataIndex: 'zoneSort',
+      key: 'zoneSort',
     }, {
-      title: '总计',
-      dataIndex: 'style',
-      key: 'style',
+      title: '交易区展示开关',
+      dataIndex: 'zoneSwitch',
+      key: 'zoneSwitch',
     }];
   }
   _renderDataSource(datas) {
     const dataSource = [];
     if(datas) {
     datas.forEach((data, index) => {
-      const roleType = { 1: '西医综合', 2: '执业医师', 3: '执业药师' };
+      const switchType = { 0: '关闭', 1: '展开' };
       dataSource.push({
         key: index,
         id: data.get('id'),
-        realName: data.get('realName'),
-        phone: data.get('phone'),
-        style: roleType[data.get('style')],
+        zoneName: data.get('zoneName'),
+        zoneSort: data.get('zoneSort'),
+        zoneSwitch: switchType[data.get('zoneSwitch')],
         operation: (
           <View>
               <a

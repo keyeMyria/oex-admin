@@ -4,7 +4,7 @@ import AreaList from './AreaList';
 
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
-  errMsg: state.PeopleReducer.get('errMsg'),
+  errMsg: state.TradeReducer.get('errMsg'),
   isFetching: state.TradeReducer.get('isFetching'),
   areaList: state.TradeReducer.get('areaList'),
   searchData: state.TradeReducer.get('areaSearchData'),

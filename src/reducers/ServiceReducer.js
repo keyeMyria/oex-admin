@@ -24,15 +24,18 @@ const defaultState = Immutable.Map({
     realName: '',
     pageNum: 1,
     pageSize: 10,
+    status: '',
+    title: '',
+    user_id: '',
   }),
 });
 
 const getWorkOrdersHandler = new ActionHandler.handleAction(ServiceAction.GET_WORK_ORDERS)
   .success((state, action) => {
     return state.setIn(['workOrders', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['workOrders', 'total'], Immutable.fromJS(action.data.totalRow))
+      .setIn(['workOrders', 'total'], Immutable.fromJS(action.data.total))
       .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
 

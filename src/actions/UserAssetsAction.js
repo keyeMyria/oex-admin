@@ -7,23 +7,22 @@ import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import NotificationAction from '../common/NotificationAction';
 import NotificationCenter from '../common/NotificationCenter';
 
-// 获取c端用户列表
-export const GET_PEOPLE_LIST = 'GET_PEOPLE_LIST';
-export const getPeopleList = (params: Object) => (dispatch) => {
-  const result = GET(URL.getPeopleListPath, params);
+export const GET_USER_ASSETS = 'GET_USER_ASSETS';
+export const getUserAssets = (params: Object) => (dispatch) => {
+  const result = GET(URL.getUserAssetsPath, params);
   AsyncFetchHandler(
-    GET_PEOPLE_LIST,
+    GET_USER_ASSETS,
     result,
     dispatch
   );
 };
 
-export const GET_PEOPLE_INFO = 'GET_PEOPLE_INFO';
-export const getPeopleInfo = (params) => (dispatch) => {
-  const result = GET(URL.getPeopleInfoPath, params);
+export const GET_USER_COIN = 'GET_USER_COIN';
+export const getUserCoins = (params: Object) => (dispatch) => {
+  const result = GET(URL.getUserCoinsPath, params);
   AsyncFetchHandler(
-    GET_PEOPLE_INFO,
+    GET_USER_COIN,
     result,
     dispatch
   );
-}
+};

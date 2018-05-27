@@ -43,12 +43,17 @@ export const deleteArticleInfoPath: string = `${rootURL}admin/subject/deleteById
  * 获取用户列表
  * @type {string}
  */
-export const getUserListPath: string = `${rootURL}admin/listUser`;
+export const getUserListPath: string = `${rootURL}user/admin/user/c/listUser`;
 // /**
 //  * 获取用户内容
 //  * @type {string}
 //  */
 // export const getUserInfoPath: string = `${rootURL}admin/subject/getById`;
+/**
+ * 用户解除/禁用
+ * @type {string}
+ */
+export const updateLockingPath: string = `${rootURL}user/admin/user/c/locking`;
 /**
  * 保存用户
  * @type {string}
@@ -62,12 +67,63 @@ export const updateUserInfoPath: string = `${rootURL}admin/addUser`;
 export const deleteUserInfoPath: string = `${rootURL}admin/deleteUser`;
 
 /**
- * 获取经验列表
+ * 获取交易区列表
  * @type {string}
  */
-export const getExperienceListPath: string = `${rootURL}admin/experience/list`;
+export const getAreaListPath: string = `${rootURL}user/admin/trade_zone/list`;
 /**
- * 获取经验详情
+ * 获取币种信息列表
+ * @type {string}
+ */
+// export const getCurrencyListPath: string = `${rootURL}coin/coin/info/all`;
+export const getCurrencyListPath: string = `${rootURL}user/admin/coin/list`;
+/**
+ * 获取充币流水-根据提取币种查询
+ * @type {string}
+ */
+export const getRechargeRecordByCoinPath: string = `${rootURL}user/admin/rechargeRecord/listByCoinId`;
+/**
+ * 获取提币流水-根据提取币种查询
+ * @type {string}
+ */
+export const getWithdrawRecordByCoinPath: string = `${rootURL}user/admin/withdrawRecord/listByCoinId`;
+/**
+ * 获取充币流水-根据uid查询
+ * @type {string}
+ */
+export const getRechargeRecordByUserPath: string = `${rootURL}user/admin/rechargeRecord/listByUserId`;
+/**
+ * 获取提币流水-根据uid查询
+ * @type {string}
+ */
+export const getWithdrawRecordByUserPath: string = `${rootURL}user/admin/withdrawRecord/listByUserId`;
+/**
+ * 获取资产列表
+ * @type {string}
+ */
+export const getUserAssetsPath: string = `${rootURL}user/admin/userProperty/listByCoinId`;
+/**
+ * 获取用户货币列表
+ * @type {string}
+ */
+export const getUserCoinsPath: string = `${rootURL}user/admin/userProperty/listByUserId`;
+/**
+ * 获取工单列表
+ * @type {string}
+ */
+export const getWorkOrdersPath: string = `${rootURL}user/admin/workOrder/listWorkOrder`;
+/**
+ * 获取公告列表
+ * @type {string}
+ */
+export const getNoticeLisPath: string = `${rootURL}user/admin/noticeType/list`;
+/**
+ * 获取统计列表
+ * @type {string}
+ */
+export const getStatisticsInfoPath: string = `${rootURL}user/admin/noticeType/list`;
+/**
+ * 获取详情
  * @type {string}
  */
 export const getExperienceInfoPath: string = `${rootURL}admin/experience/detail`;
@@ -84,10 +140,10 @@ export const deleteExperienceInfoPath: string = `${rootURL}admin/experience/dele
 export const updateExperienceInfoPath: string = `${rootURL}admin/experience/addOrUpdate`;
 
 /**
- * 获取c端用户列表
+ * 获取交易对列表
  * @type {[type]}
  */
-export const getPeopleListPath = `${rootURL}admin/user/list`;
+export const getPairListPath = `${rootURL}user/admin/trade_coin_pair/list`;
 /**
  * 获取c端用户详情
  * @type {[type]}

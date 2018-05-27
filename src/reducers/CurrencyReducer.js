@@ -1,5 +1,4 @@
-import * as BonusAction from '../actions/BonusAction';
-import * as ExperienceAction from '../actions/ExperienceAction';
+import * as CurrencyAction from '../actions/CurrencyAction';
 import * as Authentication from '../core/Authentication';
 import Immutable from 'immutable';
 import userInfoStorage from '../core/UserInfoStorage';
@@ -10,41 +9,40 @@ import { datas } from './course';
 const defaultState = Immutable.Map({
   isFetching: false,
   errMsg: '',
-  bonusList: Immutable.Map({
+  currencyList: Immutable.Map({
     list: Immutable.List([
       ]),
       total: 0,
       currentPage: 1,
   }),
-  bonusInfo: Immutable.Map({
+  currencyInfo: Immutable.Map({
   }),
   searchData: Immutable.Map({
-    id: '',
-    phone: '',
-    realName: '',
+    order: '',
+    type: '',
     pageNum: 1,
     pageSize: 10,
   }),
 });
 
-const getBonusListHandler = new ActionHandler.handleAction(BonusAction.GET_BONUS_LIST)
+const getCurrencyListHandler = new ActionHandler.handleAction(CurrencyAction.GET_CURRENCYLIST)
   .success((state, action) => {
-    return state.setIn(['bonusList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['bonusList', 'total'], Immutable.fromJS(action.data.totalRow))
-      .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+    return state.setIn(['currencyList', 'list'], Immutable.fromJS(action.data))
+      // .setIn(['currencyList', 'total'], Immutable.fromJS(action.data.total))
+      // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
+      // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
 
 
 
-const getBonusInfoHandler = new ActionHandler.handleAction(BonusAction.GET_BONUS_INFO)
+const getCurrencyInfoHandler = new ActionHandler.handleAction(CurrencyAction.GET_EXPERIENCEINFO)
     .success((state, action) => {
-      return state.set('bonusInfo', Immutable.fromJS(action.data))
+      return state.set('currencyInfo', Immutable.fromJS(action.data))
         .set('isFetching', false).set('errMsg', '');
     });
 
-const getExperienceContentHandler = new ActionHandler.handleAction(ExperienceAction.GET_EXPERIENCECONTENT)
+const getCurrencyContentHandler = new ActionHandler.handleAction(CurrencyAction.GET_EXPERIENCECONTENT)
   .success((state, action) => {
     return state.setIn(['experienceInfo', 'content'], Immutable.fromJS(action.data))
       .set('isFetching', false).set('errMsg', '');
@@ -54,9 +52,10 @@ const getExperienceContentHandler = new ActionHandler.handleAction(ExperienceAct
 
 export default ActionHandler.handleActions(
   [
-    getBonusListHandler,
-    getBonusInfoHandler,
+    getCurrencyListHandler,
+    getCurrencyInfoHandler,
+    getCurrencyContentHandler,
   ],
   defaultState,
-  /^BonusReducer\//
+  /^CurrencyReducer\//
 );

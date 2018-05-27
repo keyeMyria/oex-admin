@@ -22,9 +22,9 @@ class UserList extends React.Component {
     dispatch: PropTypes.func,
   };
   componentWillMount() {
-    // this.props.dispatch(UserAction.getUserList(
-    //   { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
-    // ));
+    this.props.dispatch(UserAction.getUserList(
+      { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
+    ));
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.UserInfo()));

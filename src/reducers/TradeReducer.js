@@ -34,27 +34,29 @@ const defaultState = Immutable.Map({
   }),
   pairSearchData: Immutable.Map({
     id: '',
-    phone: '',
-    realName: '',
-    pageNum: 1,
-    pageSize: 10,
+    maxAmountLimit: '',
+    minAmountLimit: '',
+    rate: '',
+    remark: '',
+    sortId: '',
+    status: '',
+    tradeCoinId: '',
+    tradeCoinName: '',
+    unitCoinId: '',
+    unitCoinName: '',
+    zoneId: '',
   }),
 });
 
 const getAreaListHandler = new ActionHandler.handleAction(TradeAction.GET_AREA_LIST)
   .success((state, action) => {
-    return state.setIn(['areaList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['areaList', 'total'], Immutable.fromJS(action.data.totalRow))
-      .setIn(['areaSearchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      .setIn(['areaSearchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+    return state.setIn(['areaList', 'list'], Immutable.fromJS(action.data))
       .set('isFetching', false).set('errMsg', '');
   });
-const getPairListHandler = new ActionHandler.handleAction(TradeAction.GET_AREA_LIST)
+const getPairListHandler = new ActionHandler.handleAction(TradeAction.GET_PAIR_LIST)
   .success((state, action) => {
-    return state.setIn(['pairList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['pairList', 'total'], Immutable.fromJS(action.data.totalRow))
-      .setIn(['pairSearchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      .setIn(['pairSearchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+    console.log(action);
+    return state.setIn(['pairList', 'list'], Immutable.fromJS(action.data))
       .set('isFetching', false).set('errMsg', '');
   });
 

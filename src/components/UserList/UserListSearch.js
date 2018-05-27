@@ -25,7 +25,8 @@ class UserListSearch extends React.Component {
       const dataSource1 = this.props.searchData;
       return this.props.form.setFields({
         id: dataSource1.get('id'),
-        phone: dataSource1.get('phone'),
+        user_email: dataSource1.get('user_email'),
+        user_mobile: dataSource1.get('user_mobile'),
       });
     }
     return false;
@@ -64,11 +65,11 @@ class UserListSearch extends React.Component {
               label="用户手机号："
               {...formItemLayout}
             >
-              {getFieldDecorator('phone', {
-                  initialValue: this.props.searchData.get('phone'),
+              {getFieldDecorator('user_mobile', {
+                  initialValue: this.props.searchData.get('user_mobile'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/searchData/phone', e.target.value);
+                    'UserReducer/searchData/user_mobile', e.target.value);
                   },
                 })(
                 <Input
@@ -82,11 +83,11 @@ class UserListSearch extends React.Component {
               label="E-mail"
               {...formItemLayout}
             >
-              {getFieldDecorator('email', {
-                  initialValue: this.props.searchData.get('email'),
+              {getFieldDecorator('user_email', {
+                  initialValue: this.props.searchData.get('user_email'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/searchData/email', e.target.value);
+                    'UserReducer/searchData/user_email', e.target.value);
                   },
                 })(
                 <Input

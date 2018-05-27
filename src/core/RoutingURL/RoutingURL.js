@@ -107,6 +107,11 @@ export const AuthInfo = (id : string = '', editing : boolean = false): string =>
   }
   return prefix(`auth/${id}`);
 };
+/* **************************  充币提币  ******************************************** */
+export const CoinFlow = (): string => prefix('coin-flow');
+export const UserFlow = (): string => prefix('user-flow');
+export const UserAssets = (): string => prefix('user-assets');
+
 /* **************************  持股分红模块  ******************************************** */
 export const BonusList = (): string => prefix('bonus-list');
 
@@ -125,6 +130,18 @@ export const WorkOrder = (id : string = '', editing : boolean = false): string =
   }
   return prefix(`work-order/${id}`);
 };
+/* ************************** 运营管理  ******************************************** */
+export const NoticeList = (): string => prefix('notice-list');
+
+export const NoticeInfo = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`notice/${id}?editing=true`);
+  }
+  return prefix(`notice/${id}`);
+};
+export const RewardList = (): string => prefix('reward-list');
+export const Statistics = (): string => prefix('statistics');
+
 
 export const Share = (): string => prefix('share');
 

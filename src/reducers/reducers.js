@@ -7,12 +7,17 @@ import UserReducer from './UserReducer';
 import ArticleReducer from './ArticleReducer';
 import ShareReducer from './ShareReducer';
 import ExperienceReducer from './ExperienceReducer';
-import PeopleReducer from './PeopleReducer';
 import ConfigReducer from './ConfigReducer';
 import AdviceListReducer from './AdviceListReducer';
 import BonusReducer from './BonusReducer';
 import ServiceReducer from './ServiceReducer';
 import TradeReducer from './TradeReducer';
+import OperateReducer from './OperateReducer';
+import RewardReducer from './RewardReducer';
+import StatisticsReducer from './StatisticsReducer';
+import CurrencyReducer from './CurrencyReducer';
+import FlowReducer from './FlowReducer';
+import UserAssetsReducer from './UserAssetsReducer';
 
 
 // 状态入口
@@ -23,12 +28,17 @@ const appReducers = combineReducers({
   ArticleReducer,
   ShareReducer,
   ExperienceReducer,
-  PeopleReducer,
   ConfigReducer,
   AdviceListReducer,
   BonusReducer,
   ServiceReducer,
   TradeReducer,
+  OperateReducer,
+  RewardReducer,
+  StatisticsReducer,
+  CurrencyReducer,
+  FlowReducer,
+  UserAssetsReducer,
 });
 
 export default appReducers;

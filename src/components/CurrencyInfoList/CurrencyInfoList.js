@@ -7,7 +7,7 @@ import PageNav from '../../common/PageNav';
 import { View } from 'isomorphic';
 import Immutable from 'immutable';
 import * as styles from '../../assets/stylesheets/Common.css';
-import * as ExperienceAction from '../../actions/ExperienceAction';
+import * as CurrencyAction from '../../actions/CurrencyAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
@@ -16,22 +16,20 @@ import amumu from 'amumu';
 @amumu.decorators.Loading('pc')
 class CurrencyInfoList extends React.Component {
   componentWillMount() {
-    const params = this.props.searchData.toJS();
-    params.style = 1;
-    // this.props.dispatch(ExperienceAction.getExperienceList(params));
+    this.props.dispatch(CurrencyAction.getCurrencyList(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.Experience()));
+    dispatch(push(RoutingURL.Currency()));
   }
-  _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
-    const localParams = Object.assign(params, { style: 1, pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(ExperienceAction.getExperienceList(localParams));
-    this.props.changeAction('ExperienceReducer/searchData/pageNum', current);
-  };
+  // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
+  //   const localParams = Object.assign(params, { style: 1, pageNum: current, pageSize: this.props.searchData.get('pageSize') });
+  //   dispatch(CurrencyAction.getCurrencyList(localParams));
+  //   this.props.changeAction('CurrencyReducer/searchData/pageNum', current);
+  // };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { style: 1, pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(ExperienceAction.deleteExperienceInfo(localParams));
-    this.props.changeAction('ExperienceReducer/searchData/pageNum', current);
+    dispatch(CurrencyAction.deleteCurrencyInfo(localParams));
+    this.props.changeAction('CurrencyReducer/searchData/pageNum', current);
   };
   render() {
     return (
@@ -50,29 +48,29 @@ class CurrencyInfoList extends React.Component {
             </View> */}
           <View className={ styles.contentListTable } >
              <CurrencyInfoListTable
-               dataSource={this.props.experienceList.get('list')}
-               total={this.props.experienceList.get('total')}
+               dataSource={this.props.currencyList.get('list')}
+               total={this.props.currencyList.get('total')}
                dispatch={this.props.dispatch}
                deleteAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
-          <View className={ styles.pageNav }>
+          {/* <View className={ styles.pageNav }>
             <PageNav
               pageSize={this.props.searchData.get('pageSize')}
-              total={this.props.experienceList.get('total')}
+              total={this.props.currencyList.get('total')}
               params={this.props.searchData.toJS()}
               current={this.props.searchData.get('pageNum')}
               searchAction={this._searchAction(this.props.dispatch)}
             />
-          </View>
+          </View> */}
         </View>
       </View>
     );
   }
   componentWillUnmount() {
-    this.props.changeAction('ExperienceReducer/searchData/id', '');
-    this.props.changeAction('ExperienceReducer/searchData/pageNum', 1);
-    this.props.changeAction('ExperienceReducer/searchData/type', '');
+    this.props.changeAction('CurrencyReducer/searchData/id', '');
+    this.props.changeAction('CurrencyReducer/searchData/pageNum', 1);
+    this.props.changeAction('CurrencyReducer/searchData/type', '');
   }
 }
 

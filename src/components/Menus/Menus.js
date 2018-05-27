@@ -40,10 +40,22 @@ class Menus extends React.PureComponent {
       this.props.dispatch(push(RoutingURL.PairList()));
     } else if (e.key === '地址池列表') {
       this.props.dispatch(push(RoutingURL.AddressList()));
+    } else if (e.key === '币种流水') {
+      this.props.dispatch(push(RoutingURL.CoinFlow()));
+    } else if (e.key === '用户流水') {
+      this.props.dispatch(push(RoutingURL.UserFlow()));
+    } else if (e.key === '用户资产') {
+      this.props.dispatch(push(RoutingURL.UserAssets()));
     } else if (e.key === '持币分红') {
       this.props.dispatch(push(RoutingURL.BonusList()));
     } else if (e.key === '客服') {
       this.props.dispatch(push(RoutingURL.WorkOrders()));
+    } else if (e.key === '公告') {
+      this.props.dispatch(push(RoutingURL.NoticeList()));
+    } else if (e.key === '发放奖励') {
+      this.props.dispatch(push(RoutingURL.RewardList()));
+    } else if (e.key === '统计') {
+      this.props.dispatch(push(RoutingURL.Statistics()));
     }
   }
   render() {
@@ -110,9 +122,19 @@ class Menus extends React.PureComponent {
                 财务</div>}
               >
                 <Item
-                  key="提币审核"
+                  key="币种流水"
                 >
-                  • 提币审核
+                  • 币种流水
+                </Item>
+                <Item
+                  key="用户流水"
+                >
+                  • 用户流水
+                </Item>
+                <Item
+                  key="用户资产"
+                >
+                  • 用户资产
                 </Item>
                 <Item
                   key="持币分红"

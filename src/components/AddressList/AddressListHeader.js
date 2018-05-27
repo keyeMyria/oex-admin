@@ -1,5 +1,5 @@
 /**
- * Created by wanglu on 7/4/2016.
+ * Created by wanglu
  */
 
 import React, { PropTypes } from 'react';

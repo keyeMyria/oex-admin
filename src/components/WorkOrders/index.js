@@ -4,7 +4,7 @@ import WorkOrders from './WorkOrders';
 
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
-  errMsg: state.PeopleReducer.get('errMsg'),
+  errMsg: state.ServiceReducer.get('errMsg'),
   isFetching: state.ServiceReducer.get('isFetching'),
   workOrders: state.ServiceReducer.get('workOrders'),
   searchData: state.ServiceReducer.get('searchData'),

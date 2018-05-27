@@ -29,6 +29,35 @@ export const getUserList = (params: Object) => (dispatch) => {
 //   );
 // };
 
+// 修改user状态
+export const UPDATE_LOCKING = 'UPDATE_LOCKING';
+export const updateLocking = (params: Object) => (dispatch) => {
+  console.log(params);
+  const result = GET(URL.updateLockingPath, params);
+  AsyncFetchHandler(
+    UPDATE_LOCKING,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status === 200) {
+      NotificationCenter.NotificationCard(
+        '操作成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(push(RoutingURL.UserList()));
+    } else {
+      NotificationCenter.NotificationCard(
+        '操作失败',
+        '',
+        'error',
+        3,
+      );
+    }
+  });
+};
 // 修改user
 export const UPDATE_USER = 'UPDATE_USER';
 export const updateUser = (params: Object) => (dispatch) => {

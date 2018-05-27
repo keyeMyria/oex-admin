@@ -1,5 +1,5 @@
 /**
- * Created by wanglu on 7/4/2016.
+ * Created by wanglu
  */
 
 import React, { PropTypes } from 'react';
@@ -12,7 +12,7 @@ const BonusListHeader = (props) => {
   return (
     <View className={ styles.contentHeader }>
       <View className={ styles.contentText }>
-        用户列表
+        持币分红
       </View>
       <View className={ styles.contentButton }>
       </View>

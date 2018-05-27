@@ -7,6 +7,7 @@ import styles from '../../assets/stylesheets/Common.css';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
+import moment from 'moment';
 
 
 @amumu.redux.ConnectStore
@@ -19,34 +20,44 @@ class WorkOrdersTable extends React.Component {
       key: 'operation',
       width: 100,
     }, {
-      title: 'uid',
+      title: 'id',
       dataIndex: 'id',
       key: 'id',
     }, {
-      title: '可用',
-      dataIndex: 'realName',
-      key: 'realName',
+      title: 'uid',
+      dataIndex: 'userId',
+      key: 'userId',
     }, {
-      title: '冻结',
+      title: '标题',
+      dataIndex: 'title',
+      key: 'title',
+    }, {
+      title: '电话号码',
       dataIndex: 'phone',
       key: 'phone',
     }, {
-      title: '总计',
-      dataIndex: 'style',
-      key: 'style',
+      title: '反馈状态',
+      dataIndex: 'status',
+      key: 'status',
+    }, {
+      title: '更新时间',
+      dataIndex: 'updateTime',
+      key: 'updateTime',
     }];
   }
   _renderDataSource(datas) {
     const dataSource = [];
     if(datas) {
     datas.forEach((data, index) => {
-      const roleType = { 1: '西医综合', 2: '执业医师', 3: '执业药师' };
+      const statusType = { 0: '未反馈', 1: '已反馈', 2: '已关闭' };
       dataSource.push({
         key: index,
         id: data.get('id'),
-        realName: data.get('realName'),
+        userId: data.get('user_id'),
         phone: data.get('phone'),
-        style: roleType[data.get('style')],
+        title: data.get('title'),
+        updateTime: moment(data.get('update_time')).format('YYYY-MM-DD HH:mm:ss'),
+        status: statusType[data.get('status')],
         operation: (
           <View>
               <a

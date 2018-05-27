@@ -16,22 +16,16 @@ import amumu from 'amumu';
 @amumu.decorators.Loading('pc')
 class PairList extends React.Component {
   componentWillMount() {
-    // this.props.dispatch(TradeAction.getPairList(
-    //   {
-    //     pageNum: this.props.searchData.get('pageNum'),
-    //     pageSize: this.props.searchData.get('pageSize'),
-    //     style: this.props.searchData.get('style'),
-    //   }
-    // ));
+    this.props.dispatch(TradeAction.getPairList(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.UserInfo()));
   }
-  _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
-    const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(TradeAction.getPairList(localParams));
-    this.props.changeAction('BonusReducer/searchData/pageNum', current);
-  };
+  // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
+  //   const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
+  //   dispatch(TradeAction.getPairList(localParams));
+  //   this.props.changeAction('BonusReducer/searchData/pageNum', current);
+  // };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     // dispatch(UserAction.deleteUserInfo(localParams));
@@ -58,7 +52,7 @@ class PairList extends React.Component {
                deleteUserAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
-          <View className={ styles.pageNav }>
+          {/* <View className={ styles.pageNav }>
             <PageNav
               pageSize={this.props.searchData.get('pageSize')}
               total={this.props.pairList.get('total')}
@@ -66,7 +60,7 @@ class PairList extends React.Component {
               current={this.props.searchData.get('pageNum')}
               searchAction={this._searchAction(this.props.dispatch)}
             />
-          </View>
+          </View> */}
         </View>
       </View>
     );

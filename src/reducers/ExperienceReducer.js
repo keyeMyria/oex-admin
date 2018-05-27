@@ -28,9 +28,9 @@ const defaultState = Immutable.Map({
 const getExperienceListHandler = new ActionHandler.handleAction(ExperienceAction.GET_EXPERIENCELIST)
   .success((state, action) => {
     return state.setIn(['experienceList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['experienceList', 'total'], Immutable.fromJS(action.data.totalRow))
+      .setIn(['experienceList', 'total'], Immutable.fromJS(action.data.total))
       .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
 

@@ -7,22 +7,41 @@ import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import NotificationAction from '../common/NotificationAction';
 import NotificationCenter from '../common/NotificationCenter';
 
-// 获取c端用户列表
-export const GET_WORK_ORDERS = 'GET_WORK_ORDERS';
-export const getWorkOrders = (params: Object) => (dispatch) => {
-  const result = GET(URL.getWorkOrdersPath, params);
+export const GET_AREA_LIST = 'GET_AREA_LIST';
+export const getAreaList = (params: Object) => (dispatch) => {
+  const result = GET(URL.getAreaListPath, params);
   AsyncFetchHandler(
-    GET_WORK_ORDERS,
+    GET_AREA_LIST,
     result,
     dispatch
   );
 };
 
-export const GET_WORK_ORDER_INFO = 'GET_WORK_ORDER_INFO';
-export const getWorkOrderInfo = (params) => (dispatch) => {
-  const result = GET(URL.getWorkOrderInfoPath, params);
+export const GET_AREA_INFO = 'GET_AREA_INFO';
+export const getAreaInfo = (params: Object) => (dispatch) => {
+  const result = GET(URL.getAreaInfoPath, params);
   AsyncFetchHandler(
-    GET_WORK_ORDER_INFO,
+    GET_AREA_INFO,
+    result,
+    dispatch
+  );
+};
+
+export const GET_PAIR_LIST = 'GET_PAIR_LIST';
+export const getPairList = (params) => (dispatch) => {
+  const result = GET(URL.getPairListPath, params);
+  AsyncFetchHandler(
+    GET_PAIR_LIST,
+    result,
+    dispatch
+  );
+}
+
+export const GET_PAIR_INFO = 'GET_PAIR_INFO';
+export const getPairInfo = (params) => (dispatch) => {
+  const result = GET(URL.getPairInfoPath, params);
+  AsyncFetchHandler(
+    GET_PAIR_INFO,
     result,
     dispatch
   );

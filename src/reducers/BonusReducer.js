@@ -30,9 +30,9 @@ const defaultState = Immutable.Map({
 const getBonusListHandler = new ActionHandler.handleAction(BonusAction.GET_BOUNS_LIST)
   .success((state, action) => {
     return state.setIn(['bonusList', 'list'], Immutable.fromJS(action.data.list))
-      .setIn(['bonusList', 'total'], Immutable.fromJS(action.data.totalRow))
+      .setIn(['bonusList', 'total'], Immutable.fromJS(action.data.total))
       .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNumber))
+      .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
 

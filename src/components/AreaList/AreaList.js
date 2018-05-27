@@ -16,26 +16,20 @@ import amumu from 'amumu';
 @amumu.decorators.Loading('pc')
 class AreaList extends React.Component {
   componentWillMount() {
-    // this.props.dispatch(TradeAction.getAreaList(
-    //   {
-    //     pageNum: this.props.searchData.get('pageNum'),
-    //     pageSize: this.props.searchData.get('pageSize'),
-    //     style: this.props.searchData.get('style'),
-    //   }
-    // ));
+    this.props.dispatch(TradeAction.getAreaList());
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.UserInfo()));
   }
-  _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
-    const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(TradeAction.getAreaList(localParams));
-    this.props.changeAction('BonusReducer/searchData/pageNum', current);
-  };
+  // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
+  //   const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
+  //   dispatch(TradeAction.getAreaList(localParams));
+  //   this.props.changeAction('TradeReducer/areaSearchData/pageNum', current);
+  // };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     // dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
+    this.props.changeAction('TradeReducer/areaSearchData/pageNum', current);
   };
   render() {
     return (
@@ -58,7 +52,7 @@ class AreaList extends React.Component {
                deleteUserAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
-          <View className={ styles.pageNav }>
+          {/* <View className={ styles.pageNav }>
             <PageNav
               pageSize={this.props.searchData.get('pageSize')}
               total={this.props.areaList.get('total')}
@@ -66,7 +60,7 @@ class AreaList extends React.Component {
               current={this.props.searchData.get('pageNum')}
               searchAction={this._searchAction(this.props.dispatch)}
             />
-          </View>
+          </View> */}
         </View>
       </View>
     );

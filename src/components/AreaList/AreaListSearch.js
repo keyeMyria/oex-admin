@@ -33,10 +33,10 @@ class AreaListSearch extends React.Component {
   }
   resetFieldAction() {
     this.props.form.resetFields();
-    this.props.changeAction('BonusReducer/searchData/id', '');
-    this.props.changeAction('BonusReducer/searchData/phone', '');
-    this.props.changeAction('BonusReducer/searchData/realName', '');
-    this.props.changeAction('BonusReducer/searchData/pageNum', 1);
+    this.props.changeAction('TradeReducer/searchData/id', '');
+    this.props.changeAction('TradeReducer/searchData/phone', '');
+    this.props.changeAction('TradeReducer/searchData/realName', '');
+    this.props.changeAction('TradeReducer/searchData/pageNum', 1);
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -59,7 +59,7 @@ class AreaListSearch extends React.Component {
                   initialValue: this.props.searchData.get('id'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'BonusReducer/searchData/id', e.target.value);
+                    'TradeReducer/searchData/id', e.target.value);
                   },
                 })(
                 <Input
@@ -77,7 +77,7 @@ class AreaListSearch extends React.Component {
                   initialValue: this.props.searchData.get('realName'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'BonusReducer/searchData/realName', e.target.value);
+                    'TradeReducer/searchData/realName', e.target.value);
                   },
                 })(
                 <Input
@@ -95,7 +95,7 @@ class AreaListSearch extends React.Component {
                   initialValue: this.props.searchData.get('phone'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'BonusReducer/searchData/phone', e.target.value);
+                    'TradeReducer/searchData/phone', e.target.value);
                   },
                 })(
                 <Input
@@ -113,7 +113,7 @@ class AreaListSearch extends React.Component {
                   initialValue: this.props.searchData.get('style'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'BonusReducer/searchData/style', e);
+                    'TradeReducer/searchData/style', e);
                   },
                 })(
                   <Select

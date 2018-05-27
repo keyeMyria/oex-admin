@@ -4,10 +4,10 @@ import BonusList from './BonusList';
 
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
-  errMsg: state.PeopleReducer.get('errMsg'),
-  isFetching: state.PeopleReducer.get('isFetching'),
-  bonusList: state.PeopleReducer.get('bonusList'),
-  searchData: state.PeopleReducer.get('searchData'),
+  errMsg: state.BonusReducer.get('errMsg'),
+  isFetching: state.BonusReducer.get('isFetching'),
+  bonusList: state.BonusReducer.get('bonusList'),
+  searchData: state.BonusReducer.get('searchData'),
 });
 
 export default connect(mapStateToProps)(BonusList);
