@@ -1,7 +1,7 @@
 
 import { POSTJSON, GET } from '../core/WS/WSHandler';
 import * as URL from '../core/WS/URL';
-import { push } from 'react-router-redux';
+import { push, goBack } from 'react-router-redux';
 import * as RoutingURL from '../core/RoutingURL/RoutingURL';
 import AsyncFetchHandler from '../core/AsyncFetchHandler';
 import NotificationAction from '../common/NotificationAction';

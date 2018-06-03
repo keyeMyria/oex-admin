@@ -19,11 +19,8 @@ import userInfoStorage from '../core/UserInfoStorage';
 
 class RootContainer extends React.Component {
   componentWillMount() {
-    // this.props.dispatch(push(RoutingURL.App()));
-    if (userInfoStorage.getItem('adminToken')) {
-        this.props.dispatch(push(RoutingURL.App()));
-    } else {
-      this.props.dispatch(push(RoutingURL.Login()));
+    if (!userInfoStorage.getItem('adminToken')) {
+        this.props.dispatch(push(RoutingURL.Login()));
     }
   }
   shouldComponentUpdate(nextProps, nextState) {

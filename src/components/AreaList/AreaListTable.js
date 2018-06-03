@@ -53,11 +53,18 @@ class AreaListTable extends React.Component {
                 style={{color: '#0080FF'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  // this.props.deleteUserAction({deleteId: data.get('id')});
                   this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
                 }}
               >
                 查看
+              </a> | <a
+                style={{color: '#0080FF'}}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                }}
+              >
+                删除
               </a>
           </View>
         ),

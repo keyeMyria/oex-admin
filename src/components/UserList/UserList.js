@@ -24,20 +24,14 @@ class UserList extends React.Component {
   // }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(UserAction.getUserList(localParams));
+    dispatch(UserAction.getCUserList(localParams));
     this.props.changeAction('UserReducer/searchData/pageNum', current);
-  };
-  _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
-    const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
   };
   render() {
     return (
       <View className={ styles.contentList } style={{ top: '90px' }}>
         <View className={ styles.contentListHeader }>
           <UserListHeader
-            // goCreateAction={this._goCreateAction(this.props.dispatch)}
           />
         </View>
         <View className={ styles.contentListContent } >
@@ -52,7 +46,6 @@ class UserList extends React.Component {
                dataSource={this.props.userList.get('list')}
                total={this.props.userList.get('total')}
                dispatch={this.props.dispatch}
-               deleteUserAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
           <View className={ styles.pageNav }>

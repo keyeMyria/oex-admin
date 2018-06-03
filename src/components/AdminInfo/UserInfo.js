@@ -29,10 +29,10 @@ class UserInfo extends React.Component {
    * @private
    */
   _goBackAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserList()));
+    dispatch(push(RoutingURL.AdminList()));
   }
   _goUpdateAction = (dispatch: Function) => (id: string) => {
-    dispatch(push(RoutingURL.UserInfo(id, true)));
+    dispatch(push(RoutingURL.AdminInfo(id, true)));
   }
   _updateAction = (dispatch) => () => {
     if (this.props.userInfo.get('id')) {

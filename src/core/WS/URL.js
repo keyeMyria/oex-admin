@@ -34,7 +34,7 @@ export const addUserInfoPath: string = `${rootURL}user/admin/user/addUser`;
  * 更新用户
  * @type {string}
  */
-export const updateUserInfoPath: string = `${rootURL}admin/user/updateUser`;
+export const updateUserInfoPath: string = `${rootURL}user/admin/user/updateUser`;
 /**
 /**
  * 删除用户

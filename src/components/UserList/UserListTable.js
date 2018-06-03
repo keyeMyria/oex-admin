@@ -10,11 +10,7 @@ import amumu from 'amumu';
 import moment from 'moment';
 import * as UserAction from '../../actions/UserAction';
 
-const propTypes = {
-  dataSource: PropTypes.instanceOf(Immutable.List).isRequired,
-  dispatch: PropTypes.func,
-  changeAction: PropTypes.func,
-};
+
 @amumu.redux.ConnectStore
 class UserListTable extends React.Component {
   constructor(props, context) {
@@ -145,6 +141,5 @@ class UserListTable extends React.Component {
     );
   }
 }
-UserListTable.propTypes = propTypes;
 
 export default UserListTable;
