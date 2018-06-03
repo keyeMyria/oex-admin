@@ -79,6 +79,8 @@ export const addUserInfo = (params: Object) => (dispatch) => {
 // 修改账号
 export const UPDATE_USERINFO = 'UPDATE_USERINFO';
 export const updateUserInfo = (params: Object) => (dispatch) => {
+  delete params.create_time;
+  delete params.update_time;
   const result = GET(URL.updateUserInfoPath, params);
   AsyncFetchHandler(
     SELETE_USERINFO,
@@ -93,7 +95,7 @@ export const updateUserInfo = (params: Object) => (dispatch) => {
         'success',
         2,
       );
-      dispatch(getUserList(params));
+      dispatch(goBack())
     } else {
       NotificationCenter.NotificationCard(
         '修改失败',
