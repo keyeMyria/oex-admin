@@ -4,10 +4,10 @@ import AdminList from './AdminList';
 
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
-  errMsg: state.UserReducer.get('errMsg'),
-  isFetching: state.UserReducer.get('isFetching'),
-  userList: state.UserReducer.get('userList'),
-  searchData: state.UserReducer.get('searchData'),
+  errMsg: state.AdminReducer.get('errMsg'),
+  isFetching: state.AdminReducer.get('isFetching'),
+  userList: state.AdminReducer.get('userList'),
+  searchData: state.AdminReducer.get('searchData'),
 });
 
 export default connect(mapStateToProps)(AdminList);

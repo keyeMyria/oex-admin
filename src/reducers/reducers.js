@@ -3,6 +3,10 @@ import { combineReducers } from 'redux';
 
 // 引入各reducers
 import LoginReducer from './LoginReducer';
+import AdminReducer from './AdminReducer';
+
+
+
 import UserReducer from './UserReducer';
 import ArticleReducer from './ArticleReducer';
 import ShareReducer from './ShareReducer';
@@ -20,10 +24,12 @@ import FlowReducer from './FlowReducer';
 import UserAssetsReducer from './UserAssetsReducer';
 
 
+
 // 状态入口
 const appReducers = combineReducers({
   routing: routeReducer,
   LoginReducer,
+  AdminReducer,
   UserReducer,
   ArticleReducer,
   ShareReducer,

@@ -10,13 +10,6 @@ const FormItem = Form.Item;
 @amumu.decorators.PureComponent
 @amumu.redux.ConnectStore
 class AdminListSearch extends React.Component {
-  static propTypes = {
-    searchAction: PropTypes.func.isRequired,
-    form: PropTypes.any,
-    bindReducer: PropTypes.func.isRequired,
-    changeAction: PropTypes.func.isRequired,
-    searchData: PropTypes.instanceOf(Immutable.Map).isRequired,
-  };
   componentWillMount() {
     this.searchData();
   }
@@ -50,7 +43,7 @@ class AdminListSearch extends React.Component {
                   initialValue: this.props.searchData.get('id'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/searchData/id', e.target.value);
+                    'AdminReducer/searchData/id', e.target.value);
                   },
                 })(
                 <Input
@@ -68,7 +61,7 @@ class AdminListSearch extends React.Component {
                   initialValue: this.props.searchData.get('userName'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/searchData/userName', e.target.value);
+                    'AdminReducer/searchData/userName', e.target.value);
                   },
                 })(
                 <Input
@@ -86,7 +79,7 @@ class AdminListSearch extends React.Component {
                   initialValue: this.props.searchData.get('role'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/searchData/role', e.target.value);
+                    'AdminReducer/searchData/role', e.target.value);
                   },
                 })(
                 <Input

@@ -31,9 +31,11 @@ const defaultState = Immutable.Map({
   }),
   userInfo: Immutable.Map({
     id: '',
-    userName: '',
-    role: '',
-    passWord: '',
+    user_name: '',
+    pass_word: '',
+    email: '',
+    mobile: '',
+    role: ''
   }),
   searchData: Immutable.Map({
     id: '',
@@ -48,16 +50,14 @@ const getUserListHandler = new ActionHandler.handleAction(UserAction.GET_USERLIS
   .success((state, action) => {
     return state.setIn(['userList', 'list'], Immutable.fromJS(action.data.list))
       .setIn(['userList', 'total'], Immutable.fromJS(action.data.total))
-      // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-      // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
 
-// const getUserInfoHandler = new ActionHandler.handleAction(UserAction.GET_USERINFO)
-//     .success((state, action) => {
-//       return state.set('userInfo', Immutable.fromJS(action.data))
-//         .set('isFetching', false).set('errMsg', '');
-//     });
+const getUserInfoHandler = new ActionHandler.handleAction(UserAction.GET_USERINFO)
+    .success((state, action) => {
+      return state.set('userInfo', Immutable.fromJS(action.data))
+        .set('isFetching', false).set('errMsg', '');
+    });
 
 const updateUserHandler = new ActionHandler.handleAction(UserAction.UPDATE_USER);
 
@@ -65,9 +65,9 @@ const updateUserHandler = new ActionHandler.handleAction(UserAction.UPDATE_USER)
 export default ActionHandler.handleActions(
   [
     getUserListHandler,
-    // getUserInfoHandler,
+    getUserInfoHandler,
     updateUserHandler,
   ],
   defaultState,
-  /^UserReducer\//
+  /^AdminReducer\//
 );

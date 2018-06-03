@@ -14,30 +14,28 @@ import amumu from 'amumu';
 @amumu.redux.ConnectStore
 @amumu.decorators.Loading('pc')
 class AdminList extends React.Component {
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    userList: PropTypes.instanceOf(Immutable.Map).isRequired,
-    searchData: PropTypes.instanceOf(Immutable.Map).isRequired,
-    dispatch: PropTypes.func,
-  };
   componentWillMount() {
-    // this.props.dispatch(UserAction.getUserList(
-    //   { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
-    // ));
+    this.props.dispatch(UserAction.getUserList(
+      { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
+    ));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
+    dispatch(push(RoutingURL.AdminInfo()));
+  }
+  _goUpdateAction = (dispatch: Function) => (params) => {
+    console.log('params:', JSON.stringify(params))
+    dispatch(UserAction.getUserInfo(params));
+    dispatch(push(RoutingURL.AdminInfo(params.get('id'), true)));
   }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     dispatch(UserAction.getUserList(localParams));
-    this.props.changeAction('UserReducer/searchData/pageNum', current);
+    this.props.changeAction('AdminReducer/searchData/pageNum', current);
   };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
+    this.props.changeAction('AdminReducer/searchData/pageNum', current);
   };
   render() {
     return (
@@ -60,6 +58,7 @@ class AdminList extends React.Component {
                total={this.props.userList.get('total')}
                dispatch={this.props.dispatch}
                deleteUserAction={this._deleteAction(this.props.dispatch)}
+               goUpdateAction={this._goUpdateAction(this.props.dispatch)}
              />
           </View>
           <View className={ styles.pageNav }>

@@ -20,22 +20,7 @@ class UserInfo extends React.Component {
     super(props);
     this.state = {};
   }
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    userInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
-    courseList: PropTypes.array.isRequired,
-    getValue: PropTypes.func,
-    dispatch: PropTypes.func,
-    changeAction: PropTypes.func,
-    form: PropTypes.any,
-  };
   componentWillMount() {
-    if(this.props.params.id){
-      // this.props.dispatch(UserAction.getUserInfo({id: this.props.params.id}));
-    } else {
-      this.clearArticle();
-    }
   }
   componentWillReceiveProps(nextProps) {}
   /**
@@ -49,43 +34,28 @@ class UserInfo extends React.Component {
   _goUpdateAction = (dispatch: Function) => (id: string) => {
     dispatch(push(RoutingURL.UserInfo(id, true)));
   }
-  _updateAction = (dispatch) => (params: {}) => {
-    console.log(this.props.userInfo.toJS());
-    this.props.dispatch(UserAction.updateUser(this.props.userInfo.toJS()));
+  _updateAction = (dispatch) => () => {
+    if (this.props.userInfo.get('id')) {
+      this.props.dispatch(UserAction.updateUserInfo(this.props.userInfo.toJS()));
+    } else {
+      this.props.dispatch(UserAction.addUserInfo(this.props.userInfo.toJS()));
+    }
   }
   clearArticle() {
-    this.props.changeAction('UserReducer/userInfo',
+    this.props.changeAction('AdminReducer/userInfo',
     Immutable.fromJS({
       id: '',
-      userName: '',
-      passWord: '',
-      var1: '',
+      user_name: '',
+      pass_word: '',
+      email: '',
+      mobile: '',
+      role: ''
     }));
   }
   componentWillUnmount() {
     this.clearArticle();
   }
-  renderSelect(list, value) {
-    const view = [];
-    if(list.size) {
-      const newList = list.toJS();
-      newList.map((item, index) => {
-        view.push(
-          <Option value={item['id']} key={index}>{item[value]}</Option>
-        );
-      })
-    }
-    return view;
-  }
-  renderYearsSelect() {
-    const view = [];
-    for(let i = 1988; i <= 2017; i++ ) {
-      view.push(
-        <Option value={i} key={i}>{i}年</Option>
-      );
-    }
-    return view;
-  }
+
   render() {
     const { getFieldDecorator, getFieldValue, getFieldsValue } = this.props.form;
     const formItemLayout = {
@@ -108,46 +78,27 @@ class UserInfo extends React.Component {
         </View>
         <View className={ Contentstyles.contentContainer }>
           <Form
-            
             className={ Contentstyles.contentBox }
           >
-            {this.props.params.id ?
-            <View>
-              <View className={ Contentstyles.formHeader } >
-                系统信息
-              </View>
-              <View className={ Contentstyles.formContent } >
-                <FormItem
-                  {...formItemLayout}
-                  label="账号ID"
-                >
-                  {getFieldDecorator('id', {
-                    initialValue: this.props.userInfo.get('id'),
-                    })(
-                    <text>{this.props.userInfo.get('id')}</text>
-                  )}
-
-                </FormItem>
-              </View>
-            </View> : ''}
             <View className={ Contentstyles.formHeader } >
               基本信息
             </View>
             <View className={ Contentstyles.formContent } >
+
               <FormItem
                 {...formItemLayout}
                 label="用户名"
                 hasFeedback
               >
-                {getFieldDecorator('userName', {
-                  initialValue: this.props.userInfo.get('userName'),
+                {getFieldDecorator('user_name', {
+                  initialValue: this.props.userInfo.get('user_name'),
                   rules: [{
                     required: true,
                     message: '请输入用户名',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/userInfo/userName', e.target.value);
+                    'AdminReducer/userInfo/user_name', e.target.value);
                   },
                   })(
                     <Input
@@ -160,15 +111,15 @@ class UserInfo extends React.Component {
                 label="密码"
                 hasFeedback
               >
-                {getFieldDecorator('passWord', {
-                  initialValue: this.props.userInfo.get('passWord'),
+                {getFieldDecorator('pass_word', {
+                  initialValue: this.props.userInfo.get('pass_word'),
                   rules: [{
                     required: true,
                     message: '请输入密码',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/userInfo/passWord', e.target.value);
+                    'AdminReducer/userInfo/pass_word', e.target.value);
                   },
                   })(
                     <Input
@@ -179,18 +130,56 @@ class UserInfo extends React.Component {
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="真实姓名"
+                label="邮箱"
                 hasFeedback
               >
-                {getFieldDecorator('var1', {
-                  initialValue: this.props.userInfo.get('var1'),
+                {getFieldDecorator('email', {
+                  initialValue: this.props.userInfo.get('email'),
+                  rules: [{
+                    required: true,
+                    message: '请输入邮箱',
+                  }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/userInfo/var1', e.target.value);
+                    'AdminReducer/userInfo/email', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入真实姓名"
+                      placeholder="请输入邮箱"
+                    />
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="手机号"
+                hasFeedback
+              >
+                {getFieldDecorator('mobile', {
+                  initialValue: this.props.userInfo.get('mobile'),
+                  onChange: (e) => {
+                    this.props.changeAction(
+                    'AdminReducer/userInfo/mobile', e.target.value);
+                  },
+                  })(
+                    <Input
+                      placeholder="请输入手机号"
+                    />
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="角色ID"
+                hasFeedback
+              >
+                {getFieldDecorator('role', {
+                  initialValue: this.props.userInfo.get('role'),
+                  onChange: (e) => {
+                    this.props.changeAction(
+                    'AdminReducer/userInfo/role', e.target.value);
+                  },
+                  })(
+                    <Input
+                      placeholder="请输入角色ID"
                     />
                 )}
               </FormItem>

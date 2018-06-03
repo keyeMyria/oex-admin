@@ -20,7 +20,7 @@ const UserInfoHeader = (props) => {
     if (props.id) {
       if (props.editing) {
         return (
-          <View>{`编辑题目 ID: ${props.id}`}</View>
+          <View>{`后台用户 ID: ${props.id}`}</View>
         );
       }
     }

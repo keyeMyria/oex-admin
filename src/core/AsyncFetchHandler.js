@@ -25,14 +25,14 @@ const AsyncFetchHandler = (
           type: FetchState.SUCCESS(actionName),
           data: sideEffect(data.datas),
         });
-      } else if (data.code === 5000) {
+      } else if (data.status === 5000) {
         dispatch(push(RoutingURL.Login()));
-      } else if (data.code === 5001) {
+      } else if (data.status === 5001) {
         dispatch(push(RoutingURL.Login()))
-      } else if (data.code === 5002) {
+      } else if (data.status === 5002) {
         alert('登录过期，请重新登录');
         dispatch(push(RoutingURL.Login()))
-      } else if (data.code === 5003) {
+      } else if (data.status === 5003) {
         dispatch(push(RoutingURL.Login()))
       } else {
         // NotificationCenter.NotificationCard(

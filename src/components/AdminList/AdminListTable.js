@@ -44,21 +44,27 @@ class AdminListTable extends React.Component {
       dataSource.push({
         key: index,
         id: data.get('id'),
-        username: data.get('userName'),
+        username: data.get('user_name'),
         role: roleType[data.get('role')],
         operation: (
           <View>
-            {data.get('role') === 2 ?
-              <a
-                style={{color: '#f60'}}
-                onClick={(e) => {
-                  e.preventDefault();
-                  this.props.deleteUserAction({deleteId: data.get('id')});
-                }}
-              >
-                删除
-              </a> : ''
-            }
+            <a
+              style={{color: '#f60'}}
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.deleteUserAction({deleteId: data.get('id')});
+              }}
+            >
+              删除
+            </a> | <a
+              style={{color: '#1890ff'}}
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.goUpdateAction(data)
+              }}
+            >
+              修改
+            </a>
           </View>
         ),
       });

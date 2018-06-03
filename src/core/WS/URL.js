@@ -18,6 +18,40 @@ export const LoginPath: string = `${rootURL}user/admin/user/login`;
  * @type {string}
  */
 export const LogoutPath: string = `${rootURL}user/admin/user/exit`;
+
+/**
+ * 获取用户列表
+ * @type {string}
+ */
+export const getUserListPath: string = `${rootURL}user/admin/user/listAdminUser`;
+
+/**
+ * 保存用户
+ * @type {string}
+ */
+export const addUserInfoPath: string = `${rootURL}user/admin/user/addUser`;
+/**
+ * 更新用户
+ * @type {string}
+ */
+export const updateUserInfoPath: string = `${rootURL}admin/admin/user/updateUser`;
+/**
+/**
+ * 删除用户
+ * @type {string}
+ */
+export const deleteUserInfoPath: string = `${rootURL}user/admin/user/delUser`;
+
+
+
+
+
+
+
+
+
+
+
 /**
  * 获取题目列表
  * @type {string}
@@ -39,32 +73,7 @@ export const updateArticleInfoPath: string = `${rootURL}admin/subject/addOrUpdat
  * @type {string}
  */
 export const deleteArticleInfoPath: string = `${rootURL}admin/subject/deleteById`;
-/**
- * 获取用户列表
- * @type {string}
- */
-export const getUserListPath: string = `${rootURL}user/admin/user/c/listUser`;
-// /**
-//  * 获取用户内容
-//  * @type {string}
-//  */
-// export const getUserInfoPath: string = `${rootURL}admin/subject/getById`;
-/**
- * 用户解除/禁用
- * @type {string}
- */
-export const updateLockingPath: string = `${rootURL}user/admin/user/c/locking`;
-/**
- * 保存用户
- * @type {string}
- */
-export const updateUserInfoPath: string = `${rootURL}admin/addUser`;
-/**
-/**
- * 删除用户
- * @type {string}
- */
-export const deleteUserInfoPath: string = `${rootURL}admin/deleteUser`;
+
 
 /**
  * 获取交易区列表
