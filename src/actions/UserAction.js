@@ -113,3 +113,45 @@ export const getUserInfo = (params: Object) => (dispatch) => {
     data: params,
   });
 };
+
+
+
+// 获取c端UserList
+export const GET_C_USERLIST = 'GET_C_USERLIST';
+export const getCUserList = (params: Object) => (dispatch) => {
+  const result = GET(URL.getCuserListPath, params);
+  AsyncFetchHandler(
+    GET_C_USERLIST,
+    result,
+    dispatch
+  );
+};
+
+// c端用户
+export const UPDATE_LOCKING = 'UPDATE_LOCKING';
+export const updateLocking = (params: Object) => (dispatch) => {
+  const result = GET(URL.updateLockingPath, params);
+  AsyncFetchHandler(
+    UPDATE_LOCKING,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '修改成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(getUserList(params));
+    } else {
+      NotificationCenter.NotificationCard(
+        '修改失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
+};

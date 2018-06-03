@@ -29,12 +29,6 @@ const defaultState = Immutable.Map({
       total: 0,
       currentPage: 1,
   }),
-  userInfo: Immutable.Map({
-    id: '',
-    userName: '',
-    var1: '',
-    passWord: '',
-  }),
   searchData: Immutable.Map({
     id: '',
     user_mobile: '',
@@ -44,7 +38,7 @@ const defaultState = Immutable.Map({
   })
 });
 
-const getUserListHandler = new ActionHandler.handleAction(UserAction.GET_USERLIST)
+const getUserListHandler = new ActionHandler.handleAction(UserAction.GET_C_USERLIST)
   .success((state, action) => {
     return state.setIn(['userList', 'list'], Immutable.fromJS(action.data.list))
       .setIn(['userList', 'total'], Immutable.fromJS(action.data.total))
@@ -59,14 +53,12 @@ const getUserListHandler = new ActionHandler.handleAction(UserAction.GET_USERLIS
 //         .set('isFetching', false).set('errMsg', '');
 //     });
 
-const updateUserHandler = new ActionHandler.handleAction(UserAction.UPDATE_USER);
 
 
 export default ActionHandler.handleActions(
   [
     getUserListHandler,
     // getUserInfoHandler,
-    updateUserHandler,
   ],
   defaultState,
   /^UserReducer\//

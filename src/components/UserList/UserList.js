@@ -14,21 +14,14 @@ import amumu from 'amumu';
 @amumu.redux.ConnectStore
 @amumu.decorators.Loading('pc')
 class UserList extends React.Component {
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    userList: PropTypes.instanceOf(Immutable.Map).isRequired,
-    searchData: PropTypes.instanceOf(Immutable.Map).isRequired,
-    dispatch: PropTypes.func,
-  };
   componentWillMount() {
-    this.props.dispatch(UserAction.getUserList(
+    this.props.dispatch(UserAction.getCUserList(
       { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
     ));
   }
-  _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
-  }
+  // _goCreateAction = (dispatch: Function) => () => {
+  //   dispatch(push(RoutingURL.UserInfo()));
+  // }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     dispatch(UserAction.getUserList(localParams));
@@ -44,7 +37,7 @@ class UserList extends React.Component {
       <View className={ styles.contentList } style={{ top: '90px' }}>
         <View className={ styles.contentListHeader }>
           <UserListHeader
-            goCreateAction={this._goCreateAction(this.props.dispatch)}
+            // goCreateAction={this._goCreateAction(this.props.dispatch)}
           />
         </View>
         <View className={ styles.contentListContent } >

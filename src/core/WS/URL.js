@@ -34,13 +34,25 @@ export const addUserInfoPath: string = `${rootURL}user/admin/user/addUser`;
  * 更新用户
  * @type {string}
  */
-export const updateUserInfoPath: string = `${rootURL}admin/admin/user/updateUser`;
+export const updateUserInfoPath: string = `${rootURL}admin/user/updateUser`;
 /**
 /**
  * 删除用户
  * @type {string}
  */
 export const deleteUserInfoPath: string = `${rootURL}user/admin/user/delUser`;
+
+
+/**
+ * C端用户列表
+ * @type {string}
+ */
+export const getCuserListPath: string = `${rootURL}user/admin/user/c/listUser`;
+/**
+ * C端用户锁定/解锁用户
+ * @type {string}
+ */
+export const cuserLockingPath: string = `${rootURL}user/admin/user/c/locking`;
 
 
 
