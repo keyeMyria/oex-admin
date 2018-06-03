@@ -9,9 +9,10 @@ import * as TradeAction from '../../actions/TradeAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
-import { Form, Input } from 'antd';
+import { Form, Input, Select  } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 @amumu.redux.ConnectStore
 // @amumu.decorators.Loading('pc')
@@ -20,19 +21,9 @@ class AreaInfo extends React.Component {
     super(props);
     this.state = {};
   }
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    areaInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
-    courseList: PropTypes.array.isRequired,
-    getValue: PropTypes.func,
-    dispatch: PropTypes.func,
-    changeAction: PropTypes.func,
-    form: PropTypes.any,
-  };
   componentWillMount() {
     if(this.props.params.id){
-      // this.props.dispatch(TradeAction.getAreaInfo({id: this.props.params.id}));
+      this.props.dispatch(TradeAction.getAreaInfo({id: this.props.params.id}));
     } else {
       this.clearArticle();
     }
@@ -57,35 +48,15 @@ class AreaInfo extends React.Component {
     this.props.changeAction('TradeReducer/areaInfo',
     Immutable.fromJS({
       id: '',
-      areaName: '',
-      passWord: '',
-      var1: '',
+      zoneName: '',
+      zoneSort: '',
+      zoneSwitch: '',
     }));
   }
   componentWillUnmount() {
     this.clearArticle();
   }
-  renderSelect(list, value) {
-    const view = [];
-    if(list.size) {
-      const newList = list.toJS();
-      newList.map((item, index) => {
-        view.push(
-          <Option value={item['id']} key={index}>{item[value]}</Option>
-        );
-      })
-    }
-    return view;
-  }
-  renderYearsSelect() {
-    const view = [];
-    for(let i = 1988; i <= 2017; i++ ) {
-      view.push(
-        <Option value={i} key={i}>{i}年</Option>
-      );
-    }
-    return view;
-  }
+
   render() {
     const { getFieldDecorator, getFieldValue, getFieldsValue } = this.props.form;
     const formItemLayout = {
@@ -111,87 +82,68 @@ class AreaInfo extends React.Component {
 
             className={ Contentstyles.contentBox }
           >
-            {this.props.params.id ?
-            <View>
-              <View className={ Contentstyles.formHeader } >
-                系统信息
-              </View>
-              <View className={ Contentstyles.formContent } >
-                <FormItem
-                  {...formItemLayout}
-                  label="账号ID"
-                >
-                  {getFieldDecorator('id', {
-                    initialValue: this.props.areaInfo.get('id'),
-                    })(
-                    <text>{this.props.areaInfo.get('id')}</text>
-                  )}
-
-                </FormItem>
-              </View>
-            </View> : ''}
             <View className={ Contentstyles.formHeader } >
               基本信息
             </View>
             <View className={ Contentstyles.formContent } >
               <FormItem
                 {...formItemLayout}
-                label="用户名"
+                label="交易区名称"
                 hasFeedback
               >
-                {getFieldDecorator('areaName', {
-                  initialValue: this.props.areaInfo.get('areaName'),
+                {getFieldDecorator('zoneName', {
+                  initialValue: this.props.areaInfo.get('zoneName'),
                   rules: [{
                     required: true,
-                    message: '请输入用户名',
+                    message: '请输入交易区名称',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/areaName', e.target.value);
+                    'TradeReducer/areaInfo/zoneName', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入用户名"
+                      placeholder="请输入交易区名称"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="密码"
+                label="交易区展示序号"
                 hasFeedback
               >
-                {getFieldDecorator('passWord', {
-                  initialValue: this.props.areaInfo.get('passWord'),
+                {getFieldDecorator('zoneSort', {
+                  initialValue: this.props.areaInfo.get('zoneSort'),
                   rules: [{
                     required: true,
-                    message: '请输入密码',
+                    message: '交易区展示序号',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/passWord', e.target.value);
+                    'TradeReducer/areaInfo/zoneSort', e.target.value);
                   },
                   })(
                     <Input
-                      type="password"
-                      placeholder="请输入密码"
+                      placeholder="交易区展示序号"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="真实姓名"
+                label="交易区展示开关"
                 hasFeedback
               >
-                {getFieldDecorator('var1', {
-                  initialValue: this.props.areaInfo.get('var1'),
+                {getFieldDecorator('zoneSwitch', {
+                  initialValue: this.props.areaInfo.get('zoneSwitch'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/var1', e.target.value);
+                    'TradeReducer/areaInfo/zoneSwitch', e.target.value);
                   },
                   })(
-                    <Input
-                      placeholder="请输入真实姓名"
-                    />
+                    <Select>
+                      <Option value="1">开</Option>
+                      <Option value="0">关</Option>
+                    </Select>
                 )}
               </FormItem>
             </View>

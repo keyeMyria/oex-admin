@@ -19,7 +19,7 @@ class AreaList extends React.Component {
     this.props.dispatch(TradeAction.getAreaList());
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
+    dispatch(push(RoutingURL.AreaInfo()));
   }
   // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
   //   const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
@@ -35,7 +35,9 @@ class AreaList extends React.Component {
     return (
       <View className={ styles.contentList } style={{ top: '60px' }}>
         <View className={ styles.contentListHeader }>
-          <AreaListHeader />
+          <AreaListHeader
+            goCreateAction={this._goCreateAction(this.props.dispatch)}
+          />
         </View>
         <View className={ styles.contentListContent } >
           {/* <View className={ styles.contentListSearch } >

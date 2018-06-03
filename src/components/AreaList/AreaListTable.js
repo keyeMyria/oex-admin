@@ -53,15 +53,15 @@ class AreaListTable extends React.Component {
                 style={{color: '#0080FF'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  this.props.dispatch(push(RoutingURL.AreaInfo(data.get('id'))));
                 }}
               >
-                查看
+                修改
               </a> | <a
-                style={{color: '#0080FF'}}
+                style={{color: '#f60'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  this.props.dispatch(push(RoutingURL.AreaInfo(data.get('id'))));
                 }}
               >
                 删除

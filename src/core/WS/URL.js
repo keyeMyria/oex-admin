@@ -56,7 +56,33 @@ export const cuserLockingPath: string = `${rootURL}user/admin/user/c/locking`;
 
 
 
+/**
+ * 获取交易区列表
+ * @type {string}
+ */
+export const getAreaListPath: string = `${rootURL}user/admin/trade_zone/list`;
 
+/**
+ * 获取交易区详情
+ * @type {string}
+ */
+export const getAreaInfoPath: string = `${rootURL}user/admin/trade_zone/info`;
+
+/**
+ * 交易区修改
+ * @type {string}
+ */
+export const updateAreaInfoPath: string = `${rootURL}user/admin/trade_zone/update`;
+/**
+ * 交易区添加
+ * @type {string}
+ */
+export const addAreaInfoPath: string = `${rootURL}user/admin/trade_zone/add`;
+/**
+ * 交易区删除
+ * @type {string}
+ */
+export const deleteAreaInfoPath: string = `${rootURL}user/admin/trade_zone/delete`;
 
 
 
@@ -87,11 +113,6 @@ export const updateArticleInfoPath: string = `${rootURL}admin/subject/addOrUpdat
 export const deleteArticleInfoPath: string = `${rootURL}admin/subject/deleteById`;
 
 
-/**
- * 获取交易区列表
- * @type {string}
- */
-export const getAreaListPath: string = `${rootURL}user/admin/trade_zone/list`;
 /**
  * 获取币种信息列表
  * @type {string}

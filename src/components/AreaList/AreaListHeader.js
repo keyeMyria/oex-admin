@@ -15,6 +15,13 @@ const AreaListHeader = (props) => {
         交易区列表
       </View>
       <View className={ styles.contentButton }>
+        <Button
+          type="primary"
+          className={ mainStyles.blueButton }
+          onClick={ () => props.goCreateAction() }
+        >
+          新建交易区
+        </Button>
       </View>
     </View>
   );

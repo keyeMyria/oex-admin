@@ -22,6 +22,10 @@ const defaultState = Immutable.Map({
       currentPage: 1,
   }),
   areaInfo: Immutable.Map({
+    id: '',
+    zoneName: '',
+    zoneSort: '',
+    zoneSwitch: '',
   }),
   pairInfo: Immutable.Map({
   }),
