@@ -66,9 +66,7 @@ const routes = (
       <Route path={RoutingURL.AreaInfo('(:id)')} component={AreaInfo} />
       <Route path={RoutingURL.PairList()} component={PairList} />
       <Route path={RoutingURL.PairInfo('(:id)')} component={PairInfo} />
-      <Route path={RoutingURL.ArticleList()} component={ArticleList} />
-      <Route path={RoutingURL.Article('(:id)')} component={Article} />
-      <Route path={RoutingURL.CurrencyInfoList()} component={CurrencyInfoList} />
+      <Route path={RoutingURL.CoinList()} component={CurrencyInfoList} />
       <Route path={RoutingURL.MSCurrencyList()} component={MSCurrencyList} />
       <Route path={RoutingURL.CurrencyConfigList()} component={CurrencyConfigList} />
       <Route path={RoutingURL.Experience('(:id)')} component={Experience} />

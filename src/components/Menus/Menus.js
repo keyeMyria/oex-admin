@@ -29,7 +29,7 @@ class Menus extends React.PureComponent {
     } else if(e.key === '权限管理') {
       this.props.dispatch(push(RoutingURL.AuthList()));
     } else if (e.key === '币种信息') {
-      this.props.dispatch(push(RoutingURL.CurrencyInfoList()));
+      this.props.dispatch(push(RoutingURL.CoinList()));
     } else if (e.key === '币种配置') {
       this.props.dispatch(push(RoutingURL.CurrencyConfigList()));
     } else if (e.key === '币种资料') {

@@ -35,6 +35,7 @@ class CurrencyInfoListTable extends React.Component {
       title: '币种名称',
       dataIndex: 'name',
       key: 'name',
+      width: 150,
     }, {
       title: '中文名',
       dataIndex: 'nameCn',
@@ -55,17 +56,16 @@ class CurrencyInfoListTable extends React.Component {
   _renderDataSource(datas) {
     const dataSource = [];
     if(datas) {
-    const typeText = { 1: '热门问题', 2: '最新资讯', 3: '高分经验', 4: '报考指南'};
     datas.forEach((data, index) => {
       const sex = data.get('sex');
       dataSource.push({
         key: index,
         id: data.get('id'),
-        type: typeText[data.get('type')],
+        type: data.get('showId'),
         name: data.get('name'),
-        nameCn: data.get('name_cn'),
-        nameShort: data.get('name_short'),
-        showId: data.get('show_id'),
+        nameCn: data.get('nameCn'),
+        nameShort: data.get('nameShort'),
+        showId: data.get('showId'),
         operation: (
           <View>
             <a

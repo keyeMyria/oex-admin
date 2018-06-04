@@ -9,18 +9,15 @@ export const App = (): string => '/App';
 
 export const prefix = (prefixs: string): string => `${PrefixURL()}${prefixs}`;
 
-/* **************************  文章管理模块  ******************************************** */
-export const ArticleList = (): string => prefix('article-list');
-
-export const Article = (id : string = '', editing : boolean = false): string => {
+/* **************************  币种管理模块  ******************************************** */
+export const CoinList = (): string => prefix('coin-list');
+export const CoinInfo = (id : string = '', editing : boolean = false): string => {
   if (editing) {
-    return prefix(`article/${id}?editing=true`);
+    return prefix(`coin/${id}?editing=true`);
   }
-  return prefix(`article/${id}`);
+  return prefix(`coin/${id}`);
 };
 
-/* **************************  经验管理模块  ******************************************** */
-export const CurrencyInfoList = (): string => prefix('currency-info-list');
 export const MSCurrencyList = () => prefix('ms-currency-list');
 export const CurrencyConfigList = () => prefix('currency-config-list');
 

@@ -27,7 +27,7 @@ const defaultState = Immutable.Map({
 
 const getCurrencyListHandler = new ActionHandler.handleAction(CurrencyAction.GET_CURRENCYLIST)
   .success((state, action) => {
-    return state.setIn(['currencyList', 'list'], Immutable.fromJS(action.data))
+    return state.setIn(['currencyList', 'list'], Immutable.fromJS(action.data.pageInfo))
       // .setIn(['currencyList', 'total'], Immutable.fromJS(action.data.total))
       // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
       // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
