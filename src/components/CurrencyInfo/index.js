@@ -4,10 +4,9 @@ import CurrencyInfo from './CurrencyInfo';
 
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
-  errMsg: state.TradeReducer.get('errMsg'),
-  isFetching: state.TradeReducer.get('isFetching'),
-  areaInfo: state.TradeReducer.get('areaInfo'),
-  areaList: state.TradeReducer.get('areaList'),
+  errMsg: state.CurrencyReducer.get('errMsg'),
+  isFetching: state.CurrencyReducer.get('isFetching'),
+  currencyInfo: state.CurrencyReducer.get('currencyInfo'),
 });
 
 export default connect(mapStateToProps)(CurrencyInfo);

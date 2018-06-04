@@ -5,7 +5,7 @@ import { View } from 'isomorphic';
 import Immutable from 'immutable';
 import * as Contentstyles from '../../assets/stylesheets/FromContent.css';
 import * as styles from './style.css';
-import * as TradeAction from '../../actions/TradeAction';
+import * as CurrencyAction from '../../actions/CurrencyAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
@@ -23,7 +23,7 @@ class CurrencyInfo extends React.Component {
   }
   componentWillMount() {
     if(this.props.params.id){
-      this.props.dispatch(TradeAction.getAreaInfo({id: this.props.params.id}));
+      this.props.dispatch(CurrencyAction.getCoinInfo({id: this.props.params.id}));
     } else {
       this.clearArticle();
     }
@@ -35,21 +35,21 @@ class CurrencyInfo extends React.Component {
    * @private
    */
   _goBackAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.AreaList()));
+    dispatch(push(RoutingURL.CoinList()));
   }
   _goUpdateAction = (dispatch: Function) => (id: string) => {
     dispatch(push(RoutingURL.AreaInfo(id, true)));
   }
   _updateAction = (dispatch) => (params: {}) => {
-    console.log(this.props.areaInfo.toJS());
-    if (this.props.areaInfo.get('id')) {
-      this.props.dispatch(TradeAction.updateAreaInfo(this.props.areaInfo.toJS()));
+    console.log(this.props.currencyInfo.toJS());
+    if (this.props.currencyInfo.get('id')) {
+      this.props.dispatch(CurrencyAction.updateCoinInfo(this.props.currencyInfo.toJS()));
     } else {
-      this.props.dispatch(TradeAction.addAreaInfo(this.props.areaInfo.toJS()));
+      this.props.dispatch(CurrencyAction.addCoinInfo(this.props.currencyInfo.toJS()));
     }
   }
   clearArticle() {
-    this.props.changeAction('TradeReducer/areaInfo',
+    this.props.changeAction('CurrencyReducer/currencyInfo',
     Immutable.fromJS({
       id: '',
       zoneName: '',
@@ -96,14 +96,14 @@ class CurrencyInfo extends React.Component {
                 hasFeedback
               >
                 {getFieldDecorator('zoneName', {
-                  initialValue: this.props.areaInfo.get('zoneName'),
+                  initialValue: this.props.currencyInfo.get('zoneName'),
                   rules: [{
                     required: true,
                     message: '请输入交易区名称',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/zoneName', e.target.value);
+                    'CurrencyReducer/currencyInfo/zoneName', e.target.value);
                   },
                   })(
                     <Input
@@ -117,14 +117,14 @@ class CurrencyInfo extends React.Component {
                 hasFeedback
               >
                 {getFieldDecorator('zoneSort', {
-                  initialValue: this.props.areaInfo.get('zoneSort'),
+                  initialValue: this.props.currencyInfo.get('zoneSort'),
                   rules: [{
                     required: true,
                     message: '交易区展示序号',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/zoneSort', e.target.value);
+                    'CurrencyReducer/currencyInfo/zoneSort', e.target.value);
                   },
                   })(
                     <Input
@@ -138,11 +138,11 @@ class CurrencyInfo extends React.Component {
                 hasFeedback
               >
                 {getFieldDecorator('zoneSwitch', {
-                  initialValue: this.props.areaInfo.get('zoneSwitch'),
+                  initialValue: this.props.currencyInfo.get('zoneSwitch'),
                   onChange: (e) => {
                     console.log('e', e)
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/zoneSwitch', e);
+                    'CurrencyReducer/currencyInfo/zoneSwitch', e);
                   },
                   })(
                     <Select>

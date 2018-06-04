@@ -35,8 +35,7 @@ const getCurrencyListHandler = new ActionHandler.handleAction(CurrencyAction.GET
   });
 
 
-
-const getCurrencyInfoHandler = new ActionHandler.handleAction(CurrencyAction.GET_EXPERIENCEINFO)
+const getCoinInfoHandler = new ActionHandler.handleAction(CurrencyAction.GET_COIN_INFO)
     .success((state, action) => {
       return state.set('currencyInfo', Immutable.fromJS(action.data))
         .set('isFetching', false).set('errMsg', '');
@@ -53,7 +52,7 @@ const getCurrencyContentHandler = new ActionHandler.handleAction(CurrencyAction.
 export default ActionHandler.handleActions(
   [
     getCurrencyListHandler,
-    getCurrencyInfoHandler,
+    getCoinInfoHandler,
     getCurrencyContentHandler,
   ],
   defaultState,
