@@ -19,37 +19,39 @@ class PairList extends React.Component {
     this.props.dispatch(TradeAction.getPairList(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
+    dispatch(push(RoutingURL.PairInfo()));
   }
-  // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
-  //   const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-  //   dispatch(TradeAction.getPairList(localParams));
-  //   this.props.changeAction('BonusReducer/searchData/pageNum', current);
-  // };
+  _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
+    const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
+    dispatch(TradeAction.getPairList(localParams));
+    this.props.changeAction('TradeReducer/searchData/pageNum', current);
+  };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    // dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
+    dispatch(TradeAction.deleteUserInfo(localParams));
+    this.props.changeAction('TradeReducer/searchData/pageNum', current);
   };
   render() {
     return (
       <View className={ styles.contentList } style={{ top: '60px' }}>
         <View className={ styles.contentListHeader }>
-          <PairListHeader />
+          <PairListHeader
+             goCreateAction={this._goCreateAction(this.props.dispatch)}
+          />
         </View>
         <View className={ styles.contentListContent } >
-          {/* <View className={ styles.contentListSearch } >
+          <View className={ styles.contentListSearch } >
               <PairListSearch
                 searchAction={this._searchAction(this.props.dispatch)}
                 searchData={this.props.searchData}
               />
-            </View> */}
+            </View>
           <View className={ styles.contentListTable } >
              <PairListTable
                dataSource={this.props.pairList.get('list')}
                total={this.props.pairList.get('total')}
                dispatch={this.props.dispatch}
-               deleteUserAction={this._deleteAction(this.props.dispatch)}
+               deleteAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
           {/* <View className={ styles.pageNav }>

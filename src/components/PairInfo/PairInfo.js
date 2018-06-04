@@ -9,7 +9,8 @@ import * as TradeAction from '../../actions/TradeAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
-import { Form, Input } from 'antd';
+import { Form, Input, Select } from 'antd';
+const Option = Select.Option;
 
 const FormItem = Form.Item;
 
@@ -20,19 +21,9 @@ class PairInfo extends React.Component {
     super(props);
     this.state = {};
   }
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    pairInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
-    courseList: PropTypes.array.isRequired,
-    getValue: PropTypes.func,
-    dispatch: PropTypes.func,
-    changeAction: PropTypes.func,
-    form: PropTypes.any,
-  };
   componentWillMount() {
     if(this.props.params.id){
-      // this.props.dispatch(TradeAction.getPairInfo({id: this.props.params.id}));
+      this.props.dispatch(TradeAction.getPairInfo({id: this.props.params.id}));
     } else {
       this.clearArticle();
     }
@@ -65,27 +56,7 @@ class PairInfo extends React.Component {
   componentWillUnmount() {
     this.clearArticle();
   }
-  renderSelect(list, value) {
-    const view = [];
-    if(list.size) {
-      const newList = list.toJS();
-      newList.map((item, index) => {
-        view.push(
-          <Option value={item['id']} key={index}>{item[value]}</Option>
-        );
-      })
-    }
-    return view;
-  }
-  renderYearsSelect() {
-    const view = [];
-    for(let i = 1988; i <= 2017; i++ ) {
-      view.push(
-        <Option value={i} key={i}>{i}年</Option>
-      );
-    }
-    return view;
-  }
+
   render() {
     const { getFieldDecorator, getFieldValue, getFieldsValue } = this.props.form;
     const formItemLayout = {
@@ -108,89 +79,124 @@ class PairInfo extends React.Component {
         </View>
         <View className={ Contentstyles.contentContainer }>
           <Form
-
             className={ Contentstyles.contentBox }
           >
-            {this.props.params.id ?
-            <View>
-              <View className={ Contentstyles.formHeader } >
-                系统信息
-              </View>
-              <View className={ Contentstyles.formContent } >
-                <FormItem
-                  {...formItemLayout}
-                  label="账号ID"
-                >
-                  {getFieldDecorator('id', {
-                    initialValue: this.props.pairInfo.get('id'),
-                    })(
-                    <text>{this.props.pairInfo.get('id')}</text>
-                  )}
-
-                </FormItem>
-              </View>
-            </View> : ''}
             <View className={ Contentstyles.formHeader } >
               基本信息
             </View>
             <View className={ Contentstyles.formContent } >
               <FormItem
                 {...formItemLayout}
-                label="用户名"
+                label="交易区id"
                 hasFeedback
               >
-                {getFieldDecorator('pairName', {
-                  initialValue: this.props.pairInfo.get('pairName'),
+                {getFieldDecorator('zoneId', {
+                  initialValue: this.props.pairInfo.get('zoneId'),
                   rules: [{
                     required: true,
-                    message: '请输入用户名',
+                    message: '请输入交易区id',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/pairInfo/pairName', e.target.value);
+                    'TradeReducer/pairInfo/zoneId', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入用户名"
+                      placeholder="请输入交易区id"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="密码"
+                label="交易状态"
                 hasFeedback
               >
-                {getFieldDecorator('passWord', {
-                  initialValue: this.props.pairInfo.get('passWord'),
+                {getFieldDecorator('status', {
+                  initialValue: this.props.pairInfo.get('status'),
                   rules: [{
                     required: true,
-                    message: '请输入密码',
+                    message: '请选择交易状态',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/pairInfo/passWord', e.target.value);
+                    'TradeReducer/pairInfo/status', e);
+                  },
+                  })(
+                    <Select>
+                      <Option value="1">开</Option>
+                      <Option value="0">关</Option>
+                    </Select>
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="交易最大数量	"
+                hasFeedback
+              >
+                {getFieldDecorator('maxAmountLimit', {
+                  initialValue: this.props.pairInfo.get('maxAmountLimit'),
+                  rules: [{
+                    required: true,
+                    message: '请输入交易最大数量',
+                  }],
+                  onChange: (e) => {
+                    this.props.changeAction(
+                    'TradeReducer/pairInfo/maxAmountLimit', e.target.value);
                   },
                   })(
                     <Input
-                      type="password"
-                      placeholder="请输入密码"
+                      placeholder="请输入交易最大数量"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="真实姓名"
+                label="交易最小数量"
                 hasFeedback
               >
-                {getFieldDecorator('var1', {
-                  initialValue: this.props.pairInfo.get('var1'),
+                {getFieldDecorator('minAmountLimit', {
+                  initialValue: this.props.pairInfo.get('minAmountLimit'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'TradeReducer/pairInfo/var1', e.target.value);
+                    'TradeReducer/pairInfo/minAmountLimit', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入真实姓名"
+                      placeholder="请输入交易最小数量"
+                    />
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="手续费率"
+                hasFeedback
+              >
+                {getFieldDecorator('rate', {
+                  initialValue: this.props.pairInfo.get('rate'),
+                  onChange: (e) => {
+                    this.props.changeAction(
+                    'TradeReducer/pairInfo/rate', e.target.value);
+                  },
+                  })(
+                    <Input
+                      placeholder="请输入手续费率"
+                    />
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="交易币种id"
+                hasFeedback
+              >
+                {getFieldDecorator('tradeCoinId', {
+                  initialValue: this.props.pairInfo.get('tradeCoinId'),
+                  onChange: (e) => {
+                    this.props.changeAction(
+                    'TradeReducer/pairInfo/tradeCoinId', e.target.value);
+                  },
+                  })(
+                    <Input
+                      placeholder="请输入交易币种id"
                     />
                 )}
               </FormItem>

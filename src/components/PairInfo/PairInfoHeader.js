@@ -20,7 +20,7 @@ const PairInfoHeader = (props) => {
     if (props.id) {
       if (props.editing) {
         return (
-          <View>{`编辑题目 ID: ${props.id}`}</View>
+          <View>{`编辑交易对 ID: ${props.id}`}</View>
         );
       }
     }

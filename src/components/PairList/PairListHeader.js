@@ -15,6 +15,13 @@ const PairListHeader = (props) => {
         交易对列表
       </View>
       <View className={ styles.contentButton }>
+        <Button
+          type="primary"
+          className={ mainStyles.blueButton }
+          onClick={ () => props.goCreateAction() }
+        >
+          新建交易对
+        </Button>
       </View>
     </View>
   );
