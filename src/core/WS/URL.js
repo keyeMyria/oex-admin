@@ -119,6 +119,59 @@ export const deletePairPath = `${rootURL}user/admin/trade_coin_pair/delete`;
 
 
 
+/**
+ * 获取公告类型列表
+ * @type {string}
+ */
+export const getNoticeTypeListPath: string = `${rootURL}user/admin/noticeType/list`;
+/**
+ * 修改公告类型
+ * @type {string}
+ */
+export const updateNoticeTypePath: string = `${rootURL}user/admin/noticeType/update`;
+/**
+ * 新增公告类型
+ * @type {string}
+ */
+export const addNoticeTypePath: string = `${rootURL}user/admin/noticeType/add`;
+/**
+ * 删除公告类型
+ * @type {string}
+ */
+export const deleteNoticeTypePath: string = `${rootURL}user/admin/noticeType/del`;
+
+/**
+ * 获取公告列表
+ * @type {string}
+ */
+export const getNoticeListPath: string = `${rootURL}user/admin/notice/list`;
+/**
+ * 获取公告详情
+ * @type {string}
+ */
+export const getNoticeInfoPath: string = `${rootURL}user/admin/notice/info`;
+/**
+ * 新增公告
+ * @type {string}
+ */
+export const addNoticePath: string = `${rootURL}user/admin/notice/add`;
+/**
+ * 修改公告
+ * @type {string}
+ */
+export const updateNoticePath: string = `${rootURL}user/admin/notice/update`;
+/**
+ * 删除公告
+ * @type {string}
+ */
+export const deleteNoticePath: string = `${rootURL}user/admin/notice/del`;
+
+
+
+
+
+
+
 
 /**
  * 获取题目列表
@@ -184,11 +237,7 @@ export const getUserCoinsPath: string = `${rootURL}user/admin/userProperty/listB
  * @type {string}
  */
 export const getWorkOrdersPath: string = `${rootURL}user/admin/workOrder/listWorkOrder`;
-/**
- * 获取公告列表
- * @type {string}
- */
-export const getNoticeLisPath: string = `${rootURL}user/admin/noticeType/list`;
+
 /**
  * 获取统计列表
  * @type {string}
