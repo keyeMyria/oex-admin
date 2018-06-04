@@ -88,61 +88,60 @@ class AuthInfo extends React.Component {
             <View className={ Contentstyles.formContent } >
               <FormItem
                 {...formItemLayout}
-                label="用户名"
+                label="角色名"
                 hasFeedback
               >
-                {getFieldDecorator('userName', {
-                  initialValue: this.props.roleInfo.get('userName'),
+                {getFieldDecorator('role_name', {
+                  initialValue: this.props.roleInfo.get('role_name'),
                   rules: [{
                     required: true,
-                    message: '请输入用户名',
+                    message: '请输入角色名',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/roleInfo/userName', e.target.value);
+                    'UserReducer/roleInfo/role_name', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入用户名"
+                      placeholder="请输入角色名"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="密码"
+                label="描述"
                 hasFeedback
               >
-                {getFieldDecorator('passWord', {
-                  initialValue: this.props.roleInfo.get('passWord'),
+                {getFieldDecorator('description', {
+                  initialValue: this.props.roleInfo.get('description'),
                   rules: [{
                     required: true,
-                    message: '请输入密码',
+                    message: '请输入描述',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/roleInfo/passWord', e.target.value);
+                    'UserReducer/roleInfo/description', e.target.value);
                   },
                   })(
                     <Input
-                      type="password"
-                      placeholder="请输入密码"
+                      placeholder="请输入描述"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="真实姓名"
+                label="权限值"
                 hasFeedback
               >
-                {getFieldDecorator('var1', {
-                  initialValue: this.props.roleInfo.get('var1'),
+                {getFieldDecorator('privileges', {
+                  initialValue: this.props.roleInfo.get('privileges'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/roleInfo/var1', e.target.value);
+                    'UserReducer/roleInfo/privileges', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入真实姓名"
+                      placeholder="请输入权限值"
                     />
                 )}
               </FormItem>
