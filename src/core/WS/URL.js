@@ -168,6 +168,68 @@ export const deleteNoticePath: string = `${rootURL}user/admin/notice/del`;
 
 
 
+/**
+ * 获取币种信息列表
+ * @type {string}
+ */
+export const getCoinListPath: string = `${rootURL}user/admin/coin/list`;
+/**
+ * 获取币种信息详情
+ * @type {string}
+ */
+export const getCoinInfoPath: string = `${rootURL}user/admin/coin/info`;
+/**
+ * 修改币种信息
+ * @type {string}
+ */
+export const updateCoinInfoPath: string = `${rootURL}user/admin/coin/update`;
+/**
+ * 新增币种信息
+ * @type {string}
+ */
+export const addCoinInfoPath: string = `${rootURL}user/admin/coin/add`;
+/**
+ * 删除币种信息
+ * @type {string}
+ */
+export const deleteCoinInfoPath: string = `${rootURL}user/admin/coin/delete`;
+
+/**
+ * 获取币种配置列表
+ * @type {string}
+ */
+export const getCoinConfigListPath: string = `${rootURL}user/admin/coin_config/list`;
+/**
+ * 获取币种配置信息
+ * @type {string}
+ */
+export const getCoinConfigInfoPath: string = `${rootURL}user/admin/coin_config/info`;
+/**
+ * 新增币种配置
+ * @type {string}
+ */
+export const addCoinConfigPath: string = `${rootURL}user/admin/coin_config/add`;
+/**
+ * 修改币种配置
+ * @type {string}
+ */
+export const updateCoinConfigPath: string = `${rootURL}user/admin/coin_config/update`;
+/**
+ * 删除币种配置
+ * @type {string}
+ */
+export const deleteCoinConfigPath: string = `${rootURL}user/admin/coin_config/delete`;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,12 +258,7 @@ export const updateArticleInfoPath: string = `${rootURL}admin/subject/addOrUpdat
 export const deleteArticleInfoPath: string = `${rootURL}admin/subject/deleteById`;
 
 
-/**
- * 获取币种信息列表
- * @type {string}
- */
-// export const getCurrencyListPath: string = `${rootURL}coin/coin/info/all`;
-export const getCurrencyListPath: string = `${rootURL}user/admin/coin/list`;
+
 /**
  * 获取充币流水-根据提取币种查询
  * @type {string}

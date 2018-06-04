@@ -28,6 +28,7 @@ import PairInfo from './components/PairInfo';
 import ArticleList from './components/ArticleList';
 import Article from './components/Article';
 import CurrencyInfoList from './components/CurrencyInfoList';
+import CurrencyInfo from './components/CurrencyInfo';
 import MSCurrencyList from './components/MSCurrencyList';
 import CurrencyConfigList from './components/CurrencyConfigList';
 import Experience from './components/Experience';
@@ -67,6 +68,7 @@ const routes = (
       <Route path={RoutingURL.PairList()} component={PairList} />
       <Route path={RoutingURL.PairInfo('(:id)')} component={PairInfo} />
       <Route path={RoutingURL.CoinList()} component={CurrencyInfoList} />
+      <Route path={RoutingURL.CoinInfo('(:id)')} component={CurrencyInfo} />
       <Route path={RoutingURL.MSCurrencyList()} component={MSCurrencyList} />
       <Route path={RoutingURL.CurrencyConfigList()} component={CurrencyConfigList} />
       <Route path={RoutingURL.Experience('(:id)')} component={Experience} />

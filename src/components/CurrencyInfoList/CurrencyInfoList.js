@@ -19,7 +19,7 @@ class CurrencyInfoList extends React.Component {
     this.props.dispatch(CurrencyAction.getCurrencyList(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.Currency()));
+    dispatch(push(RoutingURL.CoinInfo()));
   }
   // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
   //   const localParams = Object.assign(params, { style: 1, pageNum: current, pageSize: this.props.searchData.get('pageSize') });
@@ -51,7 +51,7 @@ class CurrencyInfoList extends React.Component {
                dataSource={this.props.currencyList.get('list')}
                total={this.props.currencyList.get('total')}
                dispatch={this.props.dispatch}
-               deleteAction={this._deleteAction(this.props.dispatch)}
+               deleteCoinAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
           {/* <View className={ styles.pageNav }>

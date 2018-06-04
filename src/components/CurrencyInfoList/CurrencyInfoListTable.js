@@ -27,11 +27,6 @@ class CurrencyInfoListTable extends React.Component {
       key: 'id',
       width: 70,
     }, {
-      title: '币种配置ID',
-      dataIndex: 'type',
-      key: 'type',
-      width: 100,
-    }, {
       title: '币种名称',
       dataIndex: 'name',
       key: 'name',
@@ -61,7 +56,6 @@ class CurrencyInfoListTable extends React.Component {
       dataSource.push({
         key: index,
         id: data.get('id'),
-        type: data.get('showId'),
         name: data.get('name'),
         nameCn: data.get('nameCn'),
         nameShort: data.get('nameShort'),
@@ -71,13 +65,13 @@ class CurrencyInfoListTable extends React.Component {
             <a
               onClick={(e) => {
                 e.preventDefault();
-                this.props.dispatch(push(RoutingURL.Experience(data.get('id'), true)));
+                this.props.dispatch(push(RoutingURL.CoinInfo(data.get('id'), true)));
               }}
             >
               编辑
-            </a>&nbsp;&nbsp;&nbsp;
-            <Popconfirm title="确认要删除该经验？"
-              onConfirm={() => this.props.deleteAction({deleteId: data.get('id')})}
+            </a> | 
+            <Popconfirm title="确认要删除？"
+              onConfirm={() => this.props.deleteCoinAction({id: data.get('id')})}
               okText="确认"
               cancelText="取消"
             >
