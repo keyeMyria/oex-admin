@@ -6,12 +6,13 @@ import Immutable from 'immutable';
 import styles from '../../assets/stylesheets/Common.css';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
+import * as OperateAction from '../../actions/OperateAction';
 import amumu from 'amumu';
 import moment from 'moment';
 
 
 @amumu.redux.ConnectStore
-class NoticeListTable extends React.Component {
+class NoticeTypeListTable extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.columns = [{
@@ -53,8 +54,8 @@ class NoticeListTable extends React.Component {
                 style={{color: '#0080FF'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  // this.props.deleteUserAction({deleteId: data.get('id')});
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  this.props.dispatch(OperateAction.getNoticeTypeInfo(data.toJS()));
+                  this.props.dispatch(push(RoutingURL.NoticeTypeInfo(data.get('id'), true)));
                 }}
               >
                 修改
@@ -62,8 +63,8 @@ class NoticeListTable extends React.Component {
                 style={{color: '#f60'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  // this.props.deleteUserAction({deleteId: data.get('id')});
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  console.log('id:', data.get('id'))
+                  this.props.deleteTypeAction({id: data.get('id')});
                 }}
               >
                 删除
@@ -99,4 +100,4 @@ class NoticeListTable extends React.Component {
   }
 }
 
-export default NoticeListTable;
+export default NoticeTypeListTable;

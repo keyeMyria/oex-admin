@@ -37,6 +37,8 @@ import WorkOrder from './components/WorkOrder';
 import WorkOrders from './components/WorkOrders';
 import NoticeInfo from './components/NoticeInfo';
 import NoticeList from './components/NoticeList';
+import NoticeTypeInfo from './components/NoticeTypeInfo';
+import NoticeTypeList from './components/NoticeTypeList';
 import RewardList from './components/RewardList';
 import Statistics from './components/Statistics';
 import Config from './components/Config';
@@ -77,6 +79,8 @@ const routes = (
       <Route path={RoutingURL.WorkOrder('(:id)')} component={WorkOrder} />
       <Route path={RoutingURL.NoticeList()} component={NoticeList} />
       <Route path={RoutingURL.NoticeInfo('(:id)')} component={NoticeInfo} />
+      <Route path={RoutingURL.NoticeTypeList()} component={NoticeTypeList} />
+      <Route path={RoutingURL.NoticeTypeInfo('(:id)')} component={NoticeTypeInfo} />
       <Route path={RoutingURL.RewardList()} component={RewardList} />
       <Route path={RoutingURL.Statistics()} component={Statistics} />
       <Route path="/config" component={Config} />

@@ -103,6 +103,7 @@ export const deleteNoticeInfo = (params: Object) => (dispatch) => {
         'success',
         2,
       );
+      delete params.id;
       dispatch(getNoticeList(params));
     } else {
       NotificationCenter.NotificationCard(
@@ -169,6 +170,8 @@ export const addNoticeTypeInfo = (params: Object) => (dispatch) => {
 // 修改公告类型
 export const UPDATE_NOTICE_TYPE_INFO = 'UPDATE_NOTICE_TYPE_INFO';
 export const updateNoticeTypeInfo = (params: Object) => (dispatch) => {
+  delete params.create_time;
+  delete params.update_time;
   const result = GET(URL.updateNoticeTypePath, params);
   AsyncFetchHandler(
     UPDATE_NOTICE_TYPE_INFO,
@@ -212,6 +215,7 @@ export const deleteNoticeTypeInfo = (params: Object) => (dispatch) => {
         'success',
         2,
       );
+      delete params.id;
       dispatch(getNoticeTypeList(params));
     } else {
       NotificationCenter.NotificationCard(

@@ -139,6 +139,16 @@ export const NoticeInfo = (id : string = '', editing : boolean = false): string 
   }
   return prefix(`notice/${id}`);
 };
+
+export const NoticeTypeList = (): string => prefix('notice-type-list');
+
+export const NoticeTypeInfo = (id : string = '', editing : boolean = false): string => {
+  if (editing) {
+    return prefix(`notice-type/${id}?editing=true`);
+  }
+  return prefix(`notice-type/${id}`);
+};
+
 export const RewardList = (): string => prefix('reward-list');
 export const Statistics = (): string => prefix('statistics');
 

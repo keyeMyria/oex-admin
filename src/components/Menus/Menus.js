@@ -52,6 +52,8 @@ class Menus extends React.PureComponent {
       this.props.dispatch(push(RoutingURL.WorkOrders()));
     } else if (e.key === '公告') {
       this.props.dispatch(push(RoutingURL.NoticeList()));
+    } else if (e.key === '公告类型') {
+      this.props.dispatch(push(RoutingURL.NoticeTypeList()));
     } else if (e.key === '发放奖励') {
       this.props.dispatch(push(RoutingURL.RewardList()));
     } else if (e.key === '统计') {
@@ -153,6 +155,11 @@ class Menus extends React.PureComponent {
                 运营</div>}
               >
                 <Item
+                  key="公告类型"
+                >
+                  • 公告类型
+                </Item>
+                <Item
                   key="公告"
                 >
                   • 公告
@@ -184,70 +191,6 @@ class Menus extends React.PureComponent {
                   • 权限管理
                 </Item>
               </SubMenu>
-              {/* {Number(role) === 1 ?
-                <Item
-                  key="配置管理"
-                >
-                  配置管理
-                </Item> : ''
-              } */}
-
-              {/* <Item
-                key="用户反馈"
-              >
-                用户反馈
-              </Item> */}
-              {/* <SubMenu
-                key="题目管理"
-                title={<div className={styles.subTitle}>
-                题目管理</div>}
-              >
-                <Item
-                  key="题目列表"
-                >
-                  • 题目列表
-                </Item>
-              </SubMenu> */}
-              {/* <SubMenu
-                key="用户管理"
-                title={<div className={styles.subTitle}>
-                用户管理</div>}
-              >
-                <Item
-                  key="用户列表"
-                >
-                  • 用户列表
-                </Item>
-              </SubMenu> */}
-              {/* <SubMenu
-                key="经验管理"
-                title={<div className={styles.subTitle}>
-                经验管理</div>}
-              >
-                <Item
-                  key="经验列表"
-                >
-                  • 经验列表
-                </Item>
-              </SubMenu> */}
-              {/* <SubMenu
-                key="配置管理"
-                title={<div className={styles.subTitle}>
-                配置管理</div>}
-              >
-                <Item
-                  key="配置管理"
-                >
-                  • 配置管理
-                </Item>
-              </SubMenu> */}
-              {/* {Number(role) === 1 ?
-                <Item
-                  key="账号管理"
-                >
-                  账号管理
-                </Item> : ''
-              } */}
             </Menu>
         </View>
       </View>

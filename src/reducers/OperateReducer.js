@@ -15,6 +15,10 @@ const defaultState = Immutable.Map({
     currentPage: 1,
   }),
   noticeTypeInfo: Immutable.Map({
+    img: '',
+    n_language: '',
+    name: '',
+    url: ''
   }),
   noticeTypeSearchData: Immutable.Map({
     id: '',
@@ -41,7 +45,7 @@ const defaultState = Immutable.Map({
 
 const getNoticeListHandler = new ActionHandler.handleAction(OperateAction.GET_NOTICE_LIST)
   .success((state, action) => {
-    return state.setIn(['noticeList', 'list'], Immutable.fromJS(action.data))
+    return state.setIn(['noticeList', 'list'], Immutable.fromJS(action.data.list))
       .setIn(['noticeList', 'total'], Immutable.fromJS(action.data.total))
       .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
       .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
@@ -56,9 +60,9 @@ const getNoticeListHandler = new ActionHandler.handleAction(OperateAction.GET_NO
       const getNoticeTypeListHandler = new ActionHandler.handleAction(OperateAction.GET_NOTICE_TYPE_LIST)
         .success((state, action) => {
           return state.setIn(['noticeTypeList', 'list'], Immutable.fromJS(action.data))
-            .setIn(['noticeTypeList', 'total'], Immutable.fromJS(action.data.total))
-            .setIn(['noticeTypeSearchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
-            .setIn(['noticeTypeSearchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
+            // .setIn(['noticeTypeList', 'total'], Immutable.fromJS(action.data.total))
+            // .setIn(['noticeTypeSearchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
+            // .setIn(['noticeTypeSearchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
             .set('isFetching', false).set('errMsg', '');
         });
         const getNoticeTypeInfoHandler = new ActionHandler.handleAction(OperateAction.GET_NOTICE_TYPE_INFO)
