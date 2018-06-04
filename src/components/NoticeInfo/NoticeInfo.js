@@ -20,19 +20,9 @@ class NoticeInfo extends React.Component {
     super(props);
     this.state = {};
   }
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    noticeInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
-    courseList: PropTypes.array.isRequired,
-    getValue: PropTypes.func,
-    dispatch: PropTypes.func,
-    changeAction: PropTypes.func,
-    form: PropTypes.any,
-  };
   componentWillMount() {
     if(this.props.params.id){
-      // this.props.dispatch(OperateAction.getNoticeInfo({id: this.props.params.id}));
+      this.props.dispatch(OperateAction.getNoticeInfo({id: this.props.params.id}));
     } else {
       this.clearArticle();
     }
@@ -51,40 +41,22 @@ class NoticeInfo extends React.Component {
   }
   _updateAction = (dispatch) => (params: {}) => {
     console.log(this.props.noticeInfo.toJS());
-    this.props.dispatch(OperateAction.updateNotice(this.props.noticeInfo.toJS()));
+    if(this.props.noticeInfo.get('id')) {
+      this.props.dispatch(OperateAction.updateNoticeInfo(this.props.noticeInfo.toJS()));
+    } else {
+      this.props.dispatch(OperateAction.addNoticeInfo(this.props.noticeInfo.toJS()));
+    }
+
   }
   clearArticle() {
     this.props.changeAction('OperateReducer/noticeInfo',
     Immutable.fromJS({
       id: '',
-      noticeName: '',
-      passWord: '',
-      var1: '',
+      img: 'jjjjj'
     }));
   }
   componentWillUnmount() {
     this.clearArticle();
-  }
-  renderSelect(list, value) {
-    const view = [];
-    if(list.size) {
-      const newList = list.toJS();
-      newList.map((item, index) => {
-        view.push(
-          <Option value={item['id']} key={index}>{item[value]}</Option>
-        );
-      })
-    }
-    return view;
-  }
-  renderYearsSelect() {
-    const view = [];
-    for(let i = 1988; i <= 2017; i++ ) {
-      view.push(
-        <Option value={i} key={i}>{i}年</Option>
-      );
-    }
-    return view;
   }
   render() {
     const { getFieldDecorator, getFieldValue, getFieldsValue } = this.props.form;
@@ -108,89 +80,85 @@ class NoticeInfo extends React.Component {
         </View>
         <View className={ Contentstyles.contentContainer }>
           <Form
-
             className={ Contentstyles.contentBox }
           >
-            {this.props.params.id ?
-            <View>
-              <View className={ Contentstyles.formHeader } >
-                系统信息
-              </View>
-              <View className={ Contentstyles.formContent } >
-                <FormItem
-                  {...formItemLayout}
-                  label="账号ID"
-                >
-                  {getFieldDecorator('id', {
-                    initialValue: this.props.noticeInfo.get('id'),
-                    })(
-                    <text>{this.props.noticeInfo.get('id')}</text>
-                  )}
-
-                </FormItem>
-              </View>
-            </View> : ''}
             <View className={ Contentstyles.formHeader } >
               基本信息
             </View>
             <View className={ Contentstyles.formContent } >
               <FormItem
                 {...formItemLayout}
-                label="用户名"
+                label="标题"
                 hasFeedback
               >
-                {getFieldDecorator('noticeName', {
-                  initialValue: this.props.noticeInfo.get('noticeName'),
+                {getFieldDecorator('title', {
+                  initialValue: this.props.noticeInfo.get('title'),
                   rules: [{
                     required: true,
-                    message: '请输入用户名',
+                    message: '请输入标题',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'OperateReducer/noticeInfo/noticeName', e.target.value);
+                    'OperateReducer/noticeInfo/title', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入用户名"
+                      placeholder="请输入标题"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="密码"
+                label="类型"
                 hasFeedback
               >
-                {getFieldDecorator('passWord', {
-                  initialValue: this.props.noticeInfo.get('passWord'),
+                {getFieldDecorator('type_id', {
+                  initialValue: this.props.noticeInfo.get('type_id'),
                   rules: [{
                     required: true,
-                    message: '请输入密码',
+                    message: '请输入类型',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'OperateReducer/noticeInfo/passWord', e.target.value);
+                    'OperateReducer/noticeInfo/type_id', e.target.value);
                   },
                   })(
                     <Input
-                      type="password"
-                      placeholder="请输入密码"
+                      placeholder="请输入类型"
                     />
                 )}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="真实姓名"
+                label="语言"
                 hasFeedback
               >
-                {getFieldDecorator('var1', {
-                  initialValue: this.props.noticeInfo.get('var1'),
+                {getFieldDecorator('n_language', {
+                  initialValue: this.props.noticeInfo.get('n_language'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'OperateReducer/noticeInfo/var1', e.target.value);
+                    'OperateReducer/noticeInfo/n_language', e.target.value);
                   },
                   })(
                     <Input
-                      placeholder="请输入真实姓名"
+                      placeholder="请输入语言"
+                    />
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="内容"
+                hasFeedback
+              >
+                {getFieldDecorator('content', {
+                  initialValue: this.props.noticeInfo.get('content'),
+                  onChange: (e) => {
+                    this.props.changeAction(
+                    'OperateReducer/noticeInfo/content', e.target.value);
+                  },
+                  })(
+                    <Input
+                      placeholder="请输入内容"
                     />
                 )}
               </FormItem>

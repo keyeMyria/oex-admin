@@ -19,7 +19,7 @@ class NoticeList extends React.Component {
     this.props.dispatch(OperateAction.getNoticeList(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
+    dispatch(push(RoutingURL.NoticeInfo()));
   }
   // _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
   //   const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
@@ -28,14 +28,14 @@ class NoticeList extends React.Component {
   // };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    // dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
+    dispatch(OperateAction.deleteNoticeInfo(localParams));
+    this.props.changeAction('OperateReducer/searchData/pageNum', current);
   };
   render() {
     return (
       <View className={ styles.contentList } style={{ top: '60px' }}>
         <View className={ styles.contentListHeader }>
-          <NoticeListHeader />
+          <NoticeListHeader goCreateAction={this._goCreateAction(this.props.dispatch)}/>
         </View>
         <View className={ styles.contentListContent } >
           {/* <View className={ styles.contentListSearch } >
@@ -49,7 +49,7 @@ class NoticeList extends React.Component {
                dataSource={this.props.noticeList.get('list')}
                total={this.props.noticeList.get('total')}
                dispatch={this.props.dispatch}
-               deleteUserAction={this._deleteAction(this.props.dispatch)}
+               deleteNoticeAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
           <View className={ styles.pageNav }>

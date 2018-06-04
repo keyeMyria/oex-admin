@@ -33,6 +33,7 @@ const defaultState = Immutable.Map({
     currentPage: 1,
   }),
   noticeInfo: Immutable.Map({
+    img: 'jjjjj'
   }),
   searchData: Immutable.Map({
     id: '',
@@ -51,7 +52,7 @@ const getNoticeListHandler = new ActionHandler.handleAction(OperateAction.GET_NO
       .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
       .set('isFetching', false).set('errMsg', '');
   });
-  const getNoticeInfoHandler = new ActionHandler.handleAction(OperateAction.GET_AREA_INFO)
+  const getNoticeInfoHandler = new ActionHandler.handleAction(OperateAction.GET_NOTICE_INFO)
       .success((state, action) => {
         return state.set('noticeInfo', Immutable.fromJS(action.data))
           .set('isFetching', false).set('errMsg', '');

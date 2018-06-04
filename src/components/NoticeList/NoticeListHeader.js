@@ -15,6 +15,13 @@ const NoticeListHeader = (props) => {
         公告列表
       </View>
       <View className={ styles.contentButton }>
+        <Button
+          type="primary"
+          className={ mainStyles.blueButton }
+          onClick={ () => props.goCreateAction() }
+        >
+          新建公告
+        </Button>
       </View>
     </View>
   );

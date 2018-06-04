@@ -60,6 +60,8 @@ export const addNoticeInfo = (params: Object) => (dispatch) => {
 // 修改公告
 export const UPDATE_NOTICE_INFO = 'UPDATE_NOTICE_INFO';
 export const updateNoticeInfo = (params: Object) => (dispatch) => {
+  delete params.create_time;
+  delete params.update_time;
   const result = GET(URL.updateNoticePath, params);
   AsyncFetchHandler(
     UPDATE_NOTICE_INFO,

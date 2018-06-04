@@ -25,8 +25,8 @@ class NoticeListTable extends React.Component {
       key: 'id',
     }, {
       title: '标题',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'title',
+      key: 'title',
     }, {
       title: '更新时间',
       dataIndex: 'updateTime',
@@ -44,7 +44,7 @@ class NoticeListTable extends React.Component {
       dataSource.push({
         key: index,
         id: data.get('id'),
-        name: data.get('name'),
+        title: data.get('title'),
         updateTime: moment(data.get('update_time')).format('YYYY-MM-DD HH:mm:ss'),
         createTime: moment(data.get('create_time')).format('YYYY-MM-DD HH:mm:ss'),
         operation: (
@@ -53,8 +53,7 @@ class NoticeListTable extends React.Component {
                 style={{color: '#0080FF'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  // this.props.deleteUserAction({deleteId: data.get('id')});
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  this.props.dispatch(push(RoutingURL.NoticeInfo(data.get('id'), true)));
                 }}
               >
                 修改
@@ -62,8 +61,7 @@ class NoticeListTable extends React.Component {
                 style={{color: '#f60'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  // this.props.deleteUserAction({deleteId: data.get('id')});
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  this.props.deleteNoticeAction({id: data.get('id')});
                 }}
               >
                 删除
