@@ -11,20 +11,6 @@ const defaultState = Immutable.Map({
   errMsg: '',
   userList: Immutable.Map({
     list: Immutable.List([
-        // Immutable.Map({
-        //   id: 1,
-        //   userName: '王大锤',
-        //   mobile: '1034923482',
-        //   passWord: '18072321312',
-        //   email: '123@qq.com',
-        // }),
-        // Immutable.Map({
-        //   id: 2,
-        //   userName: '王xiao锤',
-        //   mobile: '1034923482',
-        //   passWord: '18072321312',
-        //   email: '123@qq.com',
-        // }),
       ]),
       total: 0,
       currentPage: 1,
@@ -35,6 +21,28 @@ const defaultState = Immutable.Map({
     user_email: '',
     pageNum: 1,
     pageSize: 10,
+  }),
+  roleList: Immutable.Map({
+    list: Immutable.List([
+      ]),
+      total: 0,
+      currentPage: 1,
+  }),
+  roleInfo: Immutable.Map({
+
+  }),
+  roleSearchData: Immutable.Map({
+    id: '',
+    user_mobile: '',
+    user_email: '',
+    pageNum: 1,
+    pageSize: 10,
+  }),
+  qxList: Immutable.Map({
+    list: Immutable.List([
+      ]),
+      total: 0,
+      currentPage: 1,
   })
 });
 
@@ -47,18 +55,39 @@ const getUserListHandler = new ActionHandler.handleAction(UserAction.GET_C_USERL
       .set('isFetching', false).set('errMsg', '');
   });
 
-// const getUserInfoHandler = new ActionHandler.handleAction(UserAction.GET_USERINFO)
-//     .success((state, action) => {
-//       return state.set('userInfo', Immutable.fromJS(action.data))
-//         .set('isFetching', false).set('errMsg', '');
-//     });
+
+  const getRoleListHandler = new ActionHandler.handleAction(UserAction.GET_ROLELIST)
+    .success((state, action) => {
+      return state.setIn(['roleList', 'list'], Immutable.fromJS(action.data))
+        // .setIn(['userList', 'total'], Immutable.fromJS(action.data.total))
+        // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
+        // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
+        .set('isFetching', false).set('errMsg', '');
+    });
+
+    const getRoleInfoHandler = new ActionHandler.handleAction(UserAction.GET_ROLEINFO)
+      .success((state, action) => {
+        return state.set('roleInfo', Immutable.fromJS(action.data))
+          .set('isFetching', false).set('errMsg', '');
+      });
+
+      const getListPrivilegeHandler = new ActionHandler.handleAction(UserAction.GET_QXLIST)
+        .success((state, action) => {
+          return state.setIn(['qxList', 'list'], Immutable.fromJS(action.data))
+            // .setIn(['userList', 'total'], Immutable.fromJS(action.data.total))
+            // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
+            // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
+            .set('isFetching', false).set('errMsg', '');
+        });
 
 
 
 export default ActionHandler.handleActions(
   [
     getUserListHandler,
-    // getUserInfoHandler,
+    getRoleListHandler,
+    getRoleInfoHandler,
+    getListPrivilegeHandler
   ],
   defaultState,
   /^UserReducer\//

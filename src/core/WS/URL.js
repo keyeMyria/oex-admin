@@ -44,6 +44,36 @@ export const deleteUserInfoPath: string = `${rootURL}user/admin/user/delUser`;
 
 
 /**
+ * 获取角色列表
+ * @type {string}
+ */
+export const getRoleListPath: string = `${rootURL}user/admin/user/listRole`;
+
+/**
+ * 保存角色
+ * @type {string}
+ */
+export const addRolePath: string = `${rootURL}user/admin/user/addRole`;
+/**
+ * 更新角色
+ * @type {string}
+ */
+export const updateRolePath: string = `${rootURL}user/admin/user/updateRole`;
+/**
+/**
+ * 删除角色
+ * @type {string}
+ */
+export const deleteRolePath: string = `${rootURL}user/admin/user/delRole`;
+/**
+ * 获取权限列表
+ * @type {string}
+ */
+export const getListPrivilegePath: string = `${rootURL}user/admin/user/listPrivilege`;
+
+
+
+/**
  * C端用户列表
  * @type {string}
  */

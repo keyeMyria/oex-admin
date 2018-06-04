@@ -14,7 +14,7 @@ const propTypes = {
   changeAction: PropTypes.func,
 };
 @amumu.redux.ConnectStore
-class AdminListTable extends React.Component {
+class AuthListTable extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.columns = [{
@@ -48,17 +48,24 @@ class AdminListTable extends React.Component {
         privileges: data.get('privileges'),
         operation: (
           <View>
-            {data.get('role') === 2 ?
-              <a
-                style={{color: '#f60'}}
-                onClick={(e) => {
-                  e.preventDefault();
-                  this.props.deleteUserAction({deleteId: data.get('id')});
-                }}
-              >
-                删除
-              </a> : ''
-            }
+            <a
+              style={{color: '#0080FF'}}
+              onClick={(e) => {
+                e.preventDefault();
+                // this.props.deleteUserAction({id: data.get('id')});
+              }}
+            >
+              修改
+            </a> |
+            <a
+              style={{color: '#f60'}}
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.deleteUserAction({id: data.get('id')});
+              }}
+            >
+              删除
+            </a>
           </View>
         ),
       });
@@ -85,6 +92,6 @@ class AdminListTable extends React.Component {
     );
   }
 }
-AdminListTable.propTypes = propTypes;
+AuthListTable.propTypes = propTypes;
 
-export default AdminListTable;
+export default AuthListTable;

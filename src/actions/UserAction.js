@@ -157,3 +157,124 @@ export const updateLocking = (params: Object) => (dispatch) => {
     }
   });
 };
+
+
+
+// 获取角色列表
+export const GET_ROLELIST = 'GET_ROLELIST';
+export const getRoleList = (params: Object) => (dispatch) => {
+  const result = GET(URL.getRoleListPath, params);
+  AsyncFetchHandler(
+    GET_ROLELIST,
+    result,
+    dispatch
+  );
+};
+
+// 删除账号
+export const DELETE_ROLE = 'DELETE_ROLE';
+export const deleteRole = (params: Object) => (dispatch) => {
+  const result = GET(URL.deleteRolePath, params);
+  AsyncFetchHandler(
+    DELETE_ROLE,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '删除成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(getRoleList(params));
+    } else {
+      NotificationCenter.NotificationCard(
+        '删除失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
+};
+
+// 添加账号
+export const ADD_ROLE = 'ADD_ROLE';
+export const addRole = (params: Object) => (dispatch) => {
+  const result = GET(URL.addRolePath, params);
+  AsyncFetchHandler(
+    ADD_ROLE,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '添加成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(goBack())
+    } else {
+      NotificationCenter.NotificationCard(
+        '添加失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
+};
+
+// 修改账号
+export const UPDATE_ROLE = 'UPDATE_ROLE';
+export const updateRole = (params: Object) => (dispatch) => {
+  delete params.create_time;
+  delete params.update_time;
+  const result = GET(URL.updateRolePath, params);
+  AsyncFetchHandler(
+    UPDATE_ROLE,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '修改成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(goBack())
+    } else {
+      NotificationCenter.NotificationCard(
+        '修改失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
+};
+// 获取roleInfo
+export const GET_ROLEINFO = 'GET_ROLEINFO';
+export const getRoleInfo = (params: Object) => (dispatch) => {
+  dispatch({
+    type: GET_ROLEINFO,
+    data: params,
+  });
+};
+
+// 获取权限列表
+export const GET_QXLIST = 'GET_QXLIST';
+export const getListPrivilege = (params: Object) => (dispatch) => {
+  const result = GET(URL.getListPrivilegePath, params);
+  AsyncFetchHandler(
+    GET_QXLIST,
+    result,
+    dispatch
+  );
+};

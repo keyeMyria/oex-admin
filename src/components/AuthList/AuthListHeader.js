@@ -8,7 +8,7 @@ import { View } from 'isomorphic';
 import styles from '../../assets/stylesheets/Common.css';
 import mainStyles from '../../assets/stylesheets/Common.css';
 
-const AdminListHeader = (props) => {
+const AuthListHeader = (props) => {
   return (
     <View className={ styles.contentHeader }>
       <View className={ styles.contentText }>
@@ -27,6 +27,6 @@ const AdminListHeader = (props) => {
   );
 };
 
-AdminListHeader.propTypes = {};
+AuthListHeader.propTypes = {};
 
-export default AdminListHeader;
+export default AuthListHeader;

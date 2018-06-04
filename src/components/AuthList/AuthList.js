@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import AdminListHeader from './AdminListHeader';
-import AdminListSearch from './AdminListSearch';
-import AdminListTable from './AdminListTable';
+import AuthListHeader from './AuthListHeader';
+import AuthListSearch from './AuthListSearch';
+import AuthListTable from './AuthListTable';
 import PageNav from '../../common/PageNav';
 import { View } from 'isomorphic';
 import Immutable from 'immutable';
@@ -13,51 +13,44 @@ import amumu from 'amumu';
 
 @amumu.redux.ConnectStore
 @amumu.decorators.Loading('pc')
-class AdminList extends React.Component {
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    userList: PropTypes.instanceOf(Immutable.Map).isRequired,
-    searchData: PropTypes.instanceOf(Immutable.Map).isRequired,
-    dispatch: PropTypes.func,
-  };
+class AuthList extends React.Component {
   componentWillMount() {
-    // this.props.dispatch(UserAction.getUserList(
-    //   { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
-    // ));
+    this.props.dispatch(UserAction.getRoleList(
+      { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
+    ));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
+    dispatch(push(RoutingURL.AuthInfo()));
   }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(UserAction.getUserList(localParams));
-    this.props.changeAction('UserReducer/searchData/pageNum', current);
+    dispatch(UserAction.getRoleList(localParams));
+    this.props.changeAction('UserReducer/roleSearchData/pageNum', current);
   };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
+    this.props.changeAction('ArticleReducer/roleSearchData/pageNum', current);
   };
   render() {
     return (
       <View className={ styles.contentList } style={{ top: '90px' }}>
         <View className={ styles.contentListHeader }>
-          <AdminListHeader
+          <AuthListHeader
             goCreateAction={this._goCreateAction(this.props.dispatch)}
           />
         </View>
         <View className={ styles.contentListContent } >
-          <View className={ styles.contentListSearch } >
-            <AdminListSearch
+          {/*<View className={ styles.contentListSearch } >
+            <AuthListSearch
               searchAction={this._searchAction(this.props.dispatch)}
               searchData={this.props.searchData}
             />
-          </View>
+          </View>*/}
           <View className={ styles.contentListTable } >
-             <AdminListTable
-               dataSource={this.props.userList.get('list')}
-               total={this.props.userList.get('total')}
+             <AuthListTable
+               dataSource={this.props.roleList.get('list')}
+               total={this.props.roleList.get('total')}
                dispatch={this.props.dispatch}
                deleteUserAction={this._deleteAction(this.props.dispatch)}
              />
@@ -65,7 +58,7 @@ class AdminList extends React.Component {
           <View className={ styles.pageNav }>
             <PageNav
               pageSize={this.props.searchData.get('pageSize')}
-              total={this.props.userList.get('total')}
+              total={this.props.roleList.get('total')}
               params={this.props.searchData.toJS()}
               current={this.props.searchData.get('pageNum')}
               searchAction={this._searchAction(this.props.dispatch)}
@@ -77,4 +70,4 @@ class AdminList extends React.Component {
   }
 }
 
-export default AdminList;
+export default AuthList;

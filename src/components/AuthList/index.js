@@ -1,13 +1,13 @@
 
 import { connect } from 'react-redux';
-import AdminList from './AdminList';
+import AuthList from './AuthList';
 
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
   errMsg: state.UserReducer.get('errMsg'),
   isFetching: state.UserReducer.get('isFetching'),
-  userList: state.UserReducer.get('userList'),
-  searchData: state.UserReducer.get('searchData'),
+  roleList: state.UserReducer.get('roleList'),
+  searchData: state.UserReducer.get('roleSearchData'),
 });
 
-export default connect(mapStateToProps)(AdminList);
+export default connect(mapStateToProps)(AuthList);
