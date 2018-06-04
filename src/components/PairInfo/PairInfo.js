@@ -41,8 +41,12 @@ class PairInfo extends React.Component {
     dispatch(push(RoutingURL.PairInfo(id, true)));
   }
   _updateAction = (dispatch) => (params: {}) => {
-    console.log(this.props.pairInfo.toJS());
-    this.props.dispatch(TradeAction.updatePair(this.props.pairInfo.toJS()));
+    if(this.props.pairInfo.get('id')) {
+      this.props.dispatch(TradeAction.updatePairInfo(this.props.pairInfo.toJS()));
+    } else {
+      this.props.dispatch(TradeAction.addPairInfo(this.props.pairInfo.toJS()));
+    }
+
   }
   clearArticle() {
     this.props.changeAction('TradeReducer/pairInfo',

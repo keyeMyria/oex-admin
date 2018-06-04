@@ -40,12 +40,12 @@ class PairList extends React.Component {
           />
         </View>
         <View className={ styles.contentListContent } >
-          <View className={ styles.contentListSearch } >
+          {/*<View className={ styles.contentListSearch } >
               <PairListSearch
                 searchAction={this._searchAction(this.props.dispatch)}
                 searchData={this.props.searchData}
               />
-            </View>
+            </View>*/}
           <View className={ styles.contentListTable } >
              <PairListTable
                dataSource={this.props.pairList.get('list')}
