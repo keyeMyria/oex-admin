@@ -53,6 +53,11 @@ export const getCuserListPath: string = `${rootURL}user/admin/user/c/listUser`;
  * @type {string}
  */
 export const cuserLockingPath: string = `${rootURL}user/admin/user/c/locking`;
+/**
+ * 获取c端用户详情
+ * @type {[type]}
+ */
+// export const getPeopleInfoPath = `${rootURL}admin/user/detail`;
 
 
 
@@ -85,7 +90,32 @@ export const addAreaInfoPath: string = `${rootURL}user/admin/trade_zone/add`;
 export const deleteAreaInfoPath: string = `${rootURL}user/admin/trade_zone/delete`;
 
 
+/**
+ * 获取交易对列表
+ * @type {[type]}
+ */
+export const getPairListPath = `${rootURL}user/admin/trade_coin_pair/list`;
 
+/**
+ * 获取交易对详情
+ * @type {[type]}
+ */
+export const getPairInfoPath = `${rootURL}user/admin/trade_coin_pair/info`;
+/**
+ * 交易对新增
+ * @type {[type]}
+ */
+export const addPairInfoPath = `${rootURL}user/admin/trade_coin_pair/add`;
+/**
+ * 交易对修改
+ * @type {[type]}
+ */
+export const updatePairInfoPath = `${rootURL}user/admin/trade_coin_pair/update`;
+/**
+ * 交易对删除
+ * @type {[type]}
+ */
+export const deletePairPath = `${rootURL}user/admin/trade_coin_pair/delete`;
 
 
 
@@ -181,11 +211,6 @@ export const deleteExperienceInfoPath: string = `${rootURL}admin/experience/dele
  */
 export const updateExperienceInfoPath: string = `${rootURL}admin/experience/addOrUpdate`;
 
-/**
- * 获取交易对列表
- * @type {[type]}
- */
-export const getPairListPath = `${rootURL}user/admin/trade_coin_pair/list`;
 /**
  * 获取c端用户详情
  * @type {[type]}

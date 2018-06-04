@@ -116,7 +116,7 @@ export const deleteAreaInfo = (params: Object) => (dispatch) => {
   });
 };
 
-
+// 交易对列表
 export const GET_PAIR_LIST = 'GET_PAIR_LIST';
 export const getPairList = (params) => (dispatch) => {
   const result = GET(URL.getPairListPath, params);
@@ -127,6 +127,8 @@ export const getPairList = (params) => (dispatch) => {
   );
 }
 
+
+// 交易对详情
 export const GET_PAIR_INFO = 'GET_PAIR_INFO';
 export const getPairInfo = (params) => (dispatch) => {
   const result = GET(URL.getPairInfoPath, params);
@@ -135,4 +137,93 @@ export const getPairInfo = (params) => (dispatch) => {
     result,
     dispatch
   );
+}
+
+// 交易对添加
+export const ADD_PAIR_INFO = 'ADD_PAIR_INFO';
+export const addPairInfo = (params) => (dispatch) => {
+  const result = GET(URL.addPairInfoPath, params);
+  AsyncFetchHandler(
+    ADD_PAIR_INFO,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '添加成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(goBack())
+    } else {
+      NotificationCenter.NotificationCard(
+        '添加失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
+}
+
+
+// 交易对修改
+export const UPDATE_PAIR_INFO = 'UPDATE_PAIR_INFO';
+export const updatePairInfo = (params) => (dispatch) => {
+  const result = GET(URL.updatePairInfoPath, params);
+  AsyncFetchHandler(
+    UPDATE_PAIR_INFO,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '修改成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(goBack())
+    } else {
+      NotificationCenter.NotificationCard(
+        '修改失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
+}
+
+
+// 交易对删除
+export const DELETE_PAIR_INFO = 'DELETE_PAIR_INFO';
+export const deletePairInfo = (params) => (dispatch) => {
+  const result = GET(URL.deletePairPath, params);
+  AsyncFetchHandler(
+    DELETE_PAIR_INFO,
+    result,
+    dispatch
+  );
+  result.then(data => {
+    if (data.status == '200') {
+      NotificationCenter.NotificationCard(
+        '删除成功',
+        '',
+        'success',
+        2,
+      );
+      dispatch(getPairList(params));
+    } else {
+      NotificationCenter.NotificationCard(
+        '删除失败',
+        data.message,
+        'error',
+        3,
+      );
+    }
+  });
 }
