@@ -7,7 +7,7 @@ import { showCancel } from '../../core/FormValidate/CancelOk';
 import { modifyButton, confirmButton, SubmitButton, cancelButton, revertButton }
  from '../../core/CommonFun/ButtonCommon';
 
-const UserInfoHeader = (props) => {
+const AuthInfoHeader = (props) => {
   const handleSubmit = (actionName) => {
     props.form.validateFields((errors) => {
       if (!!errors) {
@@ -20,7 +20,7 @@ const UserInfoHeader = (props) => {
     if (props.id) {
       if (props.editing) {
         return (
-          <View>{`编辑题目 ID: ${props.id}`}</View>
+          <View>{`编辑角色 ID: ${props.id}`}</View>
         );
       }
     }
@@ -56,7 +56,7 @@ const UserInfoHeader = (props) => {
   );
 };
 
-UserInfoHeader.propTypes = {
+AuthInfoHeader.propTypes = {
   id: PropTypes.string,
   form: PropTypes.any,
   params: PropTypes.object,
@@ -66,4 +66,4 @@ UserInfoHeader.propTypes = {
   updateAction: PropTypes.func.isRequired,
 };
 
-export default UserInfoHeader;
+export default AuthInfoHeader;

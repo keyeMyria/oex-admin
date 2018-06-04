@@ -29,8 +29,8 @@ class AuthList extends React.Component {
   };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/roleSearchData/pageNum', current);
+    dispatch(UserAction.deleteRole(localParams));
+    this.props.changeAction('UserReducer/roleSearchData/pageNum', current);
   };
   render() {
     return (
@@ -52,7 +52,7 @@ class AuthList extends React.Component {
                dataSource={this.props.roleList.get('list')}
                total={this.props.roleList.get('total')}
                dispatch={this.props.dispatch}
-               deleteUserAction={this._deleteAction(this.props.dispatch)}
+               deleteRoleAction={this._deleteAction(this.props.dispatch)}
              />
           </View>
           <View className={ styles.pageNav }>

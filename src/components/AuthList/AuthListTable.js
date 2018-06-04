@@ -7,6 +7,7 @@ import styles from '../../assets/stylesheets/Common.css';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
+import * as UserAction from '../../actions/UserAction';
 
 const propTypes = {
   dataSource: PropTypes.instanceOf(Immutable.List).isRequired,
@@ -52,7 +53,8 @@ class AuthListTable extends React.Component {
               style={{color: '#0080FF'}}
               onClick={(e) => {
                 e.preventDefault();
-                // this.props.deleteUserAction({id: data.get('id')});
+                this.props.dispatch(UserAction.getRoleInfo(data.toJS()));
+                this.props.dispatch(push(RoutingURL.AuthInfo(data.get('id'), true)));
               }}
             >
               修改
@@ -61,7 +63,7 @@ class AuthListTable extends React.Component {
               style={{color: '#f60'}}
               onClick={(e) => {
                 e.preventDefault();
-                this.props.deleteUserAction({id: data.get('id')});
+                this.props.deleteRoleAction({ id: data.get('id') });
               }}
             >
               删除

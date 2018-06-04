@@ -1,6 +1,6 @@
 
 import React, { PropTypes } from 'react';
-import UserInfoHeader from './UserInfoHeader';
+import AuthInfoHeader from './AuthInfoHeader';
 import { View } from 'isomorphic';
 import Immutable from 'immutable';
 import * as Contentstyles from '../../assets/stylesheets/FromContent.css';
@@ -15,24 +15,13 @@ const FormItem = Form.Item;
 
 @amumu.redux.ConnectStore
 // @amumu.decorators.Loading('pc')
-class UserInfo extends React.Component {
+class AuthInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    userInfo: PropTypes.instanceOf(Immutable.Map).isRequired,
-    courseList: PropTypes.array.isRequired,
-    getValue: PropTypes.func,
-    dispatch: PropTypes.func,
-    changeAction: PropTypes.func,
-    form: PropTypes.any,
-  };
   componentWillMount() {
     if(this.props.params.id){
-      // this.props.dispatch(UserAction.getUserInfo({id: this.props.params.id}));
     } else {
       this.clearArticle();
     }
@@ -44,17 +33,21 @@ class UserInfo extends React.Component {
    * @private
    */
   _goBackAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserList()));
+    dispatch(push(RoutingURL.AuthList()));
   }
   _goUpdateAction = (dispatch: Function) => (id: string) => {
-    dispatch(push(RoutingURL.UserInfo(id, true)));
+    dispatch(push(RoutingURL.AuthInfo(id, true)));
   }
   _updateAction = (dispatch) => (params: {}) => {
-    console.log(this.props.userInfo.toJS());
-    this.props.dispatch(UserAction.updateUser(this.props.userInfo.toJS()));
+    if (this.props.roleInfo.get('id')) {
+      this.props.dispatch(UserAction.updateRole(this.props.roleInfo.toJS()));
+    } else {
+        this.props.dispatch(UserAction.addRole(this.props.roleInfo.toJS()));
+    }
+
   }
   clearArticle() {
-    this.props.changeAction('UserReducer/userInfo',
+    this.props.changeAction('UserReducer/roleInfo',
     Immutable.fromJS({
       id: '',
       userName: '',
@@ -65,27 +58,6 @@ class UserInfo extends React.Component {
   componentWillUnmount() {
     this.clearArticle();
   }
-  renderSelect(list, value) {
-    const view = [];
-    if(list.size) {
-      const newList = list.toJS();
-      newList.map((item, index) => {
-        view.push(
-          <Option value={item['id']} key={index}>{item[value]}</Option>
-        );
-      })
-    }
-    return view;
-  }
-  renderYearsSelect() {
-    const view = [];
-    for(let i = 1988; i <= 2017; i++ ) {
-      view.push(
-        <Option value={i} key={i}>{i}年</Option>
-      );
-    }
-    return view;
-  }
   render() {
     const { getFieldDecorator, getFieldValue, getFieldsValue } = this.props.form;
     const formItemLayout = {
@@ -95,7 +67,7 @@ class UserInfo extends React.Component {
     return (
       <View className={ Contentstyles.content }>
         <View className={ Contentstyles.contentHeader }>
-          <UserInfoHeader
+          <AuthInfoHeader
             id={this.props.params.id}
             form={this.props.form}
             editing={this.props.location.query.editing}
@@ -108,28 +80,8 @@ class UserInfo extends React.Component {
         </View>
         <View className={ Contentstyles.contentContainer }>
           <Form
-            
             className={ Contentstyles.contentBox }
           >
-            {this.props.params.id ?
-            <View>
-              <View className={ Contentstyles.formHeader } >
-                系统信息
-              </View>
-              <View className={ Contentstyles.formContent } >
-                <FormItem
-                  {...formItemLayout}
-                  label="账号ID"
-                >
-                  {getFieldDecorator('id', {
-                    initialValue: this.props.userInfo.get('id'),
-                    })(
-                    <text>{this.props.userInfo.get('id')}</text>
-                  )}
-
-                </FormItem>
-              </View>
-            </View> : ''}
             <View className={ Contentstyles.formHeader } >
               基本信息
             </View>
@@ -140,14 +92,14 @@ class UserInfo extends React.Component {
                 hasFeedback
               >
                 {getFieldDecorator('userName', {
-                  initialValue: this.props.userInfo.get('userName'),
+                  initialValue: this.props.roleInfo.get('userName'),
                   rules: [{
                     required: true,
                     message: '请输入用户名',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/userInfo/userName', e.target.value);
+                    'UserReducer/roleInfo/userName', e.target.value);
                   },
                   })(
                     <Input
@@ -161,14 +113,14 @@ class UserInfo extends React.Component {
                 hasFeedback
               >
                 {getFieldDecorator('passWord', {
-                  initialValue: this.props.userInfo.get('passWord'),
+                  initialValue: this.props.roleInfo.get('passWord'),
                   rules: [{
                     required: true,
                     message: '请输入密码',
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/userInfo/passWord', e.target.value);
+                    'UserReducer/roleInfo/passWord', e.target.value);
                   },
                   })(
                     <Input
@@ -183,10 +135,10 @@ class UserInfo extends React.Component {
                 hasFeedback
               >
                 {getFieldDecorator('var1', {
-                  initialValue: this.props.userInfo.get('var1'),
+                  initialValue: this.props.roleInfo.get('var1'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/userInfo/var1', e.target.value);
+                    'UserReducer/roleInfo/var1', e.target.value);
                   },
                   })(
                     <Input
@@ -202,4 +154,4 @@ class UserInfo extends React.Component {
   }
 }
 
-export default Form.create()(UserInfo);
+export default Form.create()(AuthInfo);

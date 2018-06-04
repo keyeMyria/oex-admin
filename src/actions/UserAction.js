@@ -21,7 +21,7 @@ export const getUserList = (params: Object) => (dispatch) => {
 // 删除账号
 export const SELETE_USERINFO = 'SELETE_USERINFO';
 export const deleteUserInfo = (params: Object) => (dispatch) => {
-  const result = GET(URL.deleteUserInfoPath, { id: params.deleteId });
+  const result = GET(URL.deleteUserInfoPath, params);
   AsyncFetchHandler(
     SELETE_USERINFO,
     result,
