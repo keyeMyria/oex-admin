@@ -5,9 +5,9 @@ import CurrencyConfigList from './CurrencyConfigList';
 const mapStateToProps = (state) => ({
   dispatch: state.dispatch,
   errMsg: state.UserReducer.get('errMsg'),
-  isFetching: state.ExperienceReducer.get('isFetching'),
-  experienceList: state.ExperienceReducer.get('experienceList'),
-  searchData: state.ExperienceReducer.get('searchData'),
+  isFetching: state.CurrencyReducer.get('isFetching'),
+  coinConfigList: state.CurrencyReducer.get('coinConfigList'),
+  searchData: state.CurrencyReducer.get('coinConfigSearchData'),
 });
 
 export default connect(mapStateToProps)(CurrencyConfigList);

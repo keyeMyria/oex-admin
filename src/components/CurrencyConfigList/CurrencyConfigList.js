@@ -7,7 +7,7 @@ import PageNav from '../../common/PageNav';
 import { View } from 'isomorphic';
 import Immutable from 'immutable';
 import * as styles from '../../assets/stylesheets/Common.css';
-import * as ExperienceAction from '../../actions/ExperienceAction';
+import * as CurrencyAction from '../../actions/CurrencyAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
@@ -17,21 +17,20 @@ import amumu from 'amumu';
 class CurrencyConfigList extends React.Component {
   componentWillMount() {
     const params = this.props.searchData.toJS();
-    params.style = 2;
-    // this.props.dispatch(ExperienceAction.getExperienceList(params));
+    this.props.dispatch(CurrencyAction.getCoinConfigList(params));
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.ExperienceDoctor()));
   }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
     const localParams = Object.assign(params, { style: 2, pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(ExperienceAction.getExperienceList(localParams));
-    this.props.changeAction('ExperienceReducer/searchData/pageNum', current);
+    dispatch(CurrencyAction.getCoinConfigList(localParams));
+    this.props.changeAction('CurrencyReducer/coinConfigSearchData/pageNum', current);
   };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { style: 2, pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    dispatch(ExperienceAction.deleteExperienceInfo(localParams));
-    this.props.changeAction('ExperienceReducer/searchData/pageNum', current);
+    dispatch(CurrencyAction.deleteCoinConfig(localParams));
+    this.props.changeAction('CurrencyReducer/coinConfigSearchData/pageNum', current);
   };
   render() {
     return (
@@ -50,8 +49,8 @@ class CurrencyConfigList extends React.Component {
             </View> */}
           <View className={ styles.contentListTable } >
              <CurrencyConfigListTable
-               dataSource={this.props.experienceList.get('list')}
-               total={this.props.experienceList.get('total')}
+               dataSource={this.props.coinConfigList.get('list')}
+               total={this.props.coinConfigList.get('total')}
                dispatch={this.props.dispatch}
                deleteAction={this._deleteAction(this.props.dispatch)}
              />
@@ -59,7 +58,7 @@ class CurrencyConfigList extends React.Component {
           <View className={ styles.pageNav }>
             <PageNav
               pageSize={this.props.searchData.get('pageSize')}
-              total={this.props.experienceList.get('total')}
+              total={this.props.coinConfigList.get('total')}
               params={{ ...this.props.searchData.toJS(), style: 2}}
               current={this.props.searchData.get('pageNum')}
               searchAction={this._searchAction(this.props.dispatch)}

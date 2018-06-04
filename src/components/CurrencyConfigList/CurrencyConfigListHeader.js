@@ -14,7 +14,7 @@ const CurrencyConfigListHeader = (props) => {
       <View className={ styles.contentText }>
         币种配置
       </View>
-      {/* <View className={ styles.contentButton }>
+      <View className={ styles.contentButton }>
         <Button
           type="primary"
           className={ mainStyles.blueButton }
@@ -22,7 +22,7 @@ const CurrencyConfigListHeader = (props) => {
         >
           新建配置
         </Button>
-      </View> */}
+      </View>
     </View>
   );
 };

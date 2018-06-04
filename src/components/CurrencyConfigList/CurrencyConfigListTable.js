@@ -6,6 +6,7 @@ import Immutable from 'immutable';
 import styles from '../../assets/stylesheets/Common.css';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
+import moment from 'moment'
 
 const propTypes = {
   dataSource: PropTypes.instanceOf(Immutable.List).isRequired,
@@ -26,6 +27,16 @@ class CurrencyConfigListTable extends React.Component {
       dataIndex: 'id',
       key: 'id',
       width: 70,
+    },{
+      title: '配置名称',
+      dataIndex: 'configName',
+      key: 'configName',
+      width: 70,
+    }, {
+      title: '币种ID',
+      dataIndex: 'coinId',
+      key: 'coinId',
+      width: 70,
     }, {
       title: '更新时间',
       dataIndex: 'updateTime',
@@ -36,15 +47,14 @@ class CurrencyConfigListTable extends React.Component {
   _renderDataSource(datas) {
     const dataSource = [];
     if(datas) {
-    const typeText = { 1: '热门问题', 2: '最新资讯', 3: '高分经验', 4: '报考指南', 5: '考试大纲', 6: '备考攻略'};
     datas.forEach((data, index) => {
       const sex = data.get('sex');
       dataSource.push({
         key: index,
         id: data.get('id'),
-        type: typeText[data.get('type')],
-        title: data.get('title'),
-        updateTime: data.get('updateTime'),
+        coinId: data.get('coinId'),
+        configName: data.get('configName'),
+        updateTime: moment(data.get('updateTime')).format('YYYY-MM-DD HH:mm:ss'),
         operation: (
           <View>
             <a
@@ -55,8 +65,8 @@ class CurrencyConfigListTable extends React.Component {
             >
               编辑
             </a>&nbsp;&nbsp;&nbsp;
-            <Popconfirm title="确认要删除该经验？"
-              onConfirm={() => this.props.deleteAction({deleteId: data.get('id')})}
+            <Popconfirm title="确认要删除？"
+              onConfirm={() => this.props.deleteAction({id: data.get('id')})}
               okText="确认"
               cancelText="取消"
             >

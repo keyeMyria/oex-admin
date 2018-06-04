@@ -23,6 +23,20 @@ const defaultState = Immutable.Map({
     pageNum: 1,
     pageSize: 10,
   }),
+  coinConfigList: Immutable.Map({
+    list: Immutable.List([
+    ]),
+    total: 0,
+    currentPage: 1,
+  }),
+  coinConfigInfo: Immutable.Map({
+  }),
+  coinConfigSearchData: Immutable.Map({
+    order: '',
+    type: '',
+    pageNum: 1,
+    pageSize: 10,
+  }),
 });
 
 const getCurrencyListHandler = new ActionHandler.handleAction(CurrencyAction.GET_CURRENCYLIST)
@@ -41,19 +55,27 @@ const getCoinInfoHandler = new ActionHandler.handleAction(CurrencyAction.GET_COI
         .set('isFetching', false).set('errMsg', '');
     });
 
-const getCurrencyContentHandler = new ActionHandler.handleAction(CurrencyAction.GET_EXPERIENCECONTENT)
-  .success((state, action) => {
-    return state.setIn(['experienceInfo', 'content'], Immutable.fromJS(action.data))
-      .set('isFetching', false).set('errMsg', '');
-    });
-// const updateArticleHandler = new ActionHandler.handleAction(ArticleAction.UPDATE_ARTICLEINFO);
-// const deleteArticleHandler = new ActionHandler.handleAction(ArticleAction.DELETE_ARTICLEINFO);
+    const getCoinConfigListHandler = new ActionHandler.handleAction(CurrencyAction.GET_COIN_CONFIG_LIST)
+      .success((state, action) => {
+        return state.setIn(['coinConfigList', 'list'], Immutable.fromJS(action.data.pageInfo))
+          // .setIn(['currencyList', 'total'], Immutable.fromJS(action.data.total))
+          // .setIn(['searchData', 'pageSize'], Immutable.fromJS(action.data.pageSize))
+          // .setIn(['searchData', 'pageNum'], Immutable.fromJS(action.data.pageNum))
+          .set('isFetching', false).set('errMsg', '');
+      });
 
+
+    const getCoinConfigInfoHandler = new ActionHandler.handleAction(CurrencyAction.GET_COIN_CONFIG_INFO)
+        .success((state, action) => {
+          return state.set('coinConfigInfo', Immutable.fromJS(action.data))
+            .set('isFetching', false).set('errMsg', '');
+        });
 export default ActionHandler.handleActions(
   [
     getCurrencyListHandler,
     getCoinInfoHandler,
-    getCurrencyContentHandler,
+    getCoinConfigListHandler,
+    getCoinConfigInfoHandler
   ],
   defaultState,
   /^CurrencyReducer\//
