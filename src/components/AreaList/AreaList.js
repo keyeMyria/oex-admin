@@ -28,7 +28,7 @@ class AreaList extends React.Component {
   // };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
-    // dispatch(UserAction.deleteUserInfo(localParams));
+    dispatch(TradeAction.deleteAreaInfo(localParams));
     this.props.changeAction('TradeReducer/areaSearchData/pageNum', current);
   };
   render() {

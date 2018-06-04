@@ -42,7 +42,11 @@ class AreaInfo extends React.Component {
   }
   _updateAction = (dispatch) => (params: {}) => {
     console.log(this.props.areaInfo.toJS());
-    this.props.dispatch(TradeAction.updateArea(this.props.areaInfo.toJS()));
+    if (this.props.areaInfo.get('id')) {
+      this.props.dispatch(TradeAction.updateAreaInfo(this.props.areaInfo.toJS()));
+    } else {
+      this.props.dispatch(TradeAction.addAreaInfo(this.props.areaInfo.toJS()));
+    }
   }
   clearArticle() {
     this.props.changeAction('TradeReducer/areaInfo',
@@ -136,8 +140,9 @@ class AreaInfo extends React.Component {
                 {getFieldDecorator('zoneSwitch', {
                   initialValue: this.props.areaInfo.get('zoneSwitch'),
                   onChange: (e) => {
+                    console.log('e', e)
                     this.props.changeAction(
-                    'TradeReducer/areaInfo/zoneSwitch', e.target.value);
+                    'TradeReducer/areaInfo/zoneSwitch', e);
                   },
                   })(
                     <Select>

@@ -104,7 +104,7 @@ export const deleteAreaInfo = (params: Object) => (dispatch) => {
         'success',
         2,
       );
-      dispatch(getUserList(params));
+      dispatch(getAreaList(params));
     } else {
       NotificationCenter.NotificationCard(
         '删除失败',

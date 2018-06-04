@@ -53,7 +53,7 @@ class AreaListTable extends React.Component {
                 style={{color: '#0080FF'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(push(RoutingURL.AreaInfo(data.get('id'))));
+                  this.props.dispatch(push(RoutingURL.AreaInfo(data.get('id'), true)));
                 }}
               >
                 修改
@@ -61,7 +61,7 @@ class AreaListTable extends React.Component {
                 style={{color: '#f60'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(push(RoutingURL.AreaInfo(data.get('id'))));
+                  this.props.deleteUserAction({ id: data.get('id')})
                 }}
               >
                 删除
