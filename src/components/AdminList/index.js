@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   isFetching: state.AdminReducer.get('isFetching'),
   userList: state.AdminReducer.get('userList'),
   searchData: state.AdminReducer.get('searchData'),
+  roleList: state.UserReducer.get('roleList'),
 });
 
 export default connect(mapStateToProps)(AdminList);

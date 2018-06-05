@@ -1,11 +1,12 @@
 
 import React, { PropTypes } from 'react';
-import { Form, Input, Button, Col, Row } from 'antd';
+import { Form, Input, Button, Col, Row, Select } from 'antd';
 import Immutable from 'immutable';
 import mainStyles from '../../assets/stylesheets/Common.css';
 import amumu from 'amumu';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 @amumu.decorators.PureComponent
 @amumu.redux.ConnectStore
@@ -22,6 +23,15 @@ class AdminListSearch extends React.Component {
       });
     }
     return false;
+  }
+  showRoleList(data) {
+    const views = [];
+    if(data) {
+      data.map((item, key) => {
+        views.push(<Option value={item.get('id')}>{item.get('role_name')}</Option>)
+      })
+    }
+    return views;
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -79,12 +89,12 @@ class AdminListSearch extends React.Component {
                   initialValue: this.props.searchData.get('role'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'AdminReducer/searchData/role', e.target.value);
+                    'AdminReducer/searchData/role', e);
                   },
                 })(
-                <Input
-                  placeholder="角色"
-                />
+                  <Select>
+                      {this.showRoleList(this.props.roleList)}
+                  </Select>
               )}
             </FormItem>
           </Col>

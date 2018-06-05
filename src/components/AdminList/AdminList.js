@@ -18,6 +18,10 @@ class AdminList extends React.Component {
     this.props.dispatch(UserAction.getUserList(
       { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
     ));
+    // 获取角色列表
+    this.props.dispatch(UserAction.getRoleList(
+      { pageNum: this.props.searchData.get('pageNum'), pageSize: this.props.searchData.get('pageSize') }
+    ));
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.AdminInfo()));
@@ -50,6 +54,7 @@ class AdminList extends React.Component {
             <AdminListSearch
               searchAction={this._searchAction(this.props.dispatch)}
               searchData={this.props.searchData}
+              roleList={this.props.roleList.get('list')}
             />
           </View>
           <View className={ styles.contentListTable } >
