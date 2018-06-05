@@ -269,40 +269,11 @@ export const getWorkOrderInfoPath: string = `${rootURL}user/admin/workOrder/info
 export const replyWorkOrderInfoPath: string = `${rootURL}user/admin/user/workOrder`;
 
 
-
-
-
-
-
-
-
-
-
-
 /**
- * 获取题目列表
+ * 交易手续费统计
  * @type {string}
  */
-export const getArticleListPath: string = `${rootURL}admin/subject/list`;
-/**
- * 获取题目内容
- * @type {string}
- */
-export const getArticleInfoPath: string = `${rootURL}admin/subject/getById`;
-/**
- * 保存题目
- * @type {string}
- */
-export const updateArticleInfoPath: string = `${rootURL}admin/subject/addOrUpdate`;
-/**
-/**
- * 删除题目
- * @type {string}
- */
-export const deleteArticleInfoPath: string = `${rootURL}admin/subject/deleteById`;
-
-
-
+export const dealOrderTotalPath: string = `${rootURL}user/admin/dealOrder/total`;
 /**
  * 获取充币流水-根据提取币种查询
  * @type {string}
@@ -333,6 +304,40 @@ export const getUserAssetsPath: string = `${rootURL}user/admin/userProperty/list
  * @type {string}
  */
 export const getUserCoinsPath: string = `${rootURL}user/admin/userProperty/listByUserId`;
+/**
+ * 用户资产导出_根据币种查询
+ * @type {string}
+ */
+export const exportEcxelByCoinIdPath: string = `${rootURL}user/admin/userProperty/exportEcxelByCoinId`;
+/**
+ * 用户资产导出_根据用户查询
+ * @type {string}
+ */
+export const exportEcxelByUserIdPath: string = `${rootURL}user/admin/userProperty/exportEcxelByUserId`;
+/**
+ * 虚拟币充币汇总
+ * @type {string}
+ */
+export const rechargeRecordTotalPath: string = `${rootURL}user/admin/rechargeRecord/total`;
+/**
+ * 虚拟币总量接口
+ * @type {string}
+ */
+export const userPropertyTotalPath: string = `${rootURL}user/admin/userProperty/total`;
+/**
+ * 虚拟币提币汇总
+ * @type {string}
+ */
+export const withdrawRecordTotalPath: string = `${rootURL}user/admin/withdrawRecord/total`;
+
+
+
+
+
+
+
+
+
 
 
 /**
