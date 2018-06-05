@@ -9,7 +9,7 @@ import * as ServiceAction from '../../actions/ServiceAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
-import { Form, Input } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -20,19 +20,9 @@ class WorkOrder extends React.Component {
     super(props);
     this.state = {};
   }
-  static propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    errMsg: PropTypes.string.isRequired,
-    workOrder: PropTypes.instanceOf(Immutable.Map).isRequired,
-    courseList: PropTypes.array.isRequired,
-    getValue: PropTypes.func,
-    dispatch: PropTypes.func,
-    changeAction: PropTypes.func,
-    form: PropTypes.any,
-  };
   componentWillMount() {
     if(this.props.params.id){
-      // this.props.dispatch(ServiceAction.getWorkOrder({id: this.props.params.id}));
+      this.props.dispatch(ServiceAction.getWorkOrderInfo({id: this.props.params.id}));
     } else {
       this.clearArticle();
     }
@@ -44,7 +34,7 @@ class WorkOrder extends React.Component {
    * @private
    */
   _goBackAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserList()));
+    dispatch(push(RoutingURL.WorkOrders()));
   }
   _goUpdateAction = (dispatch: Function) => (id: string) => {
     dispatch(push(RoutingURL.WorkOrder(id, true)));
@@ -54,7 +44,7 @@ class WorkOrder extends React.Component {
     this.props.dispatch(ServiceAction.updateUser(this.props.workOrder.toJS()));
   }
   clearArticle() {
-    this.props.changeAction('UserReducer/workOrder',
+    this.props.changeAction('ServiceReducer/workOrder',
     Immutable.fromJS({
       id: '',
       userName: '',
@@ -62,32 +52,21 @@ class WorkOrder extends React.Component {
       var1: '',
     }));
   }
+  changeGongDan (status) {
+    const params = {
+      desc_json: this.props.workOrder.get('desc_json'),
+      id: this.props.workOrder.get('id'),
+      status,
+      title: this.props.workOrder.get('title'),
+    }
+    this.props.dispatch(ServiceAction.replyWorkOrder(params));
+  }
   componentWillUnmount() {
     this.clearArticle();
   }
-  renderSelect(list, value) {
-    const view = [];
-    if(list.size) {
-      const newList = list.toJS();
-      newList.map((item, index) => {
-        view.push(
-          <Option value={item['id']} key={index}>{item[value]}</Option>
-        );
-      })
-    }
-    return view;
-  }
-  renderYearsSelect() {
-    const view = [];
-    for(let i = 1988; i <= 2017; i++ ) {
-      view.push(
-        <Option value={i} key={i}>{i}年</Option>
-      );
-    }
-    return view;
-  }
   render() {
     const { getFieldDecorator, getFieldValue, getFieldsValue } = this.props.form;
+      const statusType = { 0: '已撤销', 1: '未反馈', 2: '已反馈', 3: '已关闭' };
     const formItemLayout = {
       labelCol: { span: 4 },
       wrapperCol: { span: 8 },
@@ -108,92 +87,95 @@ class WorkOrder extends React.Component {
         </View>
         <View className={ Contentstyles.contentContainer }>
           <Form
-
             className={ Contentstyles.contentBox }
           >
-            {this.props.params.id ?
-            <View>
-              <View className={ Contentstyles.formHeader } >
-                系统信息
-              </View>
-              <View className={ Contentstyles.formContent } >
-                <FormItem
-                  {...formItemLayout}
-                  label="账号ID"
-                >
-                  {getFieldDecorator('id', {
-                    initialValue: this.props.workOrder.get('id'),
-                    })(
-                    <text>{this.props.workOrder.get('id')}</text>
-                  )}
-
-                </FormItem>
-              </View>
-            </View> : ''}
             <View className={ Contentstyles.formHeader } >
-              基本信息
+              工单信息
             </View>
             <View className={ Contentstyles.formContent } >
               <FormItem
                 {...formItemLayout}
-                label="用户名"
+                label="工单ID"
                 hasFeedback
               >
-                {getFieldDecorator('userName', {
-                  initialValue: this.props.workOrder.get('userName'),
-                  rules: [{
-                    required: true,
-                    message: '请输入用户名',
-                  }],
-                  onChange: (e) => {
-                    this.props.changeAction(
-                    'UserReducer/workOrder/userName', e.target.value);
-                  },
-                  })(
-                    <Input
-                      placeholder="请输入用户名"
-                    />
-                )}
+                <span>{this.props.workOrder.get('id')}</span>
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="密码"
+                label="标题"
                 hasFeedback
               >
-                {getFieldDecorator('passWord', {
-                  initialValue: this.props.workOrder.get('passWord'),
-                  rules: [{
-                    required: true,
-                    message: '请输入密码',
-                  }],
-                  onChange: (e) => {
-                    this.props.changeAction(
-                    'UserReducer/workOrder/passWord', e.target.value);
-                  },
-                  })(
-                    <Input
-                      type="password"
-                      placeholder="请输入密码"
-                    />
-                )}
+                <span>{this.props.workOrder.get('title')}</span>
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="真实姓名"
+                label="用户ID"
                 hasFeedback
               >
-                {getFieldDecorator('var1', {
-                  initialValue: this.props.workOrder.get('var1'),
-                  onChange: (e) => {
-                    this.props.changeAction(
-                    'UserReducer/workOrder/var1', e.target.value);
-                  },
-                  })(
-                    <Input
-                      placeholder="请输入真实姓名"
-                    />
-                )}
+                <span>{this.props.workOrder.get('user_id')}</span>
               </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="电话"
+                hasFeedback
+              >
+                <span>{this.props.workOrder.get('phone')}</span>
+              </FormItem>
+              { this.props.workOrder.get('status') !== 0 ?
+              <FormItem
+                {...formItemLayout}
+                label="描述"
+                hasFeedback
+              >
+                <span>{this.props.workOrder.get('desc_json')}</span>
+              </FormItem> : <div /> }
+              <FormItem
+                {...formItemLayout}
+                label="状态"
+                hasFeedback
+              >
+                <span>{this.props.workOrder.get('status') !== null && statusType[this.props.workOrder.get('status')+1]}</span>
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
+                label="类型"
+                hasFeedback
+              >
+                <span>{statusType[this.props.workOrder.get('style')]}</span>
+              </FormItem>
+              { this.props.workOrder.get('status') === 0 ?
+              <div>
+                <FormItem
+                  {...formItemLayout}
+                  label="回复内容"
+                  hasFeedback
+                >
+                  {getFieldDecorator('var1', {
+                    initialValue: this.props.workOrder.get('var1'),
+                    onChange: (e) => {
+                      this.props.changeAction(
+                      'ServiceReducer/workOrder/desc_json', e.target.value);
+                    },
+                    })(
+                      <Input
+                        placeholder="请输入回复内容"
+                      />
+                  )}
+                </FormItem>
+                <Button
+                  type="primary"
+                  style={{ marginRight: '20px'}}
+                  onClick={ () => { this.changeGongDan(1) } }
+                >
+                  回复工单
+                </Button>
+                <Button
+                  type="primary"
+                  onClick={ () => { this.changeGongDan(2) } }
+                >
+                  关闭工单
+                </Button>
+              </div>: <div /> }
             </View>
           </Form>
         </View>

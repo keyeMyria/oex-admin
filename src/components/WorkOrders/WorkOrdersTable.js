@@ -49,7 +49,7 @@ class WorkOrdersTable extends React.Component {
     const dataSource = [];
     if(datas) {
     datas.forEach((data, index) => {
-      const statusType = { 0: '未反馈', 1: '已反馈', 2: '已关闭' };
+      const statusType = { 0: '已撤销', 1: '未反馈', 2: '已反馈', 3: '已关闭' };
       dataSource.push({
         key: index,
         id: data.get('id'),
@@ -57,15 +57,14 @@ class WorkOrdersTable extends React.Component {
         phone: data.get('phone'),
         title: data.get('title'),
         updateTime: moment(data.get('update_time')).format('YYYY-MM-DD HH:mm:ss'),
-        status: statusType[data.get('status')],
+        status: data.get('status')!== null && statusType[data.get('status')+1],
         operation: (
           <View>
               <a
                 style={{color: '#0080FF'}}
                 onClick={(e) => {
                   e.preventDefault();
-                  // this.props.deleteUserAction({deleteId: data.get('id')});
-                  this.props.dispatch(push(RoutingURL.Bonus(data.get('id'))));
+                  this.props.dispatch(push(RoutingURL.WorkOrder(data.get('id'))));
                 }}
               >
                 查看

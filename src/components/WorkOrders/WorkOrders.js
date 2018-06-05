@@ -19,17 +19,17 @@ class WorkOrders extends React.Component {
     this.props.dispatch(ServiceAction.getWorkOrders(this.props.searchData.toJS()));
   }
   _goCreateAction = (dispatch: Function) => () => {
-    dispatch(push(RoutingURL.UserInfo()));
+    dispatch(push(RoutingURL.WorkOrder()));
   }
   _searchAction = (dispatch: Function) => (params: {}, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     dispatch(ServiceAction.getWorkOrders(localParams));
-    this.props.changeAction('BonusReducer/searchData/pageNum', current);
+    this.props.changeAction('ServiceReducer/searchData/pageNum', current);
   };
   _deleteAction = (dispatch: Function) => (params: number, current = 1) => {
     const localParams = Object.assign(params, { pageNum: current, pageSize: this.props.searchData.get('pageSize') });
     // dispatch(UserAction.deleteUserInfo(localParams));
-    this.props.changeAction('ArticleReducer/searchData/pageNum', current);
+    this.props.changeAction('ServiceReducer/searchData/pageNum', current);
   };
   render() {
     return (

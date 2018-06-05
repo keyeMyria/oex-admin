@@ -252,7 +252,21 @@ export const deleteCoinConfigPath: string = `${rootURL}user/admin/coin_config/de
 
 
 
-
+/**
+ * 获取工单列表
+ * @type {string}
+ */
+export const getWorkOrdersPath: string = `${rootURL}user/admin/workOrder/listWorkOrder`;
+/**
+ * 获取工单详情
+ * @type {string}
+ */
+export const getWorkOrderInfoPath: string = `${rootURL}user/admin/workOrder/info`;
+/**
+ * 回复或关闭工单详情
+ * @type {string}
+ */
+export const replyWorkOrderInfoPath: string = `${rootURL}user/admin/user/workOrder`;
 
 
 
@@ -319,11 +333,7 @@ export const getUserAssetsPath: string = `${rootURL}user/admin/userProperty/list
  * @type {string}
  */
 export const getUserCoinsPath: string = `${rootURL}user/admin/userProperty/listByUserId`;
-/**
- * 获取工单列表
- * @type {string}
- */
-export const getWorkOrdersPath: string = `${rootURL}user/admin/workOrder/listWorkOrder`;
+
 
 /**
  * 获取统计列表
