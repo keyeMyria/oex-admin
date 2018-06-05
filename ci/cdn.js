@@ -15,12 +15,12 @@ fs.readdir(path.resolve(__dirname, '..', 'dist'), function(err, files) {
   if (files) {
     files.map(fileName => {
       if (ENV) {
-        client.put(`admin/${ENV}/${fileName}`, path.resolve(__dirname, '..', 'dist', fileName)).then(function (val) {
+        client.put(`oex-admin/${ENV}/${fileName}`, path.resolve(__dirname, '..', 'dist', fileName)).then(function (val) {
           console.log(val.url);
         }).then(function (val) {
         });
       } else {
-        client.put(`admin/${fileName}`, path.resolve(__dirname, '..', 'dist', fileName)).then(function (val) {
+        client.put(`oex-admin/${fileName}`, path.resolve(__dirname, '..', 'dist', fileName)).then(function (val) {
           console.log(val.url);
         }).then(function (val) {
         });

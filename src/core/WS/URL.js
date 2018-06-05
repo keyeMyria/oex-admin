@@ -1,7 +1,7 @@
 /* @flow */
 let rootURL: string = '/api/';
 if(process.env.NODE_ENV === 'production') {
-  rootURL = 'http://54.255.206.178:8080/api/';
+  rootURL = 'https://admin-test.oex.com/api/';
 }
 
 

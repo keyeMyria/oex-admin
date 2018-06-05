@@ -39,7 +39,7 @@ export const GET = async (path: string, params = {}) => {
     const response = await fetch(RequestURL, {
       method: 'GET',
       headers: {
-        'admin_token': userInfoStorage.getItem('adminToken')
+        'admin-token': userInfoStorage.getItem('adminToken')
       },
       mode: 'cors',
       credentials: 'include',
@@ -74,7 +74,7 @@ export const POSTJSON = async (path: string, json = {}) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'admin_token': userInfoStorage.getItem('adminToken')
+        'admin-token': userInfoStorage.getItem('adminToken')
       },
       body,
       credentials: 'include',

@@ -22,6 +22,7 @@ export const getLOGIN = (params: Object) => (dispatch) => {
           title: '登录成功',
           icon: 'smile-circle',
         }));
+      userInfoStorage.setItem('adminToken', data.datas.admin_token);
       dispatch(push(RoutingURL.App()));
     } else {
       dispatch(NotificationAction({ type: 'FAIL', device: 'pc', title: `${data.message}` }));
