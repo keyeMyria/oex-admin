@@ -9,9 +9,10 @@ import * as UserAction from '../../actions/UserAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
-import { Form, Input } from 'antd';
+import { Form, Input, Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 @amumu.redux.ConnectStore
 // @amumu.decorators.Loading('pc')
@@ -21,6 +22,10 @@ class UserInfo extends React.Component {
     this.state = {};
   }
   componentWillMount() {
+    // 获取角色列表
+    this.props.dispatch(UserAction.getRoleList(
+      { pageNum: 1, pageSize: 100 }
+    ));
   }
   componentWillReceiveProps(nextProps) {}
   /**
@@ -40,6 +45,15 @@ class UserInfo extends React.Component {
     } else {
       this.props.dispatch(UserAction.addUserInfo(this.props.userInfo.toJS()));
     }
+  }
+  showRoleList(data) {
+    const views = [];
+    if(data) {
+      data.map((item, key) => {
+        views.push(<Option value={item.get('id')}>{item.get('role_name')}</Option>)
+      })
+    }
+    return views;
   }
   clearArticle() {
     this.props.changeAction('AdminReducer/userInfo',
@@ -175,12 +189,12 @@ class UserInfo extends React.Component {
                   initialValue: this.props.userInfo.get('role'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'AdminReducer/userInfo/role', e.target.value);
+                    'AdminReducer/userInfo/role', e);
                   },
                   })(
-                    <Input
-                      placeholder="请输入角色ID"
-                    />
+                    <Select>
+                        {this.showRoleList(this.props.roleList.get('list'))}
+                    </Select>
                 )}
               </FormItem>
             </View>
