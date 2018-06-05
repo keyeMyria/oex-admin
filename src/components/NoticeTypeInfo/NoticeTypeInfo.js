@@ -126,7 +126,6 @@ class NoticeTypeInfo extends React.Component {
                   },
                   })(
                     <Input
-                      type="password"
                       placeholder="请输入语言"
                     />
                 )}

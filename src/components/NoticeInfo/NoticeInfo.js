@@ -9,9 +9,10 @@ import * as OperateAction from '../../actions/OperateAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
-import { Form, Input } from 'antd';
+import { Form, Input, Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 @amumu.redux.ConnectStore
 // @amumu.decorators.Loading('pc')
@@ -26,6 +27,7 @@ class NoticeInfo extends React.Component {
     } else {
       this.clearArticle();
     }
+    this.props.dispatch(OperateAction.getNoticeTypeList(this.props.noticeTypeSearchData.toJS()));
   }
   componentWillReceiveProps(nextProps) {}
   /**
@@ -40,13 +42,20 @@ class NoticeInfo extends React.Component {
     dispatch(push(RoutingURL.NoticeInfo(id, true)));
   }
   _updateAction = (dispatch) => (params: {}) => {
-    console.log(this.props.noticeInfo.toJS());
     if(this.props.noticeInfo.get('id')) {
       this.props.dispatch(OperateAction.updateNoticeInfo(this.props.noticeInfo.toJS()));
     } else {
       this.props.dispatch(OperateAction.addNoticeInfo(this.props.noticeInfo.toJS()));
     }
-
+  }
+  showRoleList(data) {
+    const views = [];
+    if(data) {
+      data.map((item, key) => {
+        views.push(<Option value={item.get('id')}>{item.get('name')}</Option>)
+      })
+    }
+    return views;
   }
   clearArticle() {
     this.props.changeAction('OperateReducer/noticeInfo',
@@ -120,12 +129,12 @@ class NoticeInfo extends React.Component {
                   }],
                   onChange: (e) => {
                     this.props.changeAction(
-                    'OperateReducer/noticeInfo/type_id', e.target.value);
+                    'OperateReducer/noticeInfo/type_id', e);
                   },
                   })(
-                    <Input
-                      placeholder="请输入类型"
-                    />
+                    <Select>
+                        {this.showRoleList(this.props.noticeTypeList.get('list'))}
+                    </Select>
                 )}
               </FormItem>
               <FormItem

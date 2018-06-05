@@ -17,6 +17,7 @@ import amumu from 'amumu';
 class NoticeList extends React.Component {
   componentWillMount() {
     this.props.dispatch(OperateAction.getNoticeList(this.props.searchData.toJS()));
+    
   }
   _goCreateAction = (dispatch: Function) => () => {
     dispatch(push(RoutingURL.NoticeInfo()));
