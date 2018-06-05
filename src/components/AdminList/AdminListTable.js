@@ -36,16 +36,26 @@ class AdminListTable extends React.Component {
       key: 'role',
     }];
   }
+  getRoleType(role) {
+    let name = ''
+    if(this.props.roleList) {
+      this.props.roleList.map((item) => {
+        if(item.get('id') == role) {
+          name = item.get('role_name')
+        }
+      })
+    }
+    return name;
+  }
   _renderDataSource(datas) {
     const dataSource = [];
     if(datas) {
     datas.forEach((data, index) => {
-      const roleType = { 1: '超级用户', 2: '普通用户' };
       dataSource.push({
         key: index,
         id: data.get('id'),
         username: data.get('user_name'),
-        role: roleType[data.get('role')],
+        role: this.getRoleType(data.get('role')),
         operation: (
           <View>
             <a

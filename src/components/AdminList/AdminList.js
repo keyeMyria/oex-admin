@@ -64,6 +64,7 @@ class AdminList extends React.Component {
                dispatch={this.props.dispatch}
                deleteUserAction={this._deleteAction(this.props.dispatch)}
                goUpdateAction={this._goUpdateAction(this.props.dispatch)}
+               roleList={this.props.roleList.get('list')}
              />
           </View>
           <View className={ styles.pageNav }>
