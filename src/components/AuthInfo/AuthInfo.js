@@ -9,9 +9,10 @@ import * as UserAction from '../../actions/UserAction';
 import { push } from 'react-router-redux';
 import * as RoutingURL from '../../core/RoutingURL/RoutingURL';
 import amumu from 'amumu';
-import { Form, Input } from 'antd';
+import { Form, Input, Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 @amumu.redux.ConnectStore
 // @amumu.decorators.Loading('pc')
@@ -21,10 +22,11 @@ class AuthInfo extends React.Component {
     this.state = {};
   }
   componentWillMount() {
-    if(this.props.params.id){
-    } else {
+    if(!this.props.params.id){
       this.clearArticle();
     }
+    // 获取权限列表
+    this.props.dispatch(UserAction.getListPrivilege())
   }
   componentWillReceiveProps(nextProps) {}
   /**
@@ -44,7 +46,15 @@ class AuthInfo extends React.Component {
     } else {
         this.props.dispatch(UserAction.addRole(this.props.roleInfo.toJS()));
     }
-
+  }
+  showRoleList(data) {
+    const views = [];
+    if(data) {
+      data.map((item, key) => {
+        views.push(<Option value={item.get('id')}>{item.get('page')}</Option>)
+      })
+    }
+    return views;
   }
   clearArticle() {
     this.props.changeAction('UserReducer/roleInfo',
@@ -137,12 +147,12 @@ class AuthInfo extends React.Component {
                   initialValue: this.props.roleInfo.get('privileges'),
                   onChange: (e) => {
                     this.props.changeAction(
-                    'UserReducer/roleInfo/privileges', e.target.value);
+                    'UserReducer/roleInfo/privileges', e);
                   },
                   })(
-                    <Input
-                      placeholder="请输入权限值"
-                    />
+                    <Select mode="multiple">
+                        {this.showRoleList(this.props.qxList.get('list'))}
+                    </Select>
                 )}
               </FormItem>
             </View>
